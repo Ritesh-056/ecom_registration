@@ -42,7 +42,7 @@ Widget E_comRegistrationTextHeading(String strText) {
   return Text(
     strText,
     style: TextStyle(
-        color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal),
+        color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
   );
 }
 

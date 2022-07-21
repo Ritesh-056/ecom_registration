@@ -1,5 +1,9 @@
+import 'package:ecom_registration/screens/login_page.dart';
+import 'package:ecom_registration/screens/registration_page.dart';
+import 'package:ecom_registration/screens/user_details_page.dart';
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
+import 'screens/user_details__location_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +20,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SplashScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegistrationScreen(),
+        '/user_details': (context) => const UserDetailsScreen(),
+        '/user_details_address': (context) => const UserLocationDetailsScreen()
+      },
     );
   }
 }

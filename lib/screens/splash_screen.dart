@@ -15,12 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void startTimer() {
     timer = Timer(
-        Duration(seconds: 5),
-        () => Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const LoginScreen(),
-            )));
+        Duration(seconds: 5), () => Navigator.pushNamed(context, '/login'));
   }
 
   @override

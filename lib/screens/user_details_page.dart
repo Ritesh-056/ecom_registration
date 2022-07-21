@@ -5,14 +5,14 @@ import 'package:flutter/painting.dart';
 
 import 'registration_page.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+class UserDetailsScreen extends StatefulWidget {
+  const UserDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _UserDetailsScreenState createState() => _UserDetailsScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _UserDetailsScreenState extends State<UserDetailsScreen> {
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
 
@@ -26,16 +26,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ScrollPhysics(),
-      child: Container(
-        child: Stack(
-          children: [
-            ImageContainer(),
-            TopGreenContainer(context),
-            ItemsContainer()
-          ],
-        ),
+              scrollDirection: Axis.vertical,
+              physics: ScrollPhysics(),
+              child: Container(
+                child: Stack(
+                  children: [
+                    ImageContainer(),
+                    TopGreenContainer(context),
+                    ItemsContainer()
+                  ],
+                ),
       ),
     )));
   }
@@ -78,7 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           child:
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //username block
-            E_comRegistrationTextHeading('User name :'),
+            E_comRegistrationTextHeading('Name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputUserNameController),
 
@@ -92,31 +92,41 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //password block
-            E_comRegistrationTextHeading('Password :'),
+            E_comRegistrationTextHeading('Telephone :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputPasswordController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             // confirm password block
-            E_comRegistrationTextHeading('Confirm Password :'),
+            E_comRegistrationTextHeading('FAX :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputConfirmPasswordController),
 
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            //login button
-            E_comRegistrationLoginOrRegisterButton('Register'),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+            E_comRegistrationTextHeading('TAX ID :'),
+            E_comRegistrationSizedVerticalBox(itemGapSize),
+            E_comRegistrationInputField(_inputConfirmPasswordController),
 
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Center(
-                  child: E_comRegistrationNormalText(
-                      "Already Have an Account ?", TextDecoration.underline)),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+            E_comRegistrationTextHeading('Field of Business :'),
+            E_comRegistrationSizedVerticalBox(itemGapSize),
+            E_comRegistrationInputField(_inputConfirmPasswordController),
+
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+            Align(
+              alignment: Alignment.topRight,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/user_details_address');
+                  },
+                  child: Text('Next'.toUpperCase())),
             ),
+
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
           ]),
         ));
   }

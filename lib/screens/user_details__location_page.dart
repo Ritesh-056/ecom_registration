@@ -4,21 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 import 'registration_page.dart';
-import 'user_details_page.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class UserLocationDetailsScreen extends StatefulWidget {
+  const UserLocationDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _UserLocationDetailsScreenState createState() =>
+      _UserLocationDetailsScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  var _inputEmailController = new TextEditingController();
-  var _inputPasswordController = new TextEditingController();
-
+class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
+
+  var _inputUserNameController = new TextEditingController();
+  var _inputEmailController = new TextEditingController();
+  var _inputPasswordController = new TextEditingController();
+  var _inputConfirmPasswordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           TopElementsOfContainer(),
           MiddleElementsOfContainerCompany(),
-          LoginContainer(),
+          RegistrationContainer(),
         ],
       ),
     );
@@ -64,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget LoginContainer() {
+  Widget RegistrationContainer() {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -74,43 +76,47 @@ class _LoginScreenState extends State<LoginScreen> {
         margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
-          child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            //username block
+            E_comRegistrationTextHeading('State :'),
+            E_comRegistrationSizedVerticalBox(itemGapSize),
+            E_comRegistrationInputField(_inputUserNameController),
+
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
             //email block
-            E_comRegistrationTextHeading('Email :'),
+            E_comRegistrationTextHeading('District :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputEmailController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //password block
-            E_comRegistrationTextHeading('Password :'),
+            E_comRegistrationTextHeading('Municipality :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputPasswordController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            //forgot password block
-            E_comRegistrationNormalText('Forgot password', TextDecoration.none),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+            // confirm password block
+            E_comRegistrationTextHeading('Postal Code :'),
+            E_comRegistrationSizedVerticalBox(itemGapSize),
+            E_comRegistrationInputField(_inputConfirmPasswordController),
 
-            //login button
-            GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/user_details');
-                },
-                child: E_comRegistrationLoginOrRegisterButton('Login')),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/register');
-              },
-              child: Center(
-                  child: E_comRegistrationNormalText(
-                      "Don't Have Account Click here",
-                      TextDecoration.underline)),
-            ),
+            E_comRegistrationTextHeading('Ward No:'),
+            E_comRegistrationSizedVerticalBox(itemGapSize),
+            E_comRegistrationInputField(_inputConfirmPasswordController),
+
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+            E_comRegistrationTextHeading('Insert Identity Card :'),
+            ElevatedButton(onPressed: () {}, child: Text('Choose File')),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+            E_comRegistrationLoginOrRegisterButton('Submit'),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
           ]),
         ));
   }
