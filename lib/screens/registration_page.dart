@@ -94,19 +94,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             //password block
             E_comRegistrationTextHeading('Password :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController),
+            E_comRegistrationInputField(_inputPasswordController,isPassword: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             // confirm password block
             E_comRegistrationTextHeading('Confirm Password :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputConfirmPasswordController),
+            E_comRegistrationInputField(_inputConfirmPasswordController,isPassword: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
             //login button
-            E_comRegistrationLoginOrRegisterButton('Register'),
+            E_comRegistrationLoginOrRegisterButton('Register',context),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
             GestureDetector(

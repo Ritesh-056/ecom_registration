@@ -105,11 +105,6 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            E_comRegistrationTextHeading('TAX ID :'),
-            E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputConfirmPasswordController),
-
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             E_comRegistrationTextHeading('Field of Business :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),

@@ -1,12 +1,23 @@
 import 'package:ecom_registration/screens/login_page.dart';
 import 'package:ecom_registration/screens/registration_page.dart';
 import 'package:ecom_registration/screens/user_details_page.dart';
+import 'package:ecom_registration/state/file_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'screens/splash_screen.dart';
 import 'screens/user_details__location_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+
+    MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => FilePickerProvider()),
+        ],
+      child: const MyApp()
+    ,
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

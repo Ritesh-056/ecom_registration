@@ -1,3 +1,4 @@
+import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
             //password block
             E_comRegistrationTextHeading('Password :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController),
+            E_comRegistrationInputField(_inputPasswordController,isPassword: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -97,9 +98,10 @@ class _LoginScreenState extends State<LoginScreen> {
             //login button
             GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/user_details');
+                  E_comRegistrationShowModelFunction(context);
+                  // Navigator.pushNamed(context, '/user_details');
                 },
-                child: E_comRegistrationLoginOrRegisterButton('Login')),
+                child: E_comRegistrationLoginOrRegisterButton('Login',context)),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
             GestureDetector(
