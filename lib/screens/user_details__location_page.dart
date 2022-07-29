@@ -4,6 +4,7 @@ import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:ecom_registration/state/file_provider.dart';
+import 'package:ecom_registration/state/file_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
@@ -143,30 +144,30 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
 
   Widget FileSelectedView(File file) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Icon(
-          Icons.description_outlined,
-          color: Colors.red,
-        ),
-        E_comRegistrationSizedHorizontalBox(8.0),
-        Expanded(child: Text(file.path.split('/').last, )),
-        E_comRegistrationSizedHorizontalBox(8.0),
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton(
-            onPressed: (){
-              context.read<FilePickerProvider>().getFileFromStorage();
-            },
-            icon:Icon(
-              Icons.file_upload_outlined,
-              color: Colors.black,
-            ),
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(
+            Icons.description_outlined,
+            color: Colors.red,
           ),
-        )
-      ],
-    );
+          E_comRegistrationSizedHorizontalBox(8.0),
+          Expanded(child: Text(file.path.split('/').last, )),
+          E_comRegistrationSizedHorizontalBox(8.0),
+          Align(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              onPressed: (){
+                context.read<FilePickerProvider>().getFileFromStorage();
+              },
+              icon:Icon(
+                Icons.file_upload_outlined,
+                color: Colors.black,
+              ),
+            ),
+          )
+        ],
+      );
   }
 
 
