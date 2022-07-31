@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 const Color kPrimaryColor = Colors.green;
 const Color iconColor = Colors.white;
 
+//item size gap
+double itemGapSize = 8.0;
+double itemBlocGapSize = 16.0;
 
+
+
+const List<String> companyList = ['Private','Public'];
 const List<String> stateList = ['1', '2', '3', '4','5','6','7'];
 const List<String> districtList =[
   'Taplejung',

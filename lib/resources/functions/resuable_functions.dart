@@ -1,3 +1,4 @@
+import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -14,6 +15,7 @@ void E_comRegistrationToastFunction(BuildContext context, String msg) {
 }
 
 void E_comRegistrationShowModelFunction(BuildContext context) {
+
   showModalBottomSheet(
       isDismissible: true,
       context: context,
@@ -50,26 +52,14 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
                   width: MediaQuery.of(context).size.width / 2,
                 )),
                 E_comRegistrationSizedVerticalBox(16.0),
-                Text(
-                  'Rs. 500',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red),
-                ),
-                E_comRegistrationSizedVerticalBox(4.0),
-                Text(
-                  'Will be paid to Nepal Government',
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black45),
-                ),
+                CompanyTypeWidget(),
                 E_comRegistrationSizedVerticalBox(32.0),
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/user_response_screen');
+                    },
                     child: E_comRegistrationLoginOrRegisterButton(
                         'Pay to Bank Account', context),
                   ),
@@ -89,3 +79,70 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
         );
       });
 }
+
+class CompanyTypeWidget extends StatefulWidget {
+  const CompanyTypeWidget({Key? key}) : super(key: key);
+
+  @override
+  State<CompanyTypeWidget> createState() => _CompanyTypeWidgetState();
+}
+
+class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
+  var companyType;
+  bool check_company = false;
+
+  @override
+  Widget build(BuildContext context) {
+
+    return  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Company Type: ',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black),
+            ),
+            DropdownButton<String>(
+              value: check_company ? companyType : companyList[0],
+              items:<String>['Private','Government'].map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (val) {
+               setState(() {
+                 companyType = val!;
+                 check_company = true;
+               });
+              },
+            ),
+
+          ],
+        ),
+        SizedBox(height: 16.0,),
+        Text(
+          companyType == companyList[0]?'Rs. 500':'Rs.15000',
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.red),
+        ),
+        E_comRegistrationSizedVerticalBox(4.0),
+        Text(
+          'Will be paid to Nepal Government',
+          style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.normal,
+              color: Colors.black45),
+        ),
+      ],
+    );
+  }
+}
+

@@ -7,6 +7,7 @@ import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/splash_screen.dart';
+import 'screens/user_detail_response.dart';
 import 'screens/user_details__location_page.dart';
 
 void main() {
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegistrationScreen(),
         '/user_details': (context) => const UserDetailsScreen(),
         '/user_details_address': (context) => const UserLocationDetailsScreen(),
+        '/user_response_screen' : (context) => const UserDetailResponseScreen(),
         '/document_list_screen' : (context) => const DocumentListScreen()
       },
     );

@@ -79,7 +79,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //username block
             E_comRegistrationTextHeading('Name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),

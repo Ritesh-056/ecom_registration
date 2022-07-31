@@ -4,6 +4,8 @@ import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import '../const.dart';
+
 
 import 'registration_page.dart';
 import 'user_details_page.dart';
@@ -19,8 +21,6 @@ class _LoginScreenState extends State<LoginScreen> {
   var _inputEmailController = new TextEditingController();
   var _inputPasswordController = new TextEditingController();
 
-  double itemGapSize = 8.0;
-  double itemBlocGapSize = 16.0;
 
   @override
   Widget build(BuildContext context) {

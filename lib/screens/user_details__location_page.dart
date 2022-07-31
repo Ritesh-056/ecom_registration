@@ -159,7 +159,7 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            E_comRegistrationTextHeading('Insert Identity Card :'),
+            E_comRegistrationTextHeading('Attach Documents:'),
             E_comRegistrationSizedVerticalBox(8.0),
             fileData != null
                 ? FileSelectedView(fileData)
@@ -169,15 +169,44 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
                     },
                     child: Text('Choose File')),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
-
             GestureDetector(
                 onTap: () {
-                  E_comRegistrationShowModelFunction(context);
+                  checkUserDetails();
                 },
                 child:
-                    E_comRegistrationLoginOrRegisterButton('Submit', context)),
+                    E_comRegistrationLoginOrRegisterButton('Submit and Pay', context)),
           ]),
         ));
+  }
+
+
+
+  void checkUserDetails(){
+
+     if(_inputStateController.text.isEmpty){
+       return E_comRegistrationToastFunction(context, 'please select state ');
+     }
+
+     if(_inputDistrictController.text.isEmpty){
+       return E_comRegistrationToastFunction(context, 'please select district ');
+     }
+
+     if(_inputMunicipalityController.text.isEmpty){
+       return E_comRegistrationToastFunction(context, 'please insert municipality');
+     }
+
+     if(_inputPostalCodeController.text.isEmpty){
+       return E_comRegistrationToastFunction(context, 'please postal code number');
+     }
+
+     if(_inputWardNoController.text.isEmpty){
+       return E_comRegistrationToastFunction(context, 'please insert ward number');
+     }
+
+
+     else{
+       E_comRegistrationShowModelFunction(context);
+     }
   }
 
   Widget FileSelectedView(File file) {
