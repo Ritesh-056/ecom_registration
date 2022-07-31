@@ -10,19 +10,21 @@ Widget E_comRegistrationInputField(TextEditingController _textController,
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-        child:  isPassword ? TextField(
-          obscureText: true,
-          controller: _textController,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-          ),
-        ):TextField(
-          obscureText: false,
-          controller: _textController,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-          ),
-        ),
+        child: isPassword
+            ? TextField(
+                obscureText: true,
+                controller: _textController,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
+              )
+            : TextField(
+                obscureText: false,
+                controller: _textController,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
+              ),
       ));
 }
 
@@ -65,7 +67,8 @@ Widget E_comRegistrationNormalText(String strText, TextDecoration decoration) {
   );
 }
 
-Widget E_comRegistrationLoginOrRegisterButton(String txtString,BuildContext context) {
+Widget E_comRegistrationLoginOrRegisterButton(
+    String txtString, BuildContext context) {
   return Container(
     // margin: EdgeInsets.only(left: 8, right: 8),
     decoration: BoxDecoration(
@@ -86,13 +89,12 @@ Widget E_comRegistrationLoginOrRegisterButton(String txtString,BuildContext cont
   );
 }
 
-
-Widget E_comRegistrationCloseButton(String txtString,BuildContext context) {
+Widget E_comRegistrationCloseButton(String txtString, BuildContext context) {
   return Container(
     // margin: EdgeInsets.only(left: 8, right: 8),
     decoration: BoxDecoration(
       color: Colors.white,
-      border: Border.all(color: Colors.black54,width: 0.2),
+      border: Border.all(color: Colors.black54, width: 0.2),
       borderRadius: BorderRadius.all(Radius.circular(20.0)),
     ),
     width: MediaQuery.of(context).size.width,

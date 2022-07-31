@@ -14,28 +14,25 @@ class DocumentListScreen extends StatefulWidget {
 }
 
 class _DocumentListScreenState extends State<DocumentListScreen> {
-
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
 
-
-  List<String> title = ['title1 ','title2','title3'];
-  List<String> description = ['description1 ','description2','description3'];
-
+  List<String> title = ['title1 ', 'title2', 'title3'];
+  List<String> description = ['description1 ', 'description2', 'description3'];
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             body: Container(
-              child: Stack(
-                children: [
-                  ImageContainer(),
-                  TopGreenContainer(context),
-                  ItemsContainer()
-                ],
-              ),
-            )));
+      child: Stack(
+        children: [
+          ImageContainer(),
+          TopGreenContainer(context),
+          ItemsContainer()
+        ],
+      ),
+    )));
   }
 
   Widget ItemsContainer() {
@@ -67,7 +64,6 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
     );
   }
 
-
   Widget RegistrationContainer() {
     return Container(
         decoration: BoxDecoration(
@@ -79,23 +75,28 @@ class _DocumentListScreenState extends State<DocumentListScreen> {
         child: ListView.builder(
             itemCount: 3,
             shrinkWrap: true,
-            itemBuilder: (context,index){
-          return ListTile(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                  DocumentListDetailScreen(
-                    title: title[index], description: description[index],
-                  )
-              )
+            itemBuilder: (context, index) {
+              return ListTile(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DocumentListDetailScreen(
+                                title: title[index],
+                                description: description[index],
+                              )));
+                },
+                leading: Image.asset(
+                  'assets/esewa_logo.png',
+                  height: 60,
+                  width: 40.0,
+                ),
+                title: Text(title[index]),
+                subtitle: Text(description[index]),
+                trailing: E_comRegistrationNormalText(
+                    'Verify', TextDecoration.underline),
               );
-            },
-            leading: Image.asset('assets/esewa_logo.png', height: 60, width: 40.0,),
-            title: Text(title[index]),
-            subtitle: Text(description[index]),
-            trailing: E_comRegistrationNormalText('Verify',TextDecoration.underline),
-          );
-        })
-    );
+            }));
   }
 
   @override

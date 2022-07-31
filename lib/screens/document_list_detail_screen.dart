@@ -6,29 +6,25 @@ import 'package:flutter/painting.dart';
 import 'registration_page.dart';
 
 class DocumentListDetailScreen extends StatefulWidget {
-
   final String title;
   final String description;
 
-  const DocumentListDetailScreen({Key? key, required this.title, required this.description}) : super(key: key);
+  const DocumentListDetailScreen(
+      {Key? key, required this.title, required this.description})
+      : super(key: key);
 
   @override
-  _DocumentListDetailScreenState createState() => _DocumentListDetailScreenState();
+  _DocumentListDetailScreenState createState() =>
+      _DocumentListDetailScreenState();
 }
 
 class _DocumentListDetailScreenState extends State<DocumentListDetailScreen> {
-
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
 
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: DetailScreenItems()
-        )
-    );
+    return SafeArea(child: Scaffold(body: DetailScreenItems()));
   }
 
   Widget DetailScreenItems() {
@@ -38,14 +34,16 @@ class _DocumentListDetailScreenState extends State<DocumentListDetailScreen> {
         children: [
           Text('Title'),
           Text(widget.title),
-          SizedBox(height: 8.0,),
+          SizedBox(
+            height: 8.0,
+          ),
           Text('Description'),
           Text(widget.description)
-
         ],
       ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();

@@ -1,7 +1,10 @@
+import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
+import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:provider/provider.dart';
 
 import 'registration_page.dart';
 
@@ -15,6 +18,7 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
+  bool isAdmin = false;
 
   var _inputUserNameController = new TextEditingController();
   var _inputEmailController = new TextEditingController();
@@ -76,7 +80,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //username block
             E_comRegistrationTextHeading('User name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
@@ -94,19 +98,44 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             //password block
             E_comRegistrationTextHeading('Password :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController,isPassword: true),
+            E_comRegistrationInputField(_inputPasswordController,
+                isPassword: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             // confirm password block
             E_comRegistrationTextHeading('Confirm Password :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputConfirmPasswordController,isPassword: true),
+            E_comRegistrationInputField(_inputConfirmPasswordController,
+                isPassword: true),
 
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            //login button
-            E_comRegistrationLoginOrRegisterButton('Register',context),
+            Row(
+              children: [
+                Checkbox(
+                  value: this.isAdmin,
+                  onChanged: (value) {
+                    setState(() {
+                      this.isAdmin = value!;
+                    });
+                    this.isAdmin
+                        ?  E_comRegistrationToastFunction(
+                        context, 'Admin is Selected')
+                        : E_comRegistrationToastFunction(
+                        context, 'User is Selected');
+                  },
+                ),
+                E_comRegistrationSizedHorizontalBox(8.0),
+                Text('Register as Admin'),
+              ],
+            ),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+            GestureDetector(
+                onTap: () {},
+                child: E_comRegistrationLoginOrRegisterButton(
+                    'Register', context)),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
             GestureDetector(
@@ -125,6 +154,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   void dispose() {
     _inputEmailController.dispose();
     _inputPasswordController.dispose();
+    _inputConfirmPasswordController.dispose();
     super.dispose();
   }
 }

@@ -1,6 +1,17 @@
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void E_comRegistrationToastFunction(BuildContext context, String msg) {
+  Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      textColor: Colors.white,
+      fontSize: 16.0);
+}
 
 void E_comRegistrationShowModelFunction(BuildContext context) {
   showModalBottomSheet(
@@ -58,9 +69,7 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                   child: GestureDetector(
-                    onTap: (){
-
-                    },
+                    onTap: () {},
                     child: E_comRegistrationLoginOrRegisterButton(
                         'Pay to Bank Account', context),
                   ),

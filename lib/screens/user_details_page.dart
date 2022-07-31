@@ -26,16 +26,16 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              physics: ScrollPhysics(),
-              child: Container(
-                child: Stack(
-                  children: [
-                    ImageContainer(),
-                    TopGreenContainer(context),
-                    ItemsContainer()
-                  ],
-                ),
+      scrollDirection: Axis.vertical,
+      physics: ScrollPhysics(),
+      child: Container(
+        child: Stack(
+          children: [
+            ImageContainer(),
+            TopGreenContainer(context),
+            ItemsContainer()
+          ],
+        ),
       ),
     )));
   }
@@ -76,7 +76,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //username block
             E_comRegistrationTextHeading('Name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
@@ -104,7 +104,6 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             E_comRegistrationInputField(_inputConfirmPasswordController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-
 
             E_comRegistrationTextHeading('Field of Business :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),

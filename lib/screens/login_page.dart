@@ -1,4 +1,5 @@
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
+import 'package:ecom_registration/resources/functions/creditional_details.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,8 @@ class _LoginScreenState extends State<LoginScreen> {
             //password block
             E_comRegistrationTextHeading('Password :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController,isPassword: true),
+            E_comRegistrationInputField(_inputPasswordController,
+                isPassword: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -97,11 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
             //login button
             GestureDetector(
-                onTap: () {
-                  E_comRegistrationShowModelFunction(context);
-                  // Navigator.pushNamed(context, '/user_details');
-                },
-                child: E_comRegistrationLoginOrRegisterButton('Login',context)),
+                onTap: passLoginDetails,
+                child:
+                    E_comRegistrationLoginOrRegisterButton('Login', context)),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
             GestureDetector(
@@ -115,6 +115,17 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ]),
         ));
+  }
+
+  void passLoginDetails() {
+    if (_inputEmailController.text.isEmpty) {
+      return E_comRegistrationToastFunction(context, 'Please insert email');
+    }
+    if (_inputPasswordController.text.isEmpty) {
+      return E_comRegistrationToastFunction(context, 'Please insert password');
+    } else {
+      loginDetails(_inputEmailController.text, _inputPasswordController.text);
+    }
   }
 
   @override
