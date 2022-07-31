@@ -1,3 +1,4 @@
+import 'package:ecom_registration/resources/functions/creditional_details.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
@@ -133,7 +134,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             GestureDetector(
-                onTap: () {},
+                onTap: passRegisterData,
                 child: E_comRegistrationLoginOrRegisterButton(
                     'Register', context)),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
@@ -148,6 +149,32 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
           ]),
         ));
+  }
+
+  void passRegisterData(){
+    if(_inputUserNameController.text.isEmpty){
+      return E_comRegistrationToastFunction(context,'Please insert user name');
+    }
+
+    if(_inputEmailController.text.isEmpty){
+      return E_comRegistrationToastFunction(context,'Please insert email');
+    }
+
+    if(_inputPasswordController.text.isEmpty){
+      return E_comRegistrationToastFunction(context,'Please insert password');
+    }
+
+    if(_inputConfirmPasswordController.text.isEmpty){
+      return E_comRegistrationToastFunction(context,'Please insert confirmation password');
+    }
+
+    if(_inputPasswordController.text != _inputConfirmPasswordController.text){
+      return E_comRegistrationToastFunction(context,'Input password and confirmation password don\'t match');
+    }
+    else{
+      print('Register success');
+      registerDetails(_inputUserNameController.text, _inputEmailController.text, _inputPasswordController.text,isAdmin);
+    }
   }
 
   @override

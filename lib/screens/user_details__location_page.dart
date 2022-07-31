@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 
+import '../const.dart';
 import 'registration_page.dart';
 
 class UserLocationDetailsScreen extends StatefulWidget {
@@ -23,10 +24,14 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
 
-  var _inputUserNameController = new TextEditingController();
-  var _inputEmailController = new TextEditingController();
-  var _inputPasswordController = new TextEditingController();
-  var _inputConfirmPasswordController = new TextEditingController();
+  var _inputStateController = new TextEditingController();
+  var _inputDistrictController = new TextEditingController();
+  var _inputMunicipalityController = new TextEditingController();
+  var _inputPostalCodeController  = new TextEditingController();
+  var _inputWardNoController  = new TextEditingController();
+  bool check_district = false;
+  bool check_state = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -91,34 +96,66 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
             //username block
             E_comRegistrationTextHeading('State :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputUserNameController),
+            E_comRegistrationInputField(_inputStateController),
 
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+                DropdownButton<String>(
+                  value: check_state ? _inputStateController.text :stateList[0],
+                  items:stateList.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (val) {
+                      _inputStateController.text = val!;
+                      setState(() {
+                        check_state = true;
+                      });
+                  },
+                ),
+
+                E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //email block
             E_comRegistrationTextHeading('District :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputEmailController),
+            E_comRegistrationInputField(_inputDistrictController),
+
+                DropdownButton<String>(
+                  value: check_district ? _inputDistrictController.text:districtList[0],
+                  items:districtList.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (val) {
+                    _inputDistrictController.text = val!;
+                    setState(() {
+                      check_district = true;
+                    });
+                  },
+                ),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //password block
             E_comRegistrationTextHeading('Municipality :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController),
+            E_comRegistrationInputField(_inputMunicipalityController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             // confirm password block
             E_comRegistrationTextHeading('Postal Code :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputConfirmPasswordController),
+            E_comRegistrationInputField(_inputPostalCodeController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             E_comRegistrationTextHeading('Ward No:'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputConfirmPasswordController),
+            E_comRegistrationInputField(_inputWardNoController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -176,8 +213,11 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
 
   @override
   void dispose() {
-    _inputEmailController.dispose();
-    _inputPasswordController.dispose();
+    _inputStateController.dispose();
+    _inputWardNoController.dispose();
+    _inputDistrictController.dispose();
+    _inputMunicipalityController.dispose();
+    _inputPostalCodeController.dispose();
     super.dispose();
   }
 }

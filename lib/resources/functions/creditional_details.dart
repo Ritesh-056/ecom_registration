@@ -5,6 +5,6 @@ void loginDetails(String email, String password) {
 }
 
 void registerDetails(
-    String email, String password, String userName, bool isAdmin) {
+String userName, String email, String password, bool isAdmin) {
   //register functions
 }

@@ -7,7 +7,6 @@ import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/splash_screen.dart';
-import 'screens/ui.dart';
 import 'screens/user_details__location_page.dart';
 
 void main() {
@@ -33,15 +32,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        // '/': (context) => const PracticeUIScreen(),
-        '/': (context) => const RegistrationScreen(),
+        '/': (context) => const UserLocationDetailsScreen(),
         // '/': (context) => const SplashScreen(),
-        // '/' : (context) => const DocumentListScreen(),
         '/login': (context) => const LoginScreen(),
-        // '/register': (context) => const RegistrationScreen(),
+        '/register': (context) => const RegistrationScreen(),
         '/user_details': (context) => const UserDetailsScreen(),
         '/user_details_address': (context) => const UserLocationDetailsScreen(),
-        // '/document_list_screen' : (context) => const DocumentListScreen()
+        '/document_list_screen' : (context) => const DocumentListScreen()
       },
     );
   }

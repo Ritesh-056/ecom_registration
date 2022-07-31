@@ -16,10 +16,13 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
 
-  var _inputUserNameController = new TextEditingController();
+  var _inputNameController = new TextEditingController();
   var _inputEmailController = new TextEditingController();
-  var _inputPasswordController = new TextEditingController();
-  var _inputConfirmPasswordController = new TextEditingController();
+  var _inputTelePhoneController = new TextEditingController();
+  var _inputFaxController = new TextEditingController();
+  var _inputFieldOfBusinessController = new TextEditingController();
+  var _inputCompanyNameController = new TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +83,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             //username block
             E_comRegistrationTextHeading('Name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputUserNameController),
+            E_comRegistrationInputField(_inputNameController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -94,20 +97,29 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             //password block
             E_comRegistrationTextHeading('Telephone :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController),
+            E_comRegistrationInputField(_inputTelePhoneController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+                // confirm password block
+                E_comRegistrationTextHeading('Company Name :'),
+                E_comRegistrationSizedVerticalBox(itemGapSize),
+                E_comRegistrationInputField(_inputCompanyNameController),
+
+                E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+
 
             // confirm password block
             E_comRegistrationTextHeading('FAX :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputConfirmPasswordController),
+            E_comRegistrationInputField(_inputFaxController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             E_comRegistrationTextHeading('Field of Business :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputConfirmPasswordController),
+            E_comRegistrationInputField(_inputFieldOfBusinessController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -120,7 +132,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   child: Text('Next'.toUpperCase())),
             ),
 
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
           ]),
         ));
   }
@@ -128,7 +140,6 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
   @override
   void dispose() {
     _inputEmailController.dispose();
-    _inputPasswordController.dispose();
     super.dispose();
   }
 }
