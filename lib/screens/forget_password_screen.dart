@@ -6,20 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import '../const.dart';
 
-
-import 'registration_page.dart';
-import 'user_details_page.dart';
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class ForgetPasswordScreen extends StatefulWidget {
+  const ForgetPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _ForgetPasswordScreenState createState() => _ForgetPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   var _inputEmailController = new TextEditingController();
-  var _inputPasswordController = new TextEditingController();
 
 
   @override
@@ -27,18 +22,18 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ScrollPhysics(),
-      child: Container(
-        child: Stack(
-          children: [
-            ImageContainer(),
-            TopGreenContainer(context),
-            ItemsContainer()
-          ],
-        ),
-      ),
-    )));
+              scrollDirection: Axis.vertical,
+              physics: ScrollPhysics(),
+              child: Container(
+                child: Stack(
+                  children: [
+                    ImageContainer(),
+                    TopGreenContainer(context),
+                    ItemsContainer()
+                  ],
+                ),
+              ),
+            )));
   }
 
   Widget ItemsContainer() {
@@ -48,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           TopElementsOfContainer(),
           MiddleElementsOfContainerCompany(),
-          LoginContainer(),
+          ForgetPasswordContainer(),
         ],
       ),
     );
@@ -66,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget LoginContainer() {
+  Widget ForgetPasswordContainer() {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -84,58 +79,30 @@ class _LoginScreenState extends State<LoginScreen> {
             E_comRegistrationInputField(_inputEmailController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-
-            //password block
-            E_comRegistrationTextHeading('Password :'),
-            E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController,
-                isPassword: true),
-
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-
-            //forgot password block
-            GestureDetector(
-                onTap: (){
-                  Navigator.pushNamed(context, '/forget_password');
-                },
-                child: E_comRegistrationNormalText('Forgot password', TextDecoration.none)),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
-
+            
+            
             //login button
             GestureDetector(
-                onTap: passLoginDetails,
+                onTap: verifyEmail,
                 child:
-                    E_comRegistrationLoginOrRegisterButton('Login', context)),
+                E_comRegistrationLoginOrRegisterButton('Send email', context)),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/register');
-              },
-              child: Center(
-                  child: E_comRegistrationNormalText(
-                      "Don't Have Account Click here",
-                      TextDecoration.underline)),
-            ),
           ]),
         ));
   }
 
-  void passLoginDetails() {
+  void verifyEmail() {
     if (_inputEmailController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert email');
-    }
-    if (_inputPasswordController.text.isEmpty) {
-      return E_comRegistrationToastFunction(context, 'Please insert password');
     } else {
-      loginDetails(_inputEmailController.text, _inputPasswordController.text);
+      sendEmailForPasswordRecovery(_inputEmailController.text);
     }
   }
 
   @override
   void dispose() {
     _inputEmailController.dispose();
-    _inputPasswordController.dispose();
     super.dispose();
   }
 }

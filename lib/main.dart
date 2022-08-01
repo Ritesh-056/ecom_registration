@@ -1,4 +1,5 @@
 import 'package:ecom_registration/screens/document_list_screen.dart';
+import 'package:ecom_registration/screens/forget_password_screen.dart';
 import 'package:ecom_registration/screens/login_page.dart';
 import 'package:ecom_registration/screens/registration_page.dart';
 import 'package:ecom_registration/screens/user_details_page.dart';
@@ -33,10 +34,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const UserLocationDetailsScreen(),
-        // '/': (context) => const SplashScreen(),
+        '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegistrationScreen(),
+        '/forget_password':(context) => const ForgetPasswordScreen(),
         '/user_details': (context) => const UserDetailsScreen(),
         '/user_details_address': (context) => const UserLocationDetailsScreen(),
         '/user_response_screen' : (context) => const UserDetailResponseScreen(),
