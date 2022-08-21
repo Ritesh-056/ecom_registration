@@ -9,8 +9,8 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState>{
     on<UserDataFetchEvent>((event, emit) async{
        try{
          emit(UserDetailLoading());
-         final User user = new User();
-         emit(UserDetailLoaded(user));
+         // final User user = new User();
+         // emit(UserDetailLoaded(user));
        }catch (exception){
          emit(UserDetailFetchError(exception.toString()));
        }

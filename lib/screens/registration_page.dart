@@ -1,3 +1,4 @@
+import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
@@ -121,10 +122,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       this.isAdmin = value!;
                     });
                     this.isAdmin
-                        ?  E_comRegistrationToastFunction(
-                        context, 'Admin is Selected')
+                        ? E_comRegistrationToastFunction(
+                            context, 'Admin is Selected')
                         : E_comRegistrationToastFunction(
-                        context, 'User is Selected');
+                            context, 'User is Selected');
                   },
                 ),
                 E_comRegistrationSizedHorizontalBox(8.0),
@@ -151,37 +152,38 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ));
   }
 
-  void passRegisterData(){
-    if(_inputUserNameController.text.isEmpty){
-      return E_comRegistrationToastFunction(context,'Please insert user name');
+  void passRegisterData() {
+    if (_inputUserNameController.text.isEmpty) {
+      return E_comRegistrationToastFunction(context, 'Please insert user name');
     }
 
-    if(_inputEmailController.text.isEmpty){
-      return E_comRegistrationToastFunction(context,'Please insert email');
+    if (_inputEmailController.text.isEmpty) {
+      return E_comRegistrationToastFunction(context, 'Please insert email');
     }
 
-    if(_inputPasswordController.text.isEmpty){
-      return E_comRegistrationToastFunction(context,'Please insert password');
+    if (_inputPasswordController.text.isEmpty) {
+      return E_comRegistrationToastFunction(context, 'Please insert password');
     }
 
-    if(_inputConfirmPasswordController.text.isEmpty){
-      return E_comRegistrationToastFunction(context,'Please insert confirmation password');
+    if (_inputConfirmPasswordController.text.isEmpty) {
+      return E_comRegistrationToastFunction(
+          context, 'Please insert confirmation password');
     }
 
-    if(!checkValidMailOrNot(context, _inputEmailController.text)){
-      return E_comRegistrationToastFunction(context, 'Please insert valid email');
+    if (!checkValidMailOrNot(context, _inputEmailController.text)) {
+      return E_comRegistrationToastFunction(
+          context, 'Please insert valid email');
     }
 
-    if(_inputPasswordController.text != _inputConfirmPasswordController.text){
-      return E_comRegistrationToastFunction(context,'Input password and confirmation password don\'t match');
-    }
-
-
-
-    else{
-      print('Register success');
-      Navigator.pushNamed(context, '/user_details');
-      // registerDetails(_inputUserNameController.text, _inputEmailController.text, _inputPasswordController.text,isAdmin);
+    if (_inputPasswordController.text != _inputConfirmPasswordController.text) {
+      return E_comRegistrationToastFunction(
+          context, 'Input password and confirmation password don\'t match');
+    } else {
+      User user = User(
+          email: _inputEmailController.text,
+          name: _inputUserNameController.text,
+          password: _inputPasswordController.text);
+      registerDetails(context, user);
     }
   }
 
