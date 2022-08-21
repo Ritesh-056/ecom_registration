@@ -165,6 +165,10 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
       return E_comRegistrationToastFunction(context, 'Please email');
     } else {
       Navigator.pushNamed(context, '/user_details_address');
+
+
+
+
     }
   }
 
