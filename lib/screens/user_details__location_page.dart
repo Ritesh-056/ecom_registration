@@ -21,8 +21,10 @@ class UserLocationDetailsScreen extends StatefulWidget {
 }
 
 class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
+
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
+
 
   var _inputStateController = new TextEditingController();
   var _inputDistrictController = new TextEditingController();
@@ -35,7 +37,6 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("Widget build 1 time");
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
@@ -149,13 +150,13 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
             // confirm password block
             E_comRegistrationTextHeading('Postal Code :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPostalCodeController),
+            E_comRegistrationInputField(_inputPostalCodeController,inputTypeNumber: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             E_comRegistrationTextHeading('Ward No:'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputWardNoController),
+            E_comRegistrationInputField(_inputWardNoController,inputTypeNumber: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -202,8 +203,6 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
      if(_inputWardNoController.text.isEmpty){
        return E_comRegistrationToastFunction(context, 'please insert ward number');
      }
-
-
      else{
        E_comRegistrationShowModelFunction(context);
      }

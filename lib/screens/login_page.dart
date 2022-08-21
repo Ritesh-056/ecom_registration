@@ -127,8 +127,15 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     if (_inputPasswordController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert password');
-    } else {
-      loginDetails(_inputEmailController.text, _inputPasswordController.text);
+    }
+
+    if(!checkValidMailOrNot(context, _inputEmailController.text)){
+      return E_comRegistrationToastFunction(context, 'Please insert valid email');
+    }
+
+    else {
+      Navigator.pushNamed(context,'/register');
+      // loginDetails(_inputEmailController.text, _inputPasswordController.text);
     }
   }
 

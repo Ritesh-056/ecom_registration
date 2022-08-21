@@ -7,9 +7,7 @@ class UserDetailsEvent extends Equatable{
   List<Object?> get props => [];
 }
 
-class UserDataFetch extends UserDetailsEvent {
-
-  //to fetch by param code here
+class UserDataFetchEvent extends UserDetailsEvent {
 
   @override
   List<Object?> get props => [];

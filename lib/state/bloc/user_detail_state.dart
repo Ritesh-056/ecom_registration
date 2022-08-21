@@ -13,10 +13,17 @@ class UserDetailsState extends Equatable{
 class UserDetailInitial extends UserDetailsState{}
 class UserDetailLoading extends UserDetailsState{}
 class UserDetailLoaded extends UserDetailsState{
-  final User user;
+  final  User user;
   const UserDetailLoaded(this.user);
 
   @override
   List<Object>  get props => [user];
 }
-class UserDetailFetchError extends UserDetailsState{}
+class UserDetailFetchError extends UserDetailsState{
+
+  final String error ;
+  const UserDetailFetchError(this.error);
+
+  @override
+  List<Object> get props =>[error];
+}

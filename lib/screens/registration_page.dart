@@ -168,12 +168,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       return E_comRegistrationToastFunction(context,'Please insert confirmation password');
     }
 
+    if(!checkValidMailOrNot(context, _inputEmailController.text)){
+      return E_comRegistrationToastFunction(context, 'Please insert valid email');
+    }
+
     if(_inputPasswordController.text != _inputConfirmPasswordController.text){
       return E_comRegistrationToastFunction(context,'Input password and confirmation password don\'t match');
     }
+
+
+
     else{
       print('Register success');
-      registerDetails(_inputUserNameController.text, _inputEmailController.text, _inputPasswordController.text,isAdmin);
+      Navigator.pushNamed(context, '/user_details');
+      // registerDetails(_inputUserNameController.text, _inputEmailController.text, _inputPasswordController.text,isAdmin);
     }
   }
 

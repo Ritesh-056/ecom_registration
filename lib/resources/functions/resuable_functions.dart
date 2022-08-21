@@ -1,8 +1,28 @@
 import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+
+
+bool checkValidMailOrNot(BuildContext context, String email){
+
+  bool validResponse ;
+  int dotPosition = email.indexOf('.');
+  int atPosition  = email.indexOf('@');
+
+  if(atPosition < 1  && dotPosition-atPosition < 2){
+   validResponse =  false;
+  }else{
+    validResponse = true ;
+  }
+
+  return validResponse;
+}
+
+
 
 void E_comRegistrationToastFunction(BuildContext context, String msg) {
   Fluttertoast.showToast(
@@ -57,8 +77,8 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                   child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/user_response_screen');
+                    onTap: (){
+                      // insertDetailsToDatabase();
                     },
                     child: E_comRegistrationLoginOrRegisterButton(
                         'Pay to Bank Account', context),

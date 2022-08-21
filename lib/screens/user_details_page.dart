@@ -1,3 +1,4 @@
+import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             //password block
             E_comRegistrationTextHeading('Telephone :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputTelePhoneController),
+            E_comRegistrationInputField(_inputTelePhoneController,inputTypeNumber: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -126,9 +127,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             Align(
               alignment: Alignment.topRight,
               child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/user_details_address');
-                  },
+                  onPressed: validateField,
                   child: Text('Next'.toUpperCase())),
             ),
 
@@ -137,9 +136,50 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         ));
   }
 
+
+  void validateField(){
+
+    if(_inputNameController.text.isEmpty){
+      return E_comRegistrationToastFunction(context, 'Please insert user name');
+    }
+    if(_inputEmailController.text.isEmpty){
+      return E_comRegistrationToastFunction(context, 'Please insert email name');
+    }
+
+    if(_inputTelePhoneController.text.isEmpty){
+      return E_comRegistrationToastFunction(context, 'Please insert telephone number');
+    }
+
+    if(_inputCompanyNameController.text.isEmpty){
+      return E_comRegistrationToastFunction(context, 'Please insert company name ');
+    }
+
+    if(_inputFaxController.text.isEmpty){
+      return E_comRegistrationToastFunction(context, 'Please insert fax ');
+    }
+
+    if(_inputFieldOfBusinessController.text.isEmpty){
+      return E_comRegistrationToastFunction(context, 'Please insert field of business');
+    }
+
+    if(!checkValidMailOrNot(context, _inputEmailController.text)){
+      return E_comRegistrationToastFunction(context, 'Please email');
+    }
+    else{
+      Navigator.pushNamed(context, '/user_details_address');
+    }
+  }
+
+
   @override
   void dispose() {
     _inputEmailController.dispose();
+    _inputNameController.dispose();
+    _inputFieldOfBusinessController.dispose();
+    _inputFaxController.dispose();
+    _inputCompanyNameController.dispose();
+    _inputTelePhoneController.dispose();
+
     super.dispose();
   }
 }

@@ -79,8 +79,11 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             E_comRegistrationInputField(_inputEmailController),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-            
-            
+
+            Text('* Please check your email to change your password *',  style: TextStyle(
+                color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold)),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
             //login button
             GestureDetector(
                 onTap: verifyEmail,
@@ -95,8 +98,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   void verifyEmail() {
     if (_inputEmailController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert email');
-    } else {
-      sendEmailForPasswordRecovery(_inputEmailController.text);
+    }
+
+    if(!checkValidMailOrNot(context, _inputEmailController.text)){
+      return E_comRegistrationToastFunction(context, 'Please insert valid email');
+    }
+
+    else {
+      Navigator.pushNamed(context, '/login');
+      // sendEmailForPasswordRecovery(_inputEmailController.text);
     }
   }
 
