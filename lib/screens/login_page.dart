@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import '../const.dart';
 
-
 import 'registration_page.dart';
 import 'user_details_page.dart';
 
@@ -21,7 +20,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   var _inputEmailController = new TextEditingController();
   var _inputPasswordController = new TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //email block
             E_comRegistrationTextHeading('Email :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
@@ -96,10 +94,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
             //forgot password block
             GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, '/forget_password');
                 },
-                child: E_comRegistrationNormalText('Forgot password', TextDecoration.none)),
+                child: E_comRegistrationNormalText(
+                    'Forgot password', TextDecoration.none)),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
             //login button
@@ -130,13 +129,14 @@ class _LoginScreenState extends State<LoginScreen> {
       return E_comRegistrationToastFunction(context, 'Please insert password');
     }
 
-    if(!checkValidMailOrNot(context, _inputEmailController.text)){
-      return E_comRegistrationToastFunction(context, 'Please insert valid email');
-    }
-
-    else {
-      User user  =  User(email: _inputEmailController.text,password:_inputPasswordController.text);
-      loginDetails(context,user);
+    if (!checkValidMailOrNot(context, _inputEmailController.text)) {
+      return E_comRegistrationToastFunction(
+          context, 'Please insert valid email');
+    } else {
+      User user = User(
+          email: _inputEmailController.text,
+          password: _inputPasswordController.text);
+      loginDetails(context, user);
     }
   }
 

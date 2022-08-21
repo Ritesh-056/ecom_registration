@@ -24,7 +24,6 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
   var _inputFieldOfBusinessController = new TextEditingController();
   var _inputCompanyNameController = new TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -80,7 +79,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //username block
             E_comRegistrationTextHeading('Name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
@@ -98,18 +97,17 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             //password block
             E_comRegistrationTextHeading('Telephone :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputTelePhoneController,inputTypeNumber: true),
+            E_comRegistrationInputField(_inputTelePhoneController,
+                inputTypeNumber: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-                // confirm password block
-                E_comRegistrationTextHeading('Company Name :'),
-                E_comRegistrationSizedVerticalBox(itemGapSize),
-                E_comRegistrationInputField(_inputCompanyNameController),
+            // confirm password block
+            E_comRegistrationTextHeading('Company Name :'),
+            E_comRegistrationSizedVerticalBox(itemGapSize),
+            E_comRegistrationInputField(_inputCompanyNameController),
 
-                E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-
-
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             // confirm password block
             E_comRegistrationTextHeading('FAX :'),
@@ -127,8 +125,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             Align(
               alignment: Alignment.topRight,
               child: ElevatedButton(
-                  onPressed: validateField,
-                  child: Text('Next'.toUpperCase())),
+                  onPressed: validateField, child: Text('Next'.toUpperCase())),
             ),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
@@ -136,40 +133,40 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         ));
   }
 
-
-  void validateField(){
-
-    if(_inputNameController.text.isEmpty){
+  void validateField() {
+    if (_inputNameController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert user name');
     }
-    if(_inputEmailController.text.isEmpty){
-      return E_comRegistrationToastFunction(context, 'Please insert email name');
+    if (_inputEmailController.text.isEmpty) {
+      return E_comRegistrationToastFunction(
+          context, 'Please insert email name');
     }
 
-    if(_inputTelePhoneController.text.isEmpty){
-      return E_comRegistrationToastFunction(context, 'Please insert telephone number');
+    if (_inputTelePhoneController.text.isEmpty) {
+      return E_comRegistrationToastFunction(
+          context, 'Please insert telephone number');
     }
 
-    if(_inputCompanyNameController.text.isEmpty){
-      return E_comRegistrationToastFunction(context, 'Please insert company name ');
+    if (_inputCompanyNameController.text.isEmpty) {
+      return E_comRegistrationToastFunction(
+          context, 'Please insert company name ');
     }
 
-    if(_inputFaxController.text.isEmpty){
+    if (_inputFaxController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert fax ');
     }
 
-    if(_inputFieldOfBusinessController.text.isEmpty){
-      return E_comRegistrationToastFunction(context, 'Please insert field of business');
+    if (_inputFieldOfBusinessController.text.isEmpty) {
+      return E_comRegistrationToastFunction(
+          context, 'Please insert field of business');
     }
 
-    if(!checkValidMailOrNot(context, _inputEmailController.text)){
+    if (!checkValidMailOrNot(context, _inputEmailController.text)) {
       return E_comRegistrationToastFunction(context, 'Please email');
-    }
-    else{
+    } else {
       Navigator.pushNamed(context, '/user_details_address');
     }
   }
-
 
   @override
   void dispose() {

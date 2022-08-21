@@ -21,19 +21,16 @@ class UserLocationDetailsScreen extends StatefulWidget {
 }
 
 class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
-
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
-
 
   var _inputStateController = new TextEditingController();
   var _inputDistrictController = new TextEditingController();
   var _inputMunicipalityController = new TextEditingController();
-  var _inputPostalCodeController  = new TextEditingController();
-  var _inputWardNoController  = new TextEditingController();
+  var _inputPostalCodeController = new TextEditingController();
+  var _inputWardNoController = new TextEditingController();
   bool check_district = false;
   bool check_state = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -99,44 +96,46 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputStateController),
 
-                DropdownButton<String>(
-                  value: check_state ? _inputStateController.text :stateList[0],
-                  items:stateList.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (val) {
-                      _inputStateController.text = val!;
-                      setState(() {
-                        check_state = true;
-                      });
-                  },
-                ),
+            DropdownButton<String>(
+              value: check_state ? _inputStateController.text : stateList[0],
+              items: stateList.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (val) {
+                _inputStateController.text = val!;
+                setState(() {
+                  check_state = true;
+                });
+              },
+            ),
 
-                E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //email block
             E_comRegistrationTextHeading('District :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputDistrictController),
 
-                DropdownButton<String>(
-                  value: check_district ? _inputDistrictController.text:districtList[0],
-                  items:districtList.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (val) {
-                    _inputDistrictController.text = val!;
-                    setState(() {
-                      check_district = true;
-                    });
-                  },
-                ),
+            DropdownButton<String>(
+              value: check_district
+                  ? _inputDistrictController.text
+                  : districtList[0],
+              items: districtList.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (val) {
+                _inputDistrictController.text = val!;
+                setState(() {
+                  check_district = true;
+                });
+              },
+            ),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -150,13 +149,15 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
             // confirm password block
             E_comRegistrationTextHeading('Postal Code :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPostalCodeController,inputTypeNumber: true),
+            E_comRegistrationInputField(_inputPostalCodeController,
+                inputTypeNumber: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             E_comRegistrationTextHeading('Ward No:'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputWardNoController,inputTypeNumber: true),
+            E_comRegistrationInputField(_inputWardNoController,
+                inputTypeNumber: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
@@ -174,38 +175,37 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
                 onTap: () {
                   checkUserDetails();
                 },
-                child:
-                    E_comRegistrationLoginOrRegisterButton('Submit and Pay', context)),
+                child: E_comRegistrationLoginOrRegisterButton(
+                    'Submit and Pay', context)),
           ]),
         ));
   }
 
+  void checkUserDetails() {
+    if (_inputStateController.text.isEmpty) {
+      return E_comRegistrationToastFunction(context, 'please select state ');
+    }
 
+    if (_inputDistrictController.text.isEmpty) {
+      return E_comRegistrationToastFunction(context, 'please select district ');
+    }
 
-  void checkUserDetails(){
+    if (_inputMunicipalityController.text.isEmpty) {
+      return E_comRegistrationToastFunction(
+          context, 'please insert municipality');
+    }
 
-     if(_inputStateController.text.isEmpty){
-       return E_comRegistrationToastFunction(context, 'please select state ');
-     }
+    if (_inputPostalCodeController.text.isEmpty) {
+      return E_comRegistrationToastFunction(
+          context, 'please postal code number');
+    }
 
-     if(_inputDistrictController.text.isEmpty){
-       return E_comRegistrationToastFunction(context, 'please select district ');
-     }
-
-     if(_inputMunicipalityController.text.isEmpty){
-       return E_comRegistrationToastFunction(context, 'please insert municipality');
-     }
-
-     if(_inputPostalCodeController.text.isEmpty){
-       return E_comRegistrationToastFunction(context, 'please postal code number');
-     }
-
-     if(_inputWardNoController.text.isEmpty){
-       return E_comRegistrationToastFunction(context, 'please insert ward number');
-     }
-     else{
-       E_comRegistrationShowModelFunction(context);
-     }
+    if (_inputWardNoController.text.isEmpty) {
+      return E_comRegistrationToastFunction(
+          context, 'please insert ward number');
+    } else {
+      E_comRegistrationShowModelFunction(context);
+    }
   }
 
   Widget FileSelectedView(File file) {

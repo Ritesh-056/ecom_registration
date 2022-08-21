@@ -1,3 +1,4 @@
+import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
@@ -15,25 +16,25 @@ class ForgetPasswordScreen extends StatefulWidget {
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   var _inputEmailController = new TextEditingController();
-
+  var _inputPasswordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              physics: ScrollPhysics(),
-              child: Container(
-                child: Stack(
-                  children: [
-                    ImageContainer(),
-                    TopGreenContainer(context),
-                    ItemsContainer()
-                  ],
-                ),
-              ),
-            )));
+      scrollDirection: Axis.vertical,
+      physics: ScrollPhysics(),
+      child: Container(
+        child: Stack(
+          children: [
+            ImageContainer(),
+            TopGreenContainer(context),
+            ItemsContainer()
+          ],
+        ),
+      ),
+    )));
   }
 
   Widget ItemsContainer() {
@@ -72,7 +73,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //email block
             E_comRegistrationTextHeading('Email :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
@@ -80,17 +81,25 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            Text('* Please check your email to change your password *',  style: TextStyle(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold)),
+            E_comRegistrationTextHeading('Password :'),
+            E_comRegistrationSizedVerticalBox(itemGapSize),
+            E_comRegistrationInputField(_inputEmailController),
+
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+            Text('* Please check your email to change your password *',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //login button
             GestureDetector(
                 onTap: verifyEmail,
-                child:
-                E_comRegistrationLoginOrRegisterButton('Send email', context)),
+                child: E_comRegistrationLoginOrRegisterButton(
+                    'Send email', context)),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
-
           ]),
         ));
   }
@@ -100,13 +109,18 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       return E_comRegistrationToastFunction(context, 'Please insert email');
     }
 
-    if(!checkValidMailOrNot(context, _inputEmailController.text)){
-      return E_comRegistrationToastFunction(context, 'Please insert valid email');
+    if (!checkValidMailOrNot(context, _inputEmailController.text)) {
+      return E_comRegistrationToastFunction(
+          context, 'Please insert valid email');
     }
-
-    else {
+    if (_inputPasswordController.text.isEmpty) {
+      return E_comRegistrationToastFunction(context, 'Please insert password');
+    } else {
       Navigator.pushNamed(context, '/login');
-      // sendEmailForPasswordRecovery(_inputEmailController.text);
+      User user = User(
+          email: _inputEmailController.text,
+          password: _inputPasswordController.text);
+      sendPasswordChangeRequest(context, user);
     }
   }
 

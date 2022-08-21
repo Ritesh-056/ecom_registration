@@ -3,7 +3,6 @@ import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 
-
 class UserDetailResponseScreen extends StatelessWidget {
   const UserDetailResponseScreen({Key? key}) : super(key: key);
 
@@ -12,20 +11,19 @@ class UserDetailResponseScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              physics: ScrollPhysics(),
-              child: Container(
-                child: Stack(
-                  children: [
-                    ImageContainer(),
-                    TopGreenContainer(context),
-                    ItemsContainer(context)
-                  ],
-                ),
-              ),
-            )));
+      scrollDirection: Axis.vertical,
+      physics: ScrollPhysics(),
+      child: Container(
+        child: Stack(
+          children: [
+            ImageContainer(),
+            TopGreenContainer(context),
+            ItemsContainer(context)
+          ],
+        ),
+      ),
+    )));
   }
-
 
   Widget FooterElementsOfContainer() {
     return Column(
@@ -44,7 +42,6 @@ class UserDetailResponseScreen extends StatelessWidget {
         ]);
   }
 
-
   Widget ItemsContainer(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -53,7 +50,9 @@ class UserDetailResponseScreen extends StatelessWidget {
           TopElementsOfContainer(),
           MiddleElementsOfContainerCompany(),
           ResponseContainer(context),
-          SizedBox(height: 32.0,),
+          SizedBox(
+            height: 32.0,
+          ),
           FooterElementsOfContainer(),
         ],
       ),
@@ -85,17 +84,27 @@ class UserDetailResponseScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height:32.0),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            SizedBox(height: 32.0),
             Center(child: E_comRegistrationTextHeading('Thank You')),
-            SizedBox(height: 8.0,),
+            SizedBox(
+              height: 8.0,
+            ),
             Center(child: Text('Your details have been submitted !')),
             SizedBox(height: 32.0),
-            Expanded(child: Text("Dear, user your details and documents are submitted successfully into the database of the Nepal Government. Your documents need to be verified by the central authority which takes some time to verify. If completed you will be inform soon with an email.")),
+            Expanded(
+                child: Text(
+                    "Dear, user your details and documents are submitted successfully into the database of the Nepal Government. Your documents need to be verified by the central authority which takes some time to verify. If completed you will be inform soon with an email.")),
             Row(
               children: [
-                Image.asset('assets/logo_nepal.png',height: 100, width: 80,),
-                SizedBox(width: 12.0,),
+                Image.asset(
+                  'assets/logo_nepal.png',
+                  height: 100,
+                  width: 80,
+                ),
+                SizedBox(
+                  width: 12.0,
+                ),
                 Text('Nepal Government')
               ],
             )

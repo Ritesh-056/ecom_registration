@@ -5,24 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
-
-bool checkValidMailOrNot(BuildContext context, String email){
-
-  bool validResponse ;
+bool checkValidMailOrNot(BuildContext context, String email) {
+  bool validResponse;
   int dotPosition = email.indexOf('.');
-  int atPosition  = email.indexOf('@');
+  int atPosition = email.indexOf('@');
 
-  if(atPosition < 1  && dotPosition-atPosition < 2){
-   validResponse =  false;
-  }else{
-    validResponse = true ;
+  if (atPosition < 1 && dotPosition - atPosition < 2) {
+    validResponse = false;
+  } else {
+    validResponse = true;
   }
 
   return validResponse;
 }
-
-
 
 void E_comRegistrationToastFunction(BuildContext context, String msg) {
   Fluttertoast.showToast(
@@ -35,7 +30,6 @@ void E_comRegistrationToastFunction(BuildContext context, String msg) {
 }
 
 void E_comRegistrationShowModelFunction(BuildContext context) {
-
   showModalBottomSheet(
       isDismissible: true,
       context: context,
@@ -77,7 +71,7 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       // insertDetailsToDatabase();
                     },
                     child: E_comRegistrationLoginOrRegisterButton(
@@ -113,8 +107,7 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
@@ -129,29 +122,28 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
             ),
             DropdownButton<String>(
               value: check_company ? companyType : companyList[0],
-              items:<String>['Private','Government'].map((String value) {
+              items: <String>['Private', 'Government'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
                 );
               }).toList(),
               onChanged: (val) {
-               setState(() {
-                 companyType = val!;
-                 check_company = true;
-               });
+                setState(() {
+                  companyType = val!;
+                  check_company = true;
+                });
               },
             ),
-
           ],
         ),
-        SizedBox(height: 16.0,),
+        SizedBox(
+          height: 16.0,
+        ),
         Text(
-          companyType == companyList[0]?'Rs. 500':'Rs.15000',
+          companyType == companyList[0] ? 'Rs. 500' : 'Rs.15000',
           style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.red),
+              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
         ),
         E_comRegistrationSizedVerticalBox(4.0),
         Text(
@@ -165,4 +157,3 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
     );
   }
 }
-

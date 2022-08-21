@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget E_comRegistrationInputField(TextEditingController _textController,
-    {bool isPassword = false, bool inputTypeNumber = false }) {
+    {bool isPassword = false, bool inputTypeNumber = false}) {
   return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -9,17 +9,16 @@ Widget E_comRegistrationInputField(TextEditingController _textController,
         borderRadius: BorderRadius.all(Radius.circular(16.0)),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-        child: TextField(
-                obscureText:  isPassword ? true : false,
-                controller: _textController,
-                keyboardType: inputTypeNumber ? TextInputType.number : TextInputType.text,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                ),
-              )
-
-      ));
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          child: TextField(
+            obscureText: isPassword ? true : false,
+            controller: _textController,
+            keyboardType:
+                inputTypeNumber ? TextInputType.number : TextInputType.text,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+            ),
+          )));
 }
 
 Widget E_comRegistrationSizedHorizontalBox(double mWidth) {

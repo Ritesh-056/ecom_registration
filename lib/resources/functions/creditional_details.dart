@@ -24,6 +24,8 @@ void loginDetails(BuildContext context, User user) async {
   }
 }
 
+
+
 void registerDetails(BuildContext context, User user) async {
   try {
     var dio = Dio();
@@ -44,5 +46,22 @@ void registerDetails(BuildContext context, User user) async {
   }
 }
 
+
 //forget password block
-void sendEmailForPasswordRecovery(String email) {}
+void sendPasswordChangeRequest(BuildContext context, User user) async {
+  try {
+    var dio = Dio();
+    var response = await dio.put(create_user_api_base_url, data: {
+      'password': user.password
+    });
+    if (response.statusCode == 200) {
+      E_comRegistrationToastFunction(context, 'Password changed successful');
+      Navigator.pushNamed(context, '/login');
+    } else {
+      E_comRegistrationToastFunction(context, 'Password changed failed');
+    }
+  } catch (ex) {
+    E_comRegistrationToastFunction(context, ex.toString());
+    print(ex.toString());
+  }
+}

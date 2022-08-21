@@ -1,5 +1,3 @@
 import 'package:flutter/material.dart';
 
-class GeneralFuncProvider extends ChangeNotifier {
-
-}
+class GeneralFuncProvider extends ChangeNotifier {}
