@@ -1,3 +1,4 @@
+import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
@@ -134,8 +135,8 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     else {
-      Navigator.pushNamed(context,'/register');
-      // loginDetails(_inputEmailController.text, _inputPasswordController.text);
+      User user  =  User(email: _inputEmailController.text,password:_inputPasswordController.text);
+      loginDetails(context,user);
     }
   }
 

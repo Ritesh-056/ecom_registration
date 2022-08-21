@@ -8,12 +8,12 @@ class User {
   User({
     required this.email,
     required this.password,
-    required this.name,
+    this.name,
   });
 
   String email;
   String password;
-  String name;
+  String? name;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
     email: json["email"],
