@@ -4,9 +4,11 @@ import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
+import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 
 late Timer timer ;
@@ -85,6 +87,7 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
                       timer = Timer(
                           Duration(seconds: 5), () {
                         E_comRegistrationToastFunction(context, 'Payment Successful');
+                        Provider.of<GeneralFuncProvider>(context,listen: false).checkFinePaidOrNot();
                         Navigator.pop(context);
                         Navigator.pop(context);
                       });
@@ -119,9 +122,6 @@ class CompanyTypeWidget extends StatefulWidget {
 }
 
 class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
-  var companyType;
-  bool check_company = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -137,30 +137,31 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
                   fontWeight: FontWeight.normal,
                   color: Colors.black),
             ),
-            DropdownButton<String>(
-              value: check_company ? companyType : companyList[0],
-              items: <String>['Private', 'Government'].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (val) {
-                setState(() {
-                  companyType = val!;
-                  check_company = true;
-                });
-              },
+            Consumer<GeneralFuncProvider>(
+              builder: (context, generalFunc, child) => DropdownButton<String>(
+                value: generalFunc.isPrivateCompany ? 'Private' : 'Government',
+                items: <String>['Private', 'Government'].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (val) {
+                  generalFunc.changTypeOfCompany();
+                },
+              ),
             ),
           ],
         ),
         SizedBox(
           height: 16.0,
         ),
-        Text(
-          companyType == companyList[0] ? 'Rs. 500' : 'Rs.15000',
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
+        Consumer<GeneralFuncProvider>(
+          builder:(context,generalFunc,child) =>Text(
+            generalFunc.isPrivateCompany ? 'Rs. 500' : 'Rs.15000',
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
+          ),
         ),
         E_comRegistrationSizedVerticalBox(4.0),
         Text(

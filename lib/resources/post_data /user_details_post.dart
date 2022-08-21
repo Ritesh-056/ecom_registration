@@ -63,6 +63,7 @@ class ApiPostService {
       }
     } catch (ex) {
       Navigator.pop(context);
+      print(ex.toString());
       throw Exception(ex.toString());
     }
   }

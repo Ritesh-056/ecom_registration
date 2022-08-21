@@ -77,12 +77,16 @@ Widget E_comRegistrationNormalText(String strText, TextDecoration decoration) {
 }
 
 Widget E_comRegistrationLoginOrRegisterButton(
-    String txtString, BuildContext context) {
+    String txtString, BuildContext context , {bool isPaid = true}) {
   return Container(
     // margin: EdgeInsets.only(left: 8, right: 8),
-    decoration: BoxDecoration(
-      color: Colors.green,
+    decoration: isPaid ? BoxDecoration(
+      color: Colors.green ,
       borderRadius: BorderRadius.all(Radius.circular(20.0)),
+    ):BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      border: Border.all(color: Colors.black54, width: 0.2),
     ),
     width: MediaQuery.of(context).size.width,
     child: Padding(
@@ -91,7 +95,7 @@ Widget E_comRegistrationLoginOrRegisterButton(
         child: Text(txtString,
             style: TextStyle(
                 fontSize: 16,
-                color: Colors.white,
+                color: isPaid ? Colors.white : Colors.black,
                 fontWeight: FontWeight.bold)),
       ),
     ),

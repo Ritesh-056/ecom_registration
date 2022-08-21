@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:ecom_registration/model%20/company.dart';
+import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:ecom_registration/state/provider/file_provider.dart';
 import 'package:ecom_registration/state/provider/file_provider.dart';
+import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
@@ -82,7 +84,6 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
   }
 
   Widget RegistrationContainer(BuildContext context) {
-
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -92,8 +93,7 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
         margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //username block
             E_comRegistrationTextHeading('State :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
@@ -162,60 +162,87 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
             E_comRegistrationInputField(_inputWardNoController,
                 inputTypeNumber: true),
 
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize*2),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
             E_comRegistrationTextHeading('Documents Required :'),
             E_comRegistrationSizedVerticalBox(8.0),
 
-            Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                ),
-                child: Image.asset('assets/documents_required.png', height: 200)),
 
-                E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    E_comRegistrationTextHeading('Attach Documents :'),
-                    IconButton(
-                      onPressed: () {
-                        context.read<FilePickerProvider>().getFileFromStorage();
-                      },
-                      icon: Icon(
-                        Icons.upload_outlined,
-                        color: Colors.black,
-                      ),
-                    ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+            ),
+            child: InteractiveViewer(
+                panEnabled: false, // Set it to false
+                // boundaryMargin: EdgeInsets.all(100),
+                minScale: 0.10,
+                maxScale: 8,
+                child: Image.asset(
+                  'assets/documents_required.png',
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  fit: BoxFit.fill,
+                )),
+          ),
 
-                  ],
-                ),
-                E_comRegistrationSizedVerticalBox(8.0),
-            Consumer<FilePickerProvider>(
-              builder: (context, fileData, child)=>
-                   fileData.files.length > 0
-                  ? FileSelectedView(fileData.files)
-                  : ElevatedButton(
+
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                E_comRegistrationTextHeading('Attach Documents :'),
+                Consumer<FilePickerProvider>(
+                  builder:(context,filesData,child)=> filesData.files.length > 0 ?IconButton(
                   onPressed: () {
                     context.read<FilePickerProvider>().getFileFromStorage();
                   },
-                  child: Text('Choose File')),
+                  icon: Icon(
+                    Icons.upload_outlined,
+                    color: Colors.black,
+                  ),
+                ): Container(),)
+              ],
+            ),
+            E_comRegistrationSizedVerticalBox(8.0),
+            Consumer<FilePickerProvider>(
+              builder: (context, fileData, child) => fileData.files.length > 0
+                  ? FileSelectedView(fileData.files)
+                  : ElevatedButton(
+                      onPressed: () {
+                        context.read<FilePickerProvider>().getFileFromStorage();
+                      },
+                      child: Text('Choose File')),
             ),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
-            GestureDetector(
-                onTap: () {
-                  checkUserDetails();
-                },
-                child: E_comRegistrationLoginOrRegisterButton(
-                    'Pay and Submit', context)),
+                Consumer<GeneralFuncProvider>(
+                    builder: (context, generalProvider, child) => generalProvider
+                        .isRegistrationChargePaid
+                        ? E_comRegistrationLoginOrRegisterButton('Pay fee', context,isPaid: false):
+                    GestureDetector(
+                        onTap: () {
+                          E_comRegistrationShowModelFunction(context);
+                        },
+                        child: E_comRegistrationLoginOrRegisterButton(
+                            'Pay fee', context))
+                        ),
+
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            Consumer<GeneralFuncProvider>(
+                builder: (context, generalProvider, child) => generalProvider
+                        .isRegistrationChargePaid
+                    ? GestureDetector(
+                        onTap: () {
+                          checkUserDetails();
+                        },
+                        child: E_comRegistrationLoginOrRegisterButton(
+                            'Submit', context))
+                    : E_comRegistrationLoginOrRegisterButton('Submit', context,isPaid: false))
           ]),
         ));
   }
 
   void checkUserDetails() {
-    var files = Provider
-        .of<FilePickerProvider>(context, listen: false)
-        .files;
+    var files = Provider.of<FilePickerProvider>(context, listen: false).files;
 
     if (_inputStateController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'please select state ');
@@ -243,6 +270,9 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
     if (files.length == 0) {
       return E_comRegistrationToastFunction(context, 'please select files');
     } else {
+
+      GISCircularProgressDialog(context,' Uploading data', 'Please wait uploading to database.');
+
       String name = widget.getUserDetailMap['name'];
       String email = widget.getUserDetailMap['email'];
       String fieldOfBusiness = widget.getUserDetailMap['fieldOfBusiness'];
@@ -260,34 +290,26 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
           wardNo: _inputWardNoController.text,
           municipality: _inputMunicipalityController.text,
           postalCode: _inputPostalCodeController.text,
-          files: context
-              .read<FilePickerProvider>()
-              .files
-      );
+          files: context.read<FilePickerProvider>().files);
 
 
-      E_comRegistrationShowModelFunction(context);
+      Navigator.pushNamed(context, '/document_list_screen');
 
-
-      ApiPostService().uploadData(context, company).then((value) {
-          if (value) {
-            Navigator.pushNamed(context, '/document_list_screen');
-            return E_comRegistrationToastFunction(
-                context, 'Data uploaded to database.');
-          } else {
-            return E_comRegistrationToastFunction(
-                context, 'Error uploading to database.');
-          }
-        }).catchError((err) {
-          print("data upload err occured" + err.toString());
-          return E_comRegistrationToastFunction(context, err.toString());
-        });
-
-
-
+      // ApiPostService().uploadData(context, company).then((value) {
+      //   if (value) {
+      //     Navigator.pushNamed(context, '/document_list_screen');
+      //     return E_comRegistrationToastFunction(
+      //         context, 'Data uploaded to database.');
+      //   } else {
+      //     print('User uploading error should be encountered here'+ value.toString());
+      //     return E_comRegistrationToastFunction(
+      //         context, 'Error uploading to database.');
+      //   }
+      // }).catchError((err) {
+      //   print("Error uploading" + err.toString());
+      // });
     }
   }
-
 
   Widget FileSelectedView(List<File> file) {
     return Column(
@@ -295,10 +317,9 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
     );
   }
 
-
-  List<Widget> attachFile(List<File> file){
-    List<Widget> fileWidget  =[];
-    for(int i =0 ; i < file.length ; i++){
+  List<Widget> attachFile(List<File> file) {
+    List<Widget> fileWidget = [];
+    for (int i = 0; i < file.length; i++) {
       fileWidget.add(Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -310,8 +331,8 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
           E_comRegistrationSizedHorizontalBox(8.0),
           Expanded(
               child: Text(
-                file[i].path.split('/').last,
-              )),
+            file[i].path.split('/').last,
+          )),
           E_comRegistrationSizedHorizontalBox(8.0),
           Align(
             alignment: Alignment.topRight,
