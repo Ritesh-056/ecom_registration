@@ -12,7 +12,7 @@ class Company {
   Company({
     this.id,
     this.files,
-    required this.approved,
+    this.approved,
     required this.name,
     required this.email,
     required this.telephone,
@@ -25,7 +25,7 @@ class Company {
     required this.wardNo,
   });
 
-  bool approved;
+  bool? approved;
   int? id;
   String name;
   String email;

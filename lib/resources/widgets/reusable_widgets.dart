@@ -1,5 +1,21 @@
 import 'package:flutter/material.dart';
 
+
+
+Widget E_comRegistrationDynamicsText({required String text, required bool isHeadings}) {
+  return Text(
+    '$text',
+    style: isHeadings
+        ? TextStyle(
+        color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold)
+        : TextStyle(
+        color: Colors.black, fontSize: 13, fontWeight: FontWeight.normal),
+  );
+}
+
+
+
+
 Widget E_comRegistrationInputField(TextEditingController _textController,
     {bool isPassword = false, bool inputTypeNumber = false}) {
   return Container(

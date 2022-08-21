@@ -1,6 +1,8 @@
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
+import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
+import 'package:ecom_registration/screens/user_details__location_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -164,11 +166,19 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
     if (!checkValidMailOrNot(context, _inputEmailController.text)) {
       return E_comRegistrationToastFunction(context, 'Please email');
     } else {
-      Navigator.pushNamed(context, '/user_details_address');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => UserLocationDetailsScreen(
+                    getUserDetailMap: {
+                      "name": _inputNameController.text,
+                      "email": _inputEmailController.text,
+                      "telephone": _inputTelePhoneController.text,
+                      "fax": _inputFaxController.text,
+                      "fieldOfBusiness": _inputFieldOfBusinessController.text,
+                    },
 
-
-
-
+              )));
     }
   }
 

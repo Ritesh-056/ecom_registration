@@ -1,9 +1,16 @@
+import 'dart:async';
+
 import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+
+late Timer timer ;
+
 
 bool checkValidMailOrNot(BuildContext context, String email) {
   bool validResponse;
@@ -19,6 +26,7 @@ bool checkValidMailOrNot(BuildContext context, String email) {
   return validResponse;
 }
 
+
 void E_comRegistrationToastFunction(BuildContext context, String msg) {
   Fluttertoast.showToast(
       msg: msg,
@@ -28,6 +36,7 @@ void E_comRegistrationToastFunction(BuildContext context, String msg) {
       textColor: Colors.white,
       fontSize: 16.0);
 }
+
 
 void E_comRegistrationShowModelFunction(BuildContext context) {
   showModalBottomSheet(
@@ -72,8 +81,14 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
                   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                   child: GestureDetector(
                     onTap: () {
-                      // insertDetailsToDatabase();
-                    },
+                      GISCircularProgressDialog(context,'Payment processing','Please wait a moment to make a payment');
+                      timer = Timer(
+                          Duration(seconds: 5), () {
+                        E_comRegistrationToastFunction(context, 'Payment Successful');
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      });
+                      },
                     child: E_comRegistrationLoginOrRegisterButton(
                         'Pay to Bank Account', context),
                   ),
@@ -93,6 +108,8 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
         );
       });
 }
+
+
 
 class CompanyTypeWidget extends StatefulWidget {
   const CompanyTypeWidget({Key? key}) : super(key: key);

@@ -4,15 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FilePickerProvider with ChangeNotifier {
-  File? file;
 
-  getFileFromStorage() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+   List<File> files= [];
+
+   getFileFromStorage() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
-      file = File(result.files.single.path!);
-      notifyListeners();
+       var listFiles = result.paths.map((path) => File(path!)).toList();
+       files.addAll(listFiles);
+       notifyListeners();
     } else {
-      file = null;
+      files ;
     }
   }
+
+   deleteSelectedFile(int index)  {
+     files.removeAt(index);
+     notifyListeners();
+   }
 }

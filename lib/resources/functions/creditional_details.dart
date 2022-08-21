@@ -8,6 +8,7 @@ import 'package:ecom_registration/screens/user_details_page.dart';
 import 'package:flutter/material.dart';
 
 void loginDetails(BuildContext context, User user) async {
+
   try {
     var dio = Dio();
     var response = await dio.post(create_user_api_base_url,
@@ -19,7 +20,7 @@ void loginDetails(BuildContext context, User user) async {
       E_comRegistrationToastFunction(context, 'Login failed');
     }
   } catch (ex) {
-    E_comRegistrationToastFunction(context, ex.toString());
+    // E_comRegistrationToastFunction(context, ex.toString());
     print(ex.toString());
   }
 }
@@ -29,7 +30,7 @@ void loginDetails(BuildContext context, User user) async {
 void registerDetails(BuildContext context, User user) async {
   try {
     var dio = Dio();
-    var response = await dio.post(create_user_api_base_url, data: {
+    var response = await dio.post(create_user_api_base_url+'users/create', data: {
       'name': user.name,
       'email': user.email,
       'password': user.password
@@ -41,7 +42,7 @@ void registerDetails(BuildContext context, User user) async {
       E_comRegistrationToastFunction(context, 'User registration failed');
     }
   } catch (ex) {
-    E_comRegistrationToastFunction(context, ex.toString());
+    // E_comRegistrationToastFunction(context, ex.toString());
     print(ex.toString());
   }
 }
@@ -61,7 +62,7 @@ void sendPasswordChangeRequest(BuildContext context, User user) async {
       E_comRegistrationToastFunction(context, 'Password changed failed');
     }
   } catch (ex) {
-    E_comRegistrationToastFunction(context, ex.toString());
+    // E_comRegistrationToastFunction(context, ex.toString());
     print(ex.toString());
   }
 }
