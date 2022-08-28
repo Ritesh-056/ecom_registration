@@ -1,4 +1,5 @@
-import 'package:ecom_registration/screens/document_list_screen.dart';
+import 'package:ecom_registration/screens/approved_company_list.dart';
+import 'package:ecom_registration/screens/company_registration_list.dart';
 import 'package:ecom_registration/screens/forget_password_screen.dart';
 import 'package:ecom_registration/screens/login_page.dart';
 import 'package:ecom_registration/screens/registration_page.dart';
@@ -27,21 +28,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'E-com Registration',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/register': (context) => const RegistrationScreen(),
-        '/forget_password': (context) => const ForgetPasswordScreen(),
-        '/user_details': (context) => const UserDetailsScreen(),
-        '/user_response_screen': (context) => const UserDetailResponseScreen(),
-        '/document_list_screen': (context) => const DocumentListScreen()
-      },
-    );
+        title: 'E-com Registration',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const CompanyRegistrationListScreen(),
+          '/login': (context) => const LoginScreen(),
+          '/register': (context) => const RegistrationScreen(),
+          '/forget_password': (context) => const ForgetPasswordScreen(),
+          '/user_details': (context) => const UserDetailsScreen(),
+          '/user_response_screen': (context) => const UserDetailResponseScreen(),
+          '/approve_company':(context)=> const ApprovedCompanyListScreen(),
+          // '/document_list_screen': (context) => const DocumentListScreen()
+        },
+      );
   }
 }

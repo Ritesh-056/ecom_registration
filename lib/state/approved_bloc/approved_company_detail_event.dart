@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class UserDetailsEvent extends Equatable {
+class ApprovedCompanyDetailsEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class UserDataFetchEvent extends UserDetailsEvent {
+class ApprovedCompanyDataFetchEvent extends ApprovedCompanyDetailsEvent {
   @override
   List<Object?> get props => [];
 }

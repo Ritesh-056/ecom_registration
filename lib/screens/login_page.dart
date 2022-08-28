@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:ecom_registration/company_repositary/companies_repo.dart';
 import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
@@ -22,22 +25,36 @@ class _LoginScreenState extends State<LoginScreen> {
   var _inputPasswordController = new TextEditingController();
 
   @override
+  void initState() {
+    CompanyDetailsApiRepository().getCompanyDataList() ;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ScrollPhysics(),
-      child: Container(
-        child: Stack(
-          children: [
-            ImageContainer(),
-            TopGreenContainer(context),
-            ItemsContainer()
-          ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        physics: ScrollPhysics(),
+        child: Container(
+          child: Stack(
+            children: [
+              ImageContainer(),
+              TopGreenContainer(context),
+              ItemsContainer()
+            ],
+          ),
         ),
       ),
-    )));
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          log("From login page btn clicked");
+          CompanyDetailsApiRepository().getCompanyDataList() ;
+        },
+        child: Icon(Icons.add),
+      ),
+    ));
   }
 
   Widget ItemsContainer() {

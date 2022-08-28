@@ -114,7 +114,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             // confirm password block
             E_comRegistrationTextHeading('FAX :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputFaxController),
+            E_comRegistrationInputField(_inputFaxController,inputTypeNumber: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 

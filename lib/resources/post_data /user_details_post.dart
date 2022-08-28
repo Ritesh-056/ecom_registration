@@ -12,13 +12,14 @@ import 'package:path/path.dart';
 
 class ApiPostService {
 
-  uploadData(BuildContext context, Company company) async {
+  Future<Response> uploadData(BuildContext context, Company company) async {
+
     var endpoints = '${create_user_api_base_url}companyRegistration';
-
-
     Map<String, String> headers = {
       'accept': 'application/json',
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
+      'Authorization':"Bearer ${token}",
+      'Accept':'*/*'
     };
 
 
@@ -52,19 +53,8 @@ class ApiPostService {
     request.fields['postalCode'] = company.postalCode ;
     request.fields['wardNo'] = company.wardNo ;
 
+
     var response = await http.Response.fromStream(await request.send());
-    try {
-      if (response.statusCode == 200) {
-        Navigator.pop(context);
-        return true;
-      } else {
-        Navigator.pop(context);
-        return false;
-      }
-    } catch (ex) {
-      Navigator.pop(context);
-      print(ex.toString());
-      throw Exception(ex.toString());
-    }
+    return response;
   }
 }

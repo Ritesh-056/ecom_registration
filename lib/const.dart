@@ -8,11 +8,13 @@ double itemGapSize = 8.0;
 double itemBlocGapSize = 16.0;
 
 const create_user_api_base_url =
-    "https://fd17-2400-1a00-b010-2ac9-e291-f007-1c95-f4df.in.ngrok.io/";
+    "https://c6d8-2400-1a00-b010-aad9-1eaa-ea3f-911d-855b.in.ngrok.io/";
+
+const String token = "eyJlbWFpbCI6InJpdGVzaGJhcmFscnR6QGdtYWlsLmNvbSIsInVzZXJJZCI6MSwiZXhwaXJlcyI6MTY2MTcxNTA1MjE5OX0";
 
 const List<String> companyList = ['Private', 'Government'];
 const List<String> stateList = ['1', '2', '3', '4', '5', '6', '7'];
-const List<String> districtList = [
+ List<String> districtList = [
   'Taplejung',
   'Phidim',
   'Ilam',
@@ -60,7 +62,6 @@ const List<String> districtList = [
   'Baglung',
   'Gulmi',
   'Tansen',
-  'Tansen',
   'Parasi',
   'Bhairawa',
   'Sandhikarka',
@@ -90,3 +91,6 @@ const List<String> districtList = [
   'Baitadi',
   'Darchula'
 ];
+
+
+

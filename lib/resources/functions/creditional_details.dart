@@ -11,6 +11,7 @@ void loginDetails(BuildContext context, User user) async {
 
   try {
     var dio = Dio();
+    dio.options.headers["Authorization"] = "Bearer ${token}";
     var response = await dio.post(create_user_api_base_url,
         data: {'email': user.email, 'password': user.password});
     if (response.statusCode == 200) {

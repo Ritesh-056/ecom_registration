@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:ecom_registration/model%20/company.dart';
@@ -39,8 +40,22 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
   bool check_district = false;
   bool check_state = false;
 
+
+
+
+
+  @override
+  void initState() {
+    print(widget.getUserDetailMap);
+    districtList.sort();
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
+
     return SafeArea(
         child: Scaffold(
             body: SingleChildScrollView(
@@ -293,21 +308,20 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
           files: context.read<FilePickerProvider>().files);
 
 
-      Navigator.pushNamed(context, '/document_list_screen');
 
-      // ApiPostService().uploadData(context, company).then((value) {
-      //   if (value) {
-      //     Navigator.pushNamed(context, '/document_list_screen');
-      //     return E_comRegistrationToastFunction(
-      //         context, 'Data uploaded to database.');
-      //   } else {
-      //     print('User uploading error should be encountered here'+ value.toString());
-      //     return E_comRegistrationToastFunction(
-      //         context, 'Error uploading to database.');
-      //   }
-      // }).catchError((err) {
-      //   print("Error uploading" + err.toString());
-      // });
+      // Navigator.pushNamed(context, '/document_list_screen');
+      ApiPostService().uploadData(context, company).then((value) {
+        if(value.statusCode == 201){
+          E_comRegistrationToastFunction(context, 'Data Uploaded Successful');
+        }else{
+          log(value.statusCode.toString());
+          E_comRegistrationToastFunction(context, 'Failed to upload');
+        }
+        Navigator.pop(context);
+      }).catchError((err) {
+        Navigator.pop(context);
+        log("Error uploading: " + err.toString());
+      });
     }
   }
 
