@@ -8,9 +8,8 @@ double itemGapSize = 8.0;
 double itemBlocGapSize = 16.0;
 
 const create_user_api_base_url =
-    "https://c6d8-2400-1a00-b010-aad9-1eaa-ea3f-911d-855b.in.ngrok.io/";
+    "https://923b-103-94-255-121.in.ngrok.io/";
 
-const String token = "eyJlbWFpbCI6InJpdGVzaGJhcmFscnR6QGdtYWlsLmNvbSIsInVzZXJJZCI6MSwiZXhwaXJlcyI6MTY2MTcxNTA1MjE5OX0";
 
 const List<String> companyList = ['Private', 'Government'];
 const List<String> stateList = ['1', '2', '3', '4', '5', '6', '7'];

@@ -133,7 +133,8 @@ class _ApprovedCompanyListScreenState extends State<ApprovedCompanyListScreen> {
                 ),
                 title: Text(company[index].name),
                 subtitle: Text(company[index].email),
-                trailing: InkWell(
+                trailing: company[index].approved! ?E_comRegistrationNormalText(
+                    'Verified', TextDecoration.underline):InkWell(
                   onTap: () {
                     Navigator.push(
                         context,

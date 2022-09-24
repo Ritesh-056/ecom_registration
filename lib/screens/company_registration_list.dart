@@ -97,18 +97,23 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
 
 
   Widget _buildError(BuildContext context, String errorMessage) {
-    return Text('${errorMessage}');
+    return Container(
+        height: 200,
+        child: Center(child: Text('${errorMessage}')));
   }
 
 
   Widget _buildLoading(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          CircularProgressIndicator(),
-          SizedBox(height: 8.0,),
-          Text('Loading...! Please wait.')
-        ],
+    return Container(
+      height: 200,
+      child: Center(
+        child: Column(
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(height: 8.0,),
+            Text('Loading...! Please wait.')
+          ],
+        ),
       ),
     );
   }
@@ -128,22 +133,24 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return ListTile(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CompanyRegistrationDetailScreen(
-                            company: company[index],
-                             companyRegisteredId:company[index].id,
-                          )));
-                },
                 leading:CircleAvatar(
                   child: Text(company[index].name[0]),
                 ),
                 title: Text(company[index].name),
                 subtitle: Text(company[index].email),
-                trailing: E_comRegistrationNormalText(
-                    'Verify', TextDecoration.underline),
+                trailing: GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CompanyRegistrationDetailScreen(
+                              company: company[index],
+                              companyRegisteredId:company[index].id,
+                            )));
+                  },
+                  child: E_comRegistrationNormalText(
+                      'Verify', TextDecoration.underline),
+                ),
               );
             }));
   }

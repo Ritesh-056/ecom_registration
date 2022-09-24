@@ -150,12 +150,12 @@ class _LoginScreenState extends State<LoginScreen> {
       return E_comRegistrationToastFunction(
           context, 'Please insert valid email');
     } else {
-      Navigator.pushNamed(context, '/user_details');
+      // Navigator.pushNamed(context, '/user_details');
 
-      // User user = User(
-      //     email: _inputEmailController.text,
-      //     password: _inputPasswordController.text);
-      // loginDetails(context, user);
+      User user = User(
+          email: _inputEmailController.text,
+          password: _inputPasswordController.text);
+      loginDetails(context, user);
     }
   }
 

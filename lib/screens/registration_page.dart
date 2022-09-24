@@ -112,27 +112,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 isPassword: true),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-
-            Row(
-              children: [
-                Checkbox(
-                  value: this.isAdmin,
-                  onChanged: (value) {
-                    setState(() {
-                      this.isAdmin = value!;
-                    });
-                    this.isAdmin
-                        ? E_comRegistrationToastFunction(
-                            context, 'Admin is Selected')
-                        : E_comRegistrationToastFunction(
-                            context, 'User is Selected');
-                  },
-                ),
-                E_comRegistrationSizedHorizontalBox(8.0),
-                Text('Register as Admin'),
-              ],
-            ),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            
 
             GestureDetector(
                 onTap: passRegisterData,
@@ -183,7 +163,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           email: _inputEmailController.text,
           name: _inputUserNameController.text,
           password: _inputPasswordController.text);
-      registerDetails(context, user);
+      registerUser(context, user);
     }
   }
 

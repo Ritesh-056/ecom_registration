@@ -11,8 +11,10 @@ void loginDetails(BuildContext context, User user) async {
 
   try {
     var dio = Dio();
-    dio.options.headers["Authorization"] = "Bearer ${token}";
-    var response = await dio.post(create_user_api_base_url,
+    // dio.options.headers["Authorization"] = "Bearer ${token}";
+    var endUrlEndPoints = "${create_user_api_base_url}users/login";
+
+    var response = await dio.post(endUrlEndPoints,
         data: {'email': user.email, 'password': user.password});
     if (response.statusCode == 200) {
       E_comRegistrationToastFunction(context, 'Login successful');
@@ -28,10 +30,12 @@ void loginDetails(BuildContext context, User user) async {
 
 
 
-void registerDetails(BuildContext context, User user) async {
+void registerUser(BuildContext context, User user) async {
   try {
     var dio = Dio();
-    var response = await dio.post(create_user_api_base_url+'users/create', data: {
+
+    var endUrlEndPoints = "${create_user_api_base_url}users/create";
+    var response = await dio.post(endUrlEndPoints, data: {
       'name': user.name,
       'email': user.email,
       'password': user.password

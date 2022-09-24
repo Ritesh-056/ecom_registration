@@ -15,11 +15,10 @@ class ApprovedCompanyDetailsApiRepository{
         var response = await dio.get(endpoints);
         if(response.statusCode == 200){
 
-          log(response.data.toString());
-          // for(var  x in response.data['data']){
-          //   company.add(Company.fromJson(x));
-          // }
-          // log(company[0].name);
+          for(var  x in response.data['data']){
+            company.add(Company.fromJson(x));
+          }
+          log(company[0].name);
         }else{
           log('Error fetching api!');
         }

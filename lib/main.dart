@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => const CompanyRegistrationListScreen(),
+
+          '/': (context) => const RegistrationScreen(),
           '/login': (context) => const LoginScreen(),
           '/register': (context) => const RegistrationScreen(),
           '/forget_password': (context) => const ForgetPasswordScreen(),
@@ -43,6 +44,8 @@ class MyApp extends StatelessWidget {
           '/user_response_screen': (context) => const UserDetailResponseScreen(),
           '/approve_company':(context)=> const ApprovedCompanyListScreen(),
           // '/document_list_screen': (context) => const DocumentListScreen()
+          // '/': (context) => const CompanyRegistrationListScreen(),
+
         },
       );
   }
