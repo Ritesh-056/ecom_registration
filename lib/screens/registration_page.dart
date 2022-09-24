@@ -122,7 +122,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/login');
               },
               child: Center(
                   child: E_comRegistrationNormalText(

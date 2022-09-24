@@ -26,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    CompanyDetailsApiRepository().getCompanyDataList() ;
     super.initState();
   }
 
@@ -49,8 +48,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          log("From login page btn clicked");
-          CompanyDetailsApiRepository().getCompanyDataList() ;
+          // log("Login btn pressed");
+          // CompanyDetailsApiRepository().getCompanyDataList() ;
         },
         child: Icon(Icons.add),
       ),
@@ -150,8 +149,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return E_comRegistrationToastFunction(
           context, 'Please insert valid email');
     } else {
-      // Navigator.pushNamed(context, '/user_details');
-
       User user = User(
           email: _inputEmailController.text,
           password: _inputPasswordController.text);

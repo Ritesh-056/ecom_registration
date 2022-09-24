@@ -42,6 +42,7 @@ dependencies:
   http: ^0.13.5
   flutter_bloc: ^8.1.1
   advance_pdf_viewer: ^2.0.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

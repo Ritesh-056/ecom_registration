@@ -18,7 +18,7 @@ class ApiPostService {
     Map<String, String> headers = {
       'accept': 'application/json',
       'Content-Type': 'multipart/form-data',
-      'Authorization':"Bearer ${token}",
+      'Authorization':"Bearer ${userToken}",
       'Accept':'*/*'
     };
 

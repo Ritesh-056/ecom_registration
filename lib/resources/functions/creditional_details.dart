@@ -1,30 +1,35 @@
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/helper/shared_preferences_datas.dart';
 import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/screens/user_details_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
 
 void loginDetails(BuildContext context, User user) async {
 
   try {
     var dio = Dio();
-    // dio.options.headers["Authorization"] = "Bearer ${token}";
+    var sharePreferenceHelperObj =  SharePreferencesHelper();
     var endUrlEndPoints = "${create_user_api_base_url}users/login";
 
     var response = await dio.post(endUrlEndPoints,
         data: {'email': user.email, 'password': user.password});
+
     if (response.statusCode == 200) {
+      //save token to local storage.
+      sharePreferenceHelperObj.saveUserPrefString(userTokenKey,response.data["token"]);
       E_comRegistrationToastFunction(context, 'Login successful');
-      Navigator.pushNamed(context, '/user_details');
-    } else {
-      E_comRegistrationToastFunction(context, 'Login failed');
+      Navigator.pushNamed(context, '/company');
     }
   } catch (ex) {
-    // E_comRegistrationToastFunction(context, ex.toString());
-    print(ex.toString());
+    log("Error while logging! : "+ex.toString());
+    return E_comRegistrationToastFunction(context, "Login failed! Check user credentials");
   }
 }
 

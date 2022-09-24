@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/helper/shared_preferences_datas.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
@@ -9,10 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-
+import 'dart:developer';
 
 late Timer timer ;
-
 
 bool checkValidMailOrNot(BuildContext context, String email) {
   bool validResponse;

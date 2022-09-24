@@ -1,16 +1,20 @@
 import 'package:ecom_registration/company_repositary/companies_repo.dart';
+import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/helper/shared_preferences_datas.dart';
 import 'package:ecom_registration/model%20/company.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../state/company_bloc/company_detail_event.dart';
 import '../state/company_bloc/company_detail_state.dart';
 import '../state/company_bloc/company_details_bloc.dart';
 import 'company_registration_detail_screen.dart';
 import 'registration_page.dart';
+import 'dart:developer';
 
 class CompanyRegistrationListScreen extends StatefulWidget {
   const CompanyRegistrationListScreen({Key? key}) : super(key: key);
@@ -25,8 +29,18 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
   final companyDetailsBloc = CompanyDetailsBloc();
 
 
+
+  void getUserTokenFromLocalStorage(){
+    SharePreferencesHelper().getUserPrefString(userTokenKey).then((value){
+      setState(() => userToken = value);
+    }).catchError((err){
+      log("No any Local value set for ${userTokenKey}");
+    });
+  }
+
   @override
   void initState() {
+    getUserTokenFromLocalStorage();
     companyDetailsBloc.add(CompanyDataFetchEvent());
     super.initState();
   }

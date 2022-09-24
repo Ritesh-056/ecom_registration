@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'helper/shared_preferences_datas.dart';
 
 const Color kPrimaryColor = Colors.green;
 const Color iconColor = Colors.white;
@@ -6,10 +9,11 @@ const Color iconColor = Colors.white;
 //item size gap
 double itemGapSize = 8.0;
 double itemBlocGapSize = 16.0;
+String  userTokenKey  = "KEY_FOR_TOKEN";
+var userToken;
 
 const create_user_api_base_url =
     "https://923b-103-94-255-121.in.ngrok.io/";
-
 
 const List<String> companyList = ['Private', 'Government'];
 const List<String> stateList = ['1', '2', '3', '4', '5', '6', '7'];
@@ -90,6 +94,7 @@ const List<String> stateList = ['1', '2', '3', '4', '5', '6', '7'];
   'Baitadi',
   'Darchula'
 ];
+
 
 
 
