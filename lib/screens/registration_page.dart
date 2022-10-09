@@ -3,12 +3,8 @@ import 'package:ecom_registration/resources/functions/creditional_details.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
-import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:provider/provider.dart';
-
-import 'registration_page.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -122,7 +118,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/login');
+                Navigator.pushNamed(context, '/');
               },
               child: Center(
                   child: E_comRegistrationNormalText(

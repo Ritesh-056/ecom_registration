@@ -1,4 +1,5 @@
-import 'package:ecom_registration/company_repositary/companies_repo.dart';
+import 'dart:developer';
+
 import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/helper/shared_preferences_datas.dart';
 import 'package:ecom_registration/model%20/company.dart';
@@ -7,14 +8,11 @@ import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../state/company_bloc/company_detail_event.dart';
 import '../state/company_bloc/company_detail_state.dart';
 import '../state/company_bloc/company_details_bloc.dart';
 import 'company_registration_detail_screen.dart';
-import 'registration_page.dart';
-import 'dart:developer';
 
 class CompanyRegistrationListScreen extends StatefulWidget {
   const CompanyRegistrationListScreen({Key? key}) : super(key: key);
@@ -152,8 +150,9 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
                 ),
                 title: Text(company[index].name),
                 subtitle: Text(company[index].email),
-                trailing: GestureDetector(
-                  onTap: (){
+                trailing: company[index].approved! ? E_comRegistrationNormalText(
+                    'Verified', TextDecoration.underline):InkWell(
+                  onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -164,7 +163,7 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
                   },
                   child: E_comRegistrationNormalText(
                       'Verify', TextDecoration.underline),
-                ),
+                )
               );
             }));
   }

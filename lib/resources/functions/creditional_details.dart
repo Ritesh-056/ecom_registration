@@ -5,9 +5,7 @@ import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/helper/shared_preferences_datas.dart';
 import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
-import 'package:ecom_registration/screens/user_details_page.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -47,7 +45,7 @@ void registerUser(BuildContext context, User user) async {
     });
     if (response.statusCode == 200) {
       E_comRegistrationToastFunction(context, 'User registered successful');
-      Navigator.pushNamed(context, '/login');
+      Navigator.pushNamed(context, '/');
     } else {
       E_comRegistrationToastFunction(context, 'User registration failed');
     }

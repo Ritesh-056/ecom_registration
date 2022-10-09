@@ -8,9 +8,8 @@ import 'package:ecom_registration/state/provider/file_provider.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'screens/splash_screen.dart';
+
 import 'screens/user_detail_response.dart';
-import 'screens/user_details__location_page.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -35,8 +34,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => const RegistrationScreen(),
-          '/login': (context) => const LoginScreen(),
+          '/': (context) => const LoginScreen(),
           '/register': (context) => const RegistrationScreen(),
           '/forget_password': (context) => const ForgetPasswordScreen(),
           '/company': (context) => const CompanyRegistrationListScreen(),

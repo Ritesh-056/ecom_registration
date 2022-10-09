@@ -1,16 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
-import 'package:ecom_registration/const.dart';
-import 'package:ecom_registration/helper/shared_preferences_datas.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
-import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'dart:developer';
 
 late Timer timer ;
 
@@ -174,4 +171,41 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
       ],
     );
   }
+}
+
+
+void E_comRegistrationShowAlertDialog(BuildContext context) {
+
+  // set up the buttons
+  Widget noButton = TextButton(
+    child: Text("NO"),
+    onPressed:  () {
+      Navigator.pop(context);
+    },
+  );
+
+  Widget yesButton = TextButton(
+    child: Text("YES"),
+    onPressed:  () {
+      exit(0);
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Center(child: Text('Quit App')),
+    content: Text("Are you sure want to close the app ?"),
+    actions: [
+      noButton,
+      yesButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

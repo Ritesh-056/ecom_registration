@@ -1,17 +1,12 @@
-import 'dart:developer';
-
-import 'package:ecom_registration/company_repositary/companies_repo.dart';
 import 'package:ecom_registration/model%20/user.dart';
-import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
+import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import '../const.dart';
 
-import 'registration_page.dart';
-import 'user_details_page.dart';
+import '../const.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -45,15 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // log("Login btn pressed");
-          // CompanyDetailsApiRepository().getCompanyDataList() ;
-        },
-        child: Icon(Icons.add),
-      ),
-    ));
+      ),)
+    );
   }
 
   Widget ItemsContainer() {
@@ -122,9 +110,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: passLoginDetails,
                 child:
                     E_comRegistrationLoginOrRegisterButton('Login', context)),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            GestureDetector(
+
+                //login button
+                GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, '/user_details');
+                    },
+                    child:
+                    E_comRegistrationLoginOrRegisterButton('Login as User', context)),
+                E_comRegistrationSizedVerticalBox(itemBlocGapSize*2),
+
+                GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, '/register');
               },

@@ -1,4 +1,5 @@
 import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class UserDetailResponseScreen extends StatelessWidget {
         children: [
           Center(
             child: Text(
-                'Project By: Ritesh Baral, Heena Shrestha, Yojan Shakya,',
+                'Project By: Yojan Shakya, Ritesh Baral, Heena Shrestha',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
           Center(
@@ -54,6 +55,14 @@ class UserDetailResponseScreen extends StatelessWidget {
             height: 32.0,
           ),
           FooterElementsOfContainer(),
+          SizedBox(height: 60.0,),
+          GestureDetector(
+              onTap: (){
+                E_comRegistrationShowAlertDialog(context);
+              },
+              child:
+              E_comRegistrationLoginOrRegisterButton('Close', context)),
+
         ],
       ),
     );

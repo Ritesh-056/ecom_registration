@@ -1,13 +1,10 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:ecom_registration/model%20/company.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
-import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
-import 'package:ecom_registration/state/provider/file_provider.dart';
 import 'package:ecom_registration/state/provider/file_provider.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +12,6 @@ import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 
 import '../const.dart';
-import 'registration_page.dart';
 
 class UserLocationDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> getUserDetailMap;
@@ -305,23 +301,23 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
           wardNo: _inputWardNoController.text,
           municipality: _inputMunicipalityController.text,
           postalCode: _inputPostalCodeController.text,
-          files: context.read<FilePickerProvider>().files);
+          files: context.read<FilePickerProvider>().files
 
+      );
 
+          Navigator.pushNamed(context, '/user_response_screen');
 
-      // Navigator.pushNamed(context, '/document_list_screen');
-      ApiPostService().uploadData(context, company).then((value) {
-        if(value.statusCode == 201){
-          E_comRegistrationToastFunction(context, 'Data Uploaded Successful');
-        }else{
-          log(value.statusCode.toString());
-          E_comRegistrationToastFunction(context, 'Failed to upload');
-        }
-        Navigator.pop(context);
-      }).catchError((err) {
-        Navigator.pop(context);
-        log("Error uploading: " + err.toString());
-      });
+      // ApiPostService().uploadData(context, company).then((value) {
+      //   print("Status code: ${value.statusCode.toString()}");
+      //   if(value.statusCode == 500){
+      //     E_comRegistrationToastFunction(context, 'Data Uploaded Successful');
+      //     Navigator.pushNamed(context, '/user_response_screen');
+      //   }
+      // }).catchError((err) {
+      //   Navigator.pop(context);
+      //   log("Error uploading: " + err.toString());
+      //    E_comRegistrationToastFunction(context, 'Failed to register! ');
+      // });
     }
   }
 

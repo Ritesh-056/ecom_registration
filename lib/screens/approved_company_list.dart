@@ -1,4 +1,3 @@
-import 'package:ecom_registration/company_repositary/companies_repo.dart';
 import 'package:ecom_registration/model%20/company.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'company_registration_detail_screen.dart';
-import 'registration_page.dart';
 
 class ApprovedCompanyListScreen extends StatefulWidget {
   const ApprovedCompanyListScreen({Key? key}) : super(key: key);
@@ -22,12 +20,12 @@ class ApprovedCompanyListScreen extends StatefulWidget {
 class _ApprovedCompanyListScreenState extends State<ApprovedCompanyListScreen> {
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
-  final companyDetailsBloc = ApprovedCompanyDetailsBloc();
+  final approvedCompanyDetailsBloc = ApprovedCompanyDetailsBloc();
 
 
   @override
   void initState() {
-    companyDetailsBloc.add(ApprovedCompanyDataFetchEvent());
+    approvedCompanyDetailsBloc.add(ApprovedCompanyDataFetchEvent());
     super.initState();
   }
 
@@ -59,7 +57,7 @@ class _ApprovedCompanyListScreenState extends State<ApprovedCompanyListScreen> {
             TopElementsOfContainer(),
             MiddleElementsOfContainerCompany(),
             BlocProvider(
-                create:(context) => companyDetailsBloc,
+                create:(context) => approvedCompanyDetailsBloc,
               child:BlocBuilder <ApprovedCompanyDetailsBloc, ApprovedCompanyDetailsState>(
                   builder: (context, state) {
                     if(state is ApprovedCompanyDetailLoading){
@@ -133,7 +131,7 @@ class _ApprovedCompanyListScreenState extends State<ApprovedCompanyListScreen> {
                 ),
                 title: Text(company[index].name),
                 subtitle: Text(company[index].email),
-                trailing: company[index].approved! ?E_comRegistrationNormalText(
+                trailing: company[index].approved! ? E_comRegistrationNormalText(
                     'Verified', TextDecoration.underline):InkWell(
                   onTap: () {
                     Navigator.push(

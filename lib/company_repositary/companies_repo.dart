@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:ecom_registration/const.dart';
-import 'package:ecom_registration/helper/shared_preferences_datas.dart';
 import 'package:ecom_registration/model%20/company.dart';
 
 class CompanyDetailsApiRepository{

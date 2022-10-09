@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 
-import 'registration_page.dart';
-
 class CompanyRegistrationDetailScreen extends StatefulWidget {
   final Company company;
   final int? companyRegisteredId;

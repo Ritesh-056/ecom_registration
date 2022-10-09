@@ -1,10 +1,11 @@
 import 'package:ecom_registration/model%20/user.dart';
-import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
+import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+
 import '../const.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {

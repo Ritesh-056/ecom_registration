@@ -1,12 +1,9 @@
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
-import 'package:ecom_registration/resources/post_data%20/user_details_post.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:ecom_registration/screens/user_details__location_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-
-import 'registration_page.dart';
 
 class UserDetailsScreen extends StatefulWidget {
   const UserDetailsScreen({Key? key}) : super(key: key);

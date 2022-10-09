@@ -1,25 +1,21 @@
 import 'dart:io';
-import 'dart:convert';
+
 import 'package:async/async.dart';
 import 'package:ecom_registration/const.dart';
-import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import '../../model /company.dart';
 import 'package:path/path.dart';
+
+import '../../model /company.dart';
 
 
 class ApiPostService {
 
-  Future<Response> uploadData(BuildContext context, Company company) async {
-
-    var endpoints = '${create_user_api_base_url}companyRegistration';
+  Future<http.Response> uploadData(BuildContext context, Company company) async {
+    var endpoints = "${create_user_api_base_url}companyRegistration";
     Map<String, String> headers = {
-      'accept': 'application/json',
-      'Content-Type': 'multipart/form-data',
-      'Authorization':"Bearer ${userToken}",
-      'Accept':'*/*'
+      "Content-Type": "application/x-www-form-urlencoded",
     };
 
 
@@ -44,17 +40,19 @@ class ApiPostService {
     request.files.addAll(newList);
     request.fields['name'] = company.name;
     request.fields['email'] = company.email;
-    request.fields['telephone'] = company.telephone ;
-    request.fields['fax']  = company.fax ;
+    request.fields['telephone'] = company.telephone;
+    request.fields['fax'] = company.fax;
     request.fields['fieldOfBusiness'] = company.fieldOfBusiness;
     request.fields['state'] = company.state;
     request.fields['district'] = company.district;
     request.fields['municipality'] = company.municipality;
-    request.fields['postalCode'] = company.postalCode ;
-    request.fields['wardNo'] = company.wardNo ;
+    request.fields['postalCode'] = company.postalCode;
+    request.fields['wardNo'] = company.wardNo;
 
 
-    var response = await http.Response.fromStream(await request.send());
+
+    var  response = await http.Response.fromStream(await request.send());
+    print("Status code: ${response.statusCode.toString()}");
     return response;
   }
 }
