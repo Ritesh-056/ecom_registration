@@ -8,22 +8,14 @@ import 'package:flutter/painting.dart';
 
 import '../const.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  var _inputEmailController = new TextEditingController();
-  var _inputPasswordController = new TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,7 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          TopElementsOfContainer(context),
           MiddleElementsOfContainerCompany(),
           LoginContainer(),
         ],
@@ -80,60 +71,54 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      margin: EdgeInsets.symmetric(
-        vertical: 34.0,
-        horizontal: 8,
-      ),
+      margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.symmetric(vertical: 18.0,horizontal: 32.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //email block
-            E_comRegistrationTextHeading('Email :'),
-            E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputEmailController),
-
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-
-            //password block
-            E_comRegistrationTextHeading('Password :'),
-            E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController,
-                isPassword: true),
-
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-
-            //forgot password block
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  '/forget_password',
-                );
-              },
-              child: E_comRegistrationNormalText(
-                'Forgot password',
-                TextDecoration.none,
+            Center(
+              child: Image.asset(
+                'assets/logo_nepal.png',
+                height: 100,
+                width: 80,
               ),
             ),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
-
-            //login button
+            SizedBox(
+              width: 8.0,
+            ),
+            Center(
+              child: Text(
+                'Nepal Government',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            SizedBox(
+              height: 64,
+            ),
             GestureDetector(
-              onTap: passLoginDetails,
+              onTap: () {
+                Navigator.pushNamed(context, '/login');
+              },
               child: E_comRegistrationLoginOrRegisterButton(
-                'Login',
+                'Admin login',
+                context,
+              ),
+            ),
+            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/user_details');
+              },
+              child: E_comRegistrationLoginOrRegisterButton(
+                'Continue as User',
                 context,
               ),
             ),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  '/register',
-                );
+                Navigator.pushNamed(context, '/register');
               },
               child: Center(
                 child: E_comRegistrationNormalText(
@@ -148,29 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void passLoginDetails() {
-    if (_inputEmailController.text.isEmpty) {
-      return E_comRegistrationToastFunction(context, 'Please insert email');
-    }
-    if (_inputPasswordController.text.isEmpty) {
-      return E_comRegistrationToastFunction(context, 'Please insert password');
-    }
-
-    if (!checkValidMailOrNot(context, _inputEmailController.text)) {
-      return E_comRegistrationToastFunction(
-          context, 'Please insert valid email');
-    } else {
-      User user = User(
-          email: _inputEmailController.text,
-          password: _inputPasswordController.text);
-      loginDetails(context, user);
-    }
-  }
-
   @override
   void dispose() {
-    _inputEmailController.dispose();
-    _inputPasswordController.dispose();
     super.dispose();
   }
 }

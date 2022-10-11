@@ -43,7 +43,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          TopElementsOfContainer(),
+          TopElementsOfContainer(context),
           MiddleElementsOfContainerCompany(),
           ForgetPasswordContainer(),
         ],
@@ -67,12 +67,24 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: Colors.black12, width: 1),
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          border: Border.all(
+            color: Colors.black12,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              20.0,
+            ),
+          ),
         ),
-        margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
+        margin: EdgeInsets.symmetric(
+          vertical: 34.0,
+          horizontal: 8,
+        ),
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.all(
+            18.0,
+          ),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //email block
@@ -88,18 +100,24 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            Text('* Please check your email to change your password *',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold)),
+            Text(
+              '* Please check your email to change your password *',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //login button
             GestureDetector(
-                onTap: verifyEmail,
-                child: E_comRegistrationLoginOrRegisterButton(
-                    'Send email', context)),
+              onTap: verifyEmail,
+              child: E_comRegistrationLoginOrRegisterButton(
+                'Send email',
+                context,
+              ),
+            ),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
           ]),
         ));

@@ -48,21 +48,21 @@ class UserDetailResponseScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          TopElementsOfContainer(),
           MiddleElementsOfContainerCompany(),
           ResponseContainer(context),
           SizedBox(
             height: 32.0,
           ),
           FooterElementsOfContainer(),
-          SizedBox(height: 60.0,),
+          SizedBox(
+            height: 60.0,
+          ),
           GestureDetector(
-              onTap: (){
-                E_comRegistrationShowAlertDialog(context);
-              },
-              child:
-              E_comRegistrationLoginOrRegisterButton('Close', context)),
-
+            onTap: () {
+              E_comRegistrationShowAlertDialog(context);
+            },
+            child: E_comRegistrationLoginOrRegisterButton('Close', context),
+          ),
         ],
       ),
     );
@@ -82,42 +82,58 @@ class UserDetailResponseScreen extends StatelessWidget {
 
   Widget ResponseContainer(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width,
-        height: 350,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.black12, width: 1),
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      width: MediaQuery.of(context).size.width,
+      height: 350,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.black12, width: 1),
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            20.0,
+          ),
         ),
-        margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height: 32.0),
-            Center(child: E_comRegistrationTextHeading('Thank You')),
-            SizedBox(
-              height: 8.0,
+      ),
+      margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Image.asset(
+                'assets/logo_nepal.png',
+                height: 100,
+                width: 80,
+              ),
             ),
-            Center(child: Text('Your details have been submitted !')),
+            Center(
+              child: Text(
+                'Nepal Government',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            SizedBox(
+              height: 32.0,
+            ),
+            Center(
+              child: E_comRegistrationTextHeading('Thank You !'),
+            ),
+            Center(
+              child: Text(
+                'Your details have been submitted.',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
             SizedBox(height: 32.0),
             Expanded(
-                child: Text(
-                    "Dear, user your details and documents are submitted successfully into the database of the Nepal Government. Your documents need to be verified by the central authority which takes some time to verify. If completed you will be inform soon with an email.")),
-            Row(
-              children: [
-                Image.asset(
-                  'assets/logo_nepal.png',
-                  height: 100,
-                  width: 80,
-                ),
-                SizedBox(
-                  width: 12.0,
-                ),
-                Text('Nepal Government')
-              ],
-            )
-          ]),
-        ));
+              child: Text(
+                response_str,
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.black87.withOpacity(0.7)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -16,7 +16,6 @@ class CompanyDetailsApiRepository{
           for(var  x in response.data['data']){
             company.add(Company.fromJson(x));
           }
-          log(company[0].name);
         }else{
           log('Error fetching api!');
         }

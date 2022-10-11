@@ -47,7 +47,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          TopElementsOfContainer(),
+          TopElementsOfContainer(context),
           MiddleElementsOfContainerCompany(),
           RegistrationContainer(),
         ],

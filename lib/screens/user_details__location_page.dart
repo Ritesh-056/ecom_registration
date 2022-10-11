@@ -16,8 +16,10 @@ import '../const.dart';
 class UserLocationDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> getUserDetailMap;
 
-  const UserLocationDetailsScreen({Key? key, required this.getUserDetailMap})
-      : super(key: key);
+  const UserLocationDetailsScreen({
+    Key? key,
+    required this.getUserDetailMap,
+  }) : super(key: key);
 
   @override
   _UserLocationDetailsScreenState createState() =>
@@ -36,10 +38,6 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
   bool check_district = false;
   bool check_state = false;
 
-
-
-
-
   @override
   void initState() {
     print(widget.getUserDetailMap);
@@ -47,26 +45,25 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
     return SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ScrollPhysics(),
-      child: Container(
-        child: Stack(
-          children: [
-            ImageContainer(),
-            TopGreenContainer(context),
-            ItemsContainer(context)
-          ],
+      child: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          physics: ScrollPhysics(),
+          child: Container(
+            child: Stack(
+              children: [
+                ImageContainer(),
+                TopGreenContainer(context),
+                ItemsContainer(context)
+              ],
+            ),
+          ),
         ),
       ),
-    )));
+    );
   }
 
   Widget ItemsContainer(BuildContext context) {
@@ -74,7 +71,7 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          TopElementsOfContainer(),
+          TopElementsOfContainer(context),
           MiddleElementsOfContainerCompany(),
           RegistrationContainer(context),
         ],
@@ -96,15 +93,21 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
 
   Widget RegistrationContainer(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.black12, width: 1),
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.black12, width: 1),
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            20.0,
+          ),
         ),
-        margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      ),
+      margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             //username block
             E_comRegistrationTextHeading('State :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
@@ -178,24 +181,22 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
             E_comRegistrationTextHeading('Documents Required :'),
             E_comRegistrationSizedVerticalBox(8.0),
 
-
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: InteractiveViewer(
+                  panEnabled: false, // Set it to false
+                  // boundaryMargin: EdgeInsets.all(100),
+                  minScale: 0.10,
+                  maxScale: 8,
+                  child: Image.asset(
+                    'assets/documents_required.png',
+                    width: MediaQuery.of(context).size.width,
+                    height: 200,
+                    fit: BoxFit.fill,
+                  )),
             ),
-            child: InteractiveViewer(
-                panEnabled: false, // Set it to false
-                // boundaryMargin: EdgeInsets.all(100),
-                minScale: 0.10,
-                maxScale: 8,
-                child: Image.asset(
-                  'assets/documents_required.png',
-                  width: MediaQuery.of(context).size.width,
-                  height: 200,
-                  fit: BoxFit.fill,
-                )),
-          ),
-
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
             Row(
@@ -203,15 +204,21 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
               children: [
                 E_comRegistrationTextHeading('Attach Documents :'),
                 Consumer<FilePickerProvider>(
-                  builder:(context,filesData,child)=> filesData.files.length > 0 ?IconButton(
-                  onPressed: () {
-                    context.read<FilePickerProvider>().getFileFromStorage();
-                  },
-                  icon: Icon(
-                    Icons.upload_outlined,
-                    color: Colors.black,
-                  ),
-                ): Container(),)
+                  builder: (context, filesData, child) =>
+                      filesData.files.length > 0
+                          ? IconButton(
+                              onPressed: () {
+                                context
+                                    .read<FilePickerProvider>()
+                                    .getFileFromStorage();
+                              },
+                              icon: Icon(
+                                Icons.upload_outlined,
+                                color: Colors.black,
+                              ),
+                            )
+                          : Container(),
+                )
               ],
             ),
             E_comRegistrationSizedVerticalBox(8.0),
@@ -225,31 +232,35 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
                       child: Text('Choose File')),
             ),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
-                Consumer<GeneralFuncProvider>(
-                    builder: (context, generalProvider, child) => generalProvider
-                        .isRegistrationChargePaid
-                        ? E_comRegistrationLoginOrRegisterButton('Pay fee', context,isPaid: false):
-                    GestureDetector(
-                        onTap: () {
-                          E_comRegistrationShowModelFunction(context);
-                        },
-                        child: E_comRegistrationLoginOrRegisterButton(
-                            'Pay fee', context))
-                        ),
+            Consumer<GeneralFuncProvider>(
+                builder: (context, generalProvider, child) =>
+                    generalProvider.isRegistrationChargePaid
+                        ? E_comRegistrationLoginOrRegisterButton(
+                            'Pay fee', context, isPaid: false)
+                        : GestureDetector(
+                            onTap: () {
+                              E_comRegistrationShowModelFunction(context);
+                            },
+                            child: E_comRegistrationLoginOrRegisterButton(
+                                'Pay fee', context))),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
             Consumer<GeneralFuncProvider>(
-                builder: (context, generalProvider, child) => generalProvider
-                        .isRegistrationChargePaid
-                    ? GestureDetector(
-                        onTap: () {
-                          checkUserDetails();
-                        },
-                        child: E_comRegistrationLoginOrRegisterButton(
-                            'Submit', context))
-                    : E_comRegistrationLoginOrRegisterButton('Submit', context,isPaid: false))
-          ]),
-        ));
+              builder: (context, generalProvider, child) => generalProvider
+                      .isRegistrationChargePaid
+                  ? GestureDetector(
+                      onTap: () {
+                        checkUserDetails();
+                      },
+                      child: E_comRegistrationLoginOrRegisterButton(
+                          'Submit', context))
+                  : E_comRegistrationLoginOrRegisterButton('Submit', context,
+                      isPaid: false),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   void checkUserDetails() {
@@ -281,8 +292,8 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
     if (files.length == 0) {
       return E_comRegistrationToastFunction(context, 'please select files');
     } else {
-
-      GISCircularProgressDialog(context,' Uploading data', 'Please wait uploading to database.');
+      GISCircularProgressDialog(
+          context, ' Uploading data', 'Please wait uploading to database.');
 
       String name = widget.getUserDetailMap['name'];
       String email = widget.getUserDetailMap['email'];
@@ -301,11 +312,9 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
           wardNo: _inputWardNoController.text,
           municipality: _inputMunicipalityController.text,
           postalCode: _inputPostalCodeController.text,
-          files: context.read<FilePickerProvider>().files
+          files: context.read<FilePickerProvider>().files);
 
-      );
-
-          Navigator.pushNamed(context, '/user_response_screen');
+      Navigator.pushNamed(context, '/user_response_screen');
 
       // ApiPostService().uploadData(context, company).then((value) {
       //   print("Status code: ${value.statusCode.toString()}");
@@ -329,35 +338,38 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
 
   List<Widget> attachFile(List<File> file) {
     List<Widget> fileWidget = [];
+
     for (int i = 0; i < file.length; i++) {
-      fileWidget.add(Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(
-            Icons.description_outlined,
-            color: Colors.red,
-          ),
-          E_comRegistrationSizedHorizontalBox(8.0),
-          Expanded(
-              child: Text(
-            file[i].path.split('/').last,
-          )),
-          E_comRegistrationSizedHorizontalBox(8.0),
-          Align(
-            alignment: Alignment.topRight,
-            child: IconButton(
-              onPressed: () {
-                context.read<FilePickerProvider>().deleteSelectedFile(i);
-              },
-              icon: Icon(
-                Icons.close,
-                color: Colors.black,
-              ),
+      fileWidget.add(
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(
+              Icons.description_outlined,
+              color: Colors.red,
             ),
-          )
-        ],
-      ));
+            E_comRegistrationSizedHorizontalBox(8.0),
+            Expanded(
+                child: Text(
+              file[i].path.split('/').last,
+            )),
+            E_comRegistrationSizedHorizontalBox(8.0),
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () {
+                  context.read<FilePickerProvider>().deleteSelectedFile(i);
+                },
+                icon: Icon(
+                  Icons.close,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ],
+        ),
+      );
     }
     return fileWidget;
   }

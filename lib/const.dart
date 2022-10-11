@@ -6,15 +6,17 @@ const Color iconColor = Colors.white;
 //item size gap
 double itemGapSize = 8.0;
 double itemBlocGapSize = 16.0;
-String  userTokenKey  = "KEY_FOR_TOKEN";
-var userToken;
+String userTokenKey = "KEY_FOR_TOKEN";
 
-const create_user_api_base_url =
-    "https://d43f-103-94-255-222.in.ngrok.io/";
+var userToken;
+String response_str =
+    "Dear,users your details have been submitted successfully. Your documents will be verified soon after verification you will got an email";
+
+const create_user_api_base_url = "https://a28e-103-94-255-105.in.ngrok.io/";
 
 const List<String> companyList = ['Private', 'Government'];
 const List<String> stateList = ['1', '2', '3', '4', '5', '6', '7'];
- List<String> districtList = [
+List<String> districtList = [
   'Taplejung',
   'Phidim',
   'Ilam',
@@ -91,7 +93,3 @@ const List<String> stateList = ['1', '2', '3', '4', '5', '6', '7'];
   'Baitadi',
   'Darchula'
 ];
-
-
-
-

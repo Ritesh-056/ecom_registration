@@ -26,13 +26,18 @@ Widget TopGreenContainer(BuildContext context) {
       ));
 }
 
-Widget TopElementsOfContainer() {
+Widget TopElementsOfContainer(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      Icon(
-        Icons.arrow_back_ios,
-        color: iconColor,
+      GestureDetector(
+        onTap: (){
+          Navigator.of(context).pop();
+        },
+        child: Icon(
+          Icons.arrow_back_ios,
+          color: iconColor,
+        ),
       ),
       Icon(
         Icons.more_vert,

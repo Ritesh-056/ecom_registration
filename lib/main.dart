@@ -1,14 +1,15 @@
-import 'package:ecom_registration/screens/approved_company_list.dart';
 import 'package:ecom_registration/screens/company_registration_list.dart';
 import 'package:ecom_registration/screens/forget_password_screen.dart';
 import 'package:ecom_registration/screens/login_page.dart';
 import 'package:ecom_registration/screens/registration_page.dart';
+import 'package:ecom_registration/screens/splash_screen.dart';
 import 'package:ecom_registration/screens/user_details_page.dart';
 import 'package:ecom_registration/state/provider/file_provider.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/screen_home_page.dart';
 import 'screens/user_detail_response.dart';
 
 void main() {
@@ -34,13 +35,14 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => const LoginScreen(),
+          '/': (context) => const SplashScreen(),
+          '/home':(context) => const HomeScreen(),
+          '/login':(context) => const LoginScreen(),
           '/register': (context) => const RegistrationScreen(),
           '/forget_password': (context) => const ForgetPasswordScreen(),
           '/company': (context) => const CompanyRegistrationListScreen(),
           '/user_details': (context) => const UserDetailsScreen(),
           '/user_response_screen': (context) => const UserDetailResponseScreen(),
-          '/approve_company':(context)=> const ApprovedCompanyListScreen(),
           // '/document_list_screen': (context) => const DocumentListScreen()
 
         },

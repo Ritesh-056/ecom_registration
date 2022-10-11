@@ -18,20 +18,20 @@ class CompanyRegistrationListScreen extends StatefulWidget {
   const CompanyRegistrationListScreen({Key? key}) : super(key: key);
 
   @override
-  _CompanyRegistrationListScreenState createState() => _CompanyRegistrationListScreenState();
+  _CompanyRegistrationListScreenState createState() =>
+      _CompanyRegistrationListScreenState();
 }
 
-class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListScreen> {
+class _CompanyRegistrationListScreenState
+    extends State<CompanyRegistrationListScreen> {
   double itemGapSize = 8.0;
   double itemBlocGapSize = 16.0;
   final companyDetailsBloc = CompanyDetailsBloc();
 
-
-
-  void getUserTokenFromLocalStorage(){
-    SharePreferencesHelper().getUserPrefString(userTokenKey).then((value){
+  void getUserTokenFromLocalStorage() {
+    SharePreferencesHelper().getUserPrefString(userTokenKey).then((value) {
       setState(() => userToken = value);
-    }).catchError((err){
+    }).catchError((err) {
       log("No any Local value set for ${userTokenKey}");
     });
   }
@@ -47,17 +47,16 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          body: Container(
-            child: Stack(
-              children: [
-                ImageContainer(),
-                TopGreenContainer(context),
-                ItemsContainer()
-              ],
-            ),
-          ),
-        )
-    );
+      body: Container(
+        child: Stack(
+          children: [
+            ImageContainer(),
+            TopGreenContainer(context),
+            ItemsContainer()
+          ],
+        ),
+      ),
+    ));
   }
 
   Widget ItemsContainer() {
@@ -68,26 +67,22 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
         physics: ScrollPhysics(),
         child: Column(
           children: [
-            TopElementsOfContainer(),
+            TopElementsOfContainer(context),
             MiddleElementsOfContainerCompany(),
             BlocProvider(
-                create:(context) => companyDetailsBloc,
-              child:BlocBuilder <CompanyDetailsBloc, CompanyDetailsState>(
+              create: (context) => companyDetailsBloc,
+              child: BlocBuilder<CompanyDetailsBloc, CompanyDetailsState>(
                   builder: (context, state) {
-                    if(state is CompanyDetailLoading){
-                      return _buildLoading(context);
-                    }
-                    else if (state is CompanyDetailLoaded){
-                      return _buildLoaded(context, state.company);
-                    }
-                    else if(state is CompanyDetailFetchError){
-                      return _buildError(context, state.error);
-                    }
-                    else{
-                      return Container();
-                    }
-                  }
-              ),
+                if (state is CompanyDetailLoading) {
+                  return _buildLoading(context);
+                } else if (state is CompanyDetailLoaded) {
+                  return _buildLoaded(context, state.company);
+                } else if (state is CompanyDetailFetchError) {
+                  return _buildError(context, state.error);
+                } else {
+                  return Container();
+                }
+              }),
             )
           ],
         ),
@@ -107,13 +102,14 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
     );
   }
 
-
   Widget _buildError(BuildContext context, String errorMessage) {
     return Container(
-        height: 200,
-        child: Center(child: Text('${errorMessage}')));
+      height: 200,
+      child: Center(
+        child: Text('${errorMessage}'),
+      ),
+    );
   }
-
 
   Widget _buildLoading(BuildContext context) {
     return Container(
@@ -122,7 +118,9 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
         child: Column(
           children: [
             CircularProgressIndicator(),
-            SizedBox(height: 8.0,),
+            SizedBox(
+              height: 8.0,
+            ),
             Text('Loading...! Please wait.')
           ],
         ),
@@ -130,42 +128,78 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
     );
   }
 
-
-  Widget _buildLoaded(BuildContext context, List<Company>? company){
+  Widget _buildLoaded(BuildContext context, List<Company>? company) {
     return Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.black12, width: 1),
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: Colors.black12,
+          width: 1,
         ),
-        padding: EdgeInsets.symmetric(vertical: 8.0),
-        margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 4),
-        child: ListView.builder(
-            itemCount: company!.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return ListTile(
-                leading:CircleAvatar(
-                  child: Text(company[index].name[0]),
-                ),
-                title: Text(company[index].name),
-                subtitle: Text(company[index].email),
-                trailing: company[index].approved! ? E_comRegistrationNormalText(
-                    'Verified', TextDecoration.underline):InkWell(
-                  onTap: () {
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            20.0,
+          ),
+        ),
+      ),
+      padding: EdgeInsets.symmetric(
+        vertical: 8.0,
+      ),
+      margin: EdgeInsets.symmetric(
+        vertical: 34.0,
+        horizontal: 4,
+      ),
+      child: ListView.builder(
+        itemCount: company!.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: CircleAvatar(
+              child: Text(company[index].name[0]),
+            ),
+            title: Text(company[index].name),
+            subtitle: Text(company[index].email),
+            trailing: company[index].approved!
+                ? InkWell(
+                  onTap: (){
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CompanyRegistrationDetailScreen(
-                              company: company[index],
-                              companyRegisteredId:company[index].id,
-                            )));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CompanyRegistrationDetailScreen(
+                          company: company[index],
+                          companyRegisteredId: company[index].id,
+                          isVerified: true,
+                        ),
+                      ),
+                    );
                   },
                   child: E_comRegistrationNormalText(
-                      'Verify', TextDecoration.underline),
+                      'Verified',
+                      TextDecoration.underline,
+                    ),
                 )
-              );
-            }));
+                : InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CompanyRegistrationDetailScreen(
+                            company: company[index],
+                            companyRegisteredId: company[index].id,
+                            isVerified: false,
+                          ),
+                        ),
+                      );
+                    },
+                    child: E_comRegistrationNormalText(
+                      'Verify',
+                      TextDecoration.underline,
+                    ),
+                  ),
+          );
+        },
+      ),
+    );
   }
 
   @override
@@ -173,4 +207,3 @@ class _CompanyRegistrationListScreenState extends State<CompanyRegistrationListS
     super.dispose();
   }
 }
-
