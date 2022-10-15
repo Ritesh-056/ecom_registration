@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/model%20/company.dart';
@@ -6,8 +7,13 @@ import 'package:ecom_registration/resources/functions/approve_company_functions.
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:ecom_registration/state/provider/file_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:open_filex/open_filex.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+
+import 'document_view_screen.dart';
 
 class CompanyRegistrationDetailScreen extends StatefulWidget {
   final Company company;
@@ -28,6 +34,14 @@ class CompanyRegistrationDetailScreen extends StatefulWidget {
 
 class _CompanyRegistrationDetailScreenState
     extends State<CompanyRegistrationDetailScreen> {
+  List<File> pdfFilesList = [];
+
+  @override
+  void initState() {
+    fileSelected();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -120,82 +134,77 @@ class _CompanyRegistrationDetailScreenState
             //username block
             E_comRegistrationTextHeading('Company Name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.name),
+            E_comCompanyDetailDocumentTextBoxContainer(context, company.name),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //email block
             E_comRegistrationTextHeading('Email :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.email),
+            E_comCompanyDetailDocumentTextBoxContainer(context, company.email),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //password block
             E_comRegistrationTextHeading('Telephone :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.telephone),
-
+            E_comCompanyDetailDocumentTextBoxContainer(
+                context, company.telephone),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             // confirm password block
             E_comRegistrationTextHeading('FAX :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.fax),
-
+            E_comCompanyDetailDocumentTextBoxContainer(context, company.fax),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             E_comRegistrationTextHeading('Field of Business :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.fieldOfBusiness),
-
+            E_comCompanyDetailDocumentTextBoxContainer(
+                context, company.fieldOfBusiness),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             E_comRegistrationTextHeading('State :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.state),
-
+            E_comCompanyDetailDocumentTextBoxContainer(context, company.state),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //email block
             E_comRegistrationTextHeading('District :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.district),
-
+            E_comCompanyDetailDocumentTextBoxContainer(
+                context, company.district),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //password block
             E_comRegistrationTextHeading('Municipality :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.municipality),
-
+            E_comCompanyDetailDocumentTextBoxContainer(
+                context, company.municipality),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             // confirm password block
             E_comRegistrationTextHeading('Postal Code :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.postalCode),
+            E_comCompanyDetailDocumentTextBoxContainer(
+                context, company.postalCode),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             E_comRegistrationTextHeading('Ward No:'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comCompanyDetailDocumentTextBoxContainer(context,company.wardNo),
-
+            E_comCompanyDetailDocumentTextBoxContainer(context, company.wardNo),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
             E_comRegistrationTextHeading('Documents Added :'),
             E_comRegistrationSizedVerticalBox(8.0),
 
-            Consumer<FilePickerProvider>(
-              builder: (context, fileData, child) => fileData.files.length > 0
-                  ? FileSelectedView(fileData.files)
-                  : Container(),
-            ),
+            FileSelectedView(company.files!),
+
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
             widget.isVerified
                 ? InkWell(
@@ -218,34 +227,78 @@ class _CompanyRegistrationDetailScreenState
     );
   }
 
-  Widget FileSelectedView(List<File> file) {
-    return Column(
-      children: attachFile(file),
-    );
+  // Future<File> generatedFileFromBuffer(List<int> bufferData) async {
+  //   final tempDir = await getTemporaryDirectory();
+  //   File file =
+  //       await File('${tempDir.path}/${widget.company.name}.pdf').create();
+  //   file.writeAsBytesSync(bufferData);
+  //   return file;
+  // }
+
+  void fileSelected() async {
+    var arrayFiles = widget.company.files;
+    for (int i = 0; i < arrayFiles!.length; i++) {
+      final tempDir = await getTemporaryDirectory();
+      File file =
+          await File('${tempDir.path}/${widget.company.name}_document.pdf')
+              .create();
+      file.writeAsBytesSync(arrayFiles[i].data);
+      setState(() => pdfFilesList.add(file));
+    }
   }
 
-  List<Widget> attachFile(List<File> file) {
-    List<Widget> fileWidget = [];
-    for (int i = 0; i < file.length; i++) {
-      fileWidget.add(Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(
-            Icons.description_outlined,
+  Widget FileSelectedView(List<FileElement> file) {
+    return (pdfFilesList.isNotEmpty)
+        ? Column(
+            children: attachFile(pdfFilesList),
+          )
+        : Container(
             color: Colors.red,
-          ),
-          E_comRegistrationSizedHorizontalBox(8.0),
-          Expanded(
-              child: Text(
-            file[i].path.split('/').last,
-          )),
-          E_comRegistrationSizedHorizontalBox(8.0),
-          IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios))
-        ],
-      ));
+          );
+  }
+
+  List<Widget> attachFile(List<File>? file) {
+    List<Widget> fileWidget = [];
+    for (int i = 0; i < file!.length; i++) {
+      fileWidget.add(fileShowingWidget(file[i]));
     }
     return fileWidget;
+  }
+
+  Widget fileShowingWidget(File fileItem) {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Icon(
+          Icons.description_outlined,
+          color: Colors.red,
+        ),
+        E_comRegistrationSizedHorizontalBox(8.0),
+        Expanded(
+          child: Text(
+            fileItem.path.split('/').last,
+          ),
+        ),
+        E_comRegistrationSizedHorizontalBox(8.0),
+        IconButton(
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) =>
+              //         SelectedDocumentViewScreen(file: fileItem),
+              //   ),
+              // );
+              OpenFilex.open(fileItem.path);
+
+            },
+            icon: Icon(
+              Icons.arrow_forward_ios,
+              size: 20.0,
+            ))
+      ],
+    );
   }
 
   @override

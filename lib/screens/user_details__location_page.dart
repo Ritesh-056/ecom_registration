@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:ecom_registration/model%20/company.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 
 import '../const.dart';
+import '../resources/post_data /user_details_post.dart';
 
 class UserLocationDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> getUserDetailMap;
@@ -312,21 +314,23 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
           wardNo: _inputWardNoController.text,
           municipality: _inputMunicipalityController.text,
           postalCode: _inputPostalCodeController.text,
-          files: context.read<FilePickerProvider>().files);
+      );
 
-      Navigator.pushNamed(context, '/user_response_screen');
+      var files = context.read<FilePickerProvider>().files;
 
-      // ApiPostService().uploadData(context, company).then((value) {
-      //   print("Status code: ${value.statusCode.toString()}");
-      //   if(value.statusCode == 500){
-      //     E_comRegistrationToastFunction(context, 'Data Uploaded Successful');
-      //     Navigator.pushNamed(context, '/user_response_screen');
-      //   }
-      // }).catchError((err) {
-      //   Navigator.pop(context);
-      //   log("Error uploading: " + err.toString());
-      //    E_comRegistrationToastFunction(context, 'Failed to register! ');
-      // });
+      ApiPostService().uploadData(context,files,company).then((value) {
+        print("Status code: ${value.statusCode.toString()}");
+        if(value.statusCode == 200){
+          E_comRegistrationToastFunction(context, 'Data Uploaded Successful');
+          Navigator.pushNamed(context, '/user_response_screen');
+        }else{
+          Navigator.pop(context);
+          log("Error uploading");
+        }
+      }).catchError((err) {
+        Navigator.pop(context);
+        E_comRegistrationToastFunction(context, 'Failed to register! ');
+      });
     }
   }
 
@@ -338,8 +342,8 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
 
   List<Widget> attachFile(List<File> file) {
     List<Widget> fileWidget = [];
-
     for (int i = 0; i < file.length; i++) {
+
       fileWidget.add(
         Row(
           mainAxisSize: MainAxisSize.max,

@@ -45,7 +45,7 @@ void registerUser(BuildContext context, User user) async {
     });
     if (response.statusCode == 200) {
       E_comRegistrationToastFunction(context, 'User registered successful');
-      Navigator.pushNamed(context, '/');
+      Navigator.pushNamed(context, '/home');
     } else {
       E_comRegistrationToastFunction(context, 'User registration failed');
     }

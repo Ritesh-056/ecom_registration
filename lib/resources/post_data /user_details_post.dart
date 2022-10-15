@@ -12,7 +12,7 @@ import '../../model /company.dart';
 
 class ApiPostService {
 
-  Future<http.Response> uploadData(BuildContext context, Company company) async {
+  Future<http.Response> uploadData(BuildContext context,List<File> files, Company company) async {
     var endpoints = "${create_user_api_base_url}companyRegistration";
     Map<String, String> headers = {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -25,8 +25,8 @@ class ApiPostService {
     );
 
     List<MultipartFile> newList = <MultipartFile>[];
-    for (int i = 0; i < company.files!.length; i++) {
-      File imageFile = File(company.files![i].path);
+    for (int i = 0; i < files.length; i++) {
+      File imageFile = File(files[i].path);
       var stream =
       new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
       var length = await imageFile.length();
