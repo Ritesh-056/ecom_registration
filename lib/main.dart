@@ -1,16 +1,16 @@
-import 'package:ecom_registration/screens/company_registration_list.dart';
 import 'package:ecom_registration/screens/forget_password_screen.dart';
-import 'package:ecom_registration/screens/login_page.dart';
-import 'package:ecom_registration/screens/registration_page.dart';
-import 'package:ecom_registration/screens/splash_screen.dart';
-import 'package:ecom_registration/screens/user_details_page.dart';
+import 'package:ecom_registration/screens/screen_com_list.dart';
+import 'package:ecom_registration/screens/screen_company_profile.dart';
+import 'package:ecom_registration/screens/screen_login.dart';
+import 'package:ecom_registration/screens/screen_register.dart';
+import 'package:ecom_registration/screens/screen_splash.dart';
 import 'package:ecom_registration/state/provider/file_provider.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/screen_home_page.dart';
-import 'screens/user_detail_response.dart';
+import 'screens/screen_home.dart';
+import 'screens/screen_sumitted_details_response.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -39,12 +39,10 @@ class MyApp extends StatelessWidget {
           '/home':(context) => const HomeScreen(),
           '/login':(context) => const LoginScreen(),
           '/register': (context) => const RegistrationScreen(),
-          '/forget_password': (context) => const ForgetPasswordScreen(),
           '/company': (context) => const CompanyRegistrationListScreen(),
           '/user_details': (context) => const UserDetailsScreen(),
+          '/forget_password': (context) => const ForgetPasswordScreen(),
           '/user_response_screen': (context) => const UserDetailResponseScreen(),
-          // '/document_list_screen': (context) => const DocumentListScreen()
-
         },
       );
   }

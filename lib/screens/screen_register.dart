@@ -4,7 +4,6 @@ import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -26,20 +25,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ScrollPhysics(),
-      child: Container(
-        child: Stack(
-          children: [
-            ImageContainer(),
-            TopGreenContainer(context),
-            ItemsContainer()
-          ],
+      child: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          physics: ScrollPhysics(),
+          child: Container(
+            child: Stack(
+              children: [
+                ImageContainer(),
+                TopGreenContainer(context),
+                ItemsContainer()
+              ],
+            ),
+          ),
         ),
       ),
-    )));
+    );
   }
 
   Widget ItemsContainer() {
@@ -71,10 +72,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: Colors.black12, width: 1),
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          border: Border.all(
+            color: Colors.black12,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              20.0,
+            ),
+          ),
         ),
-        margin: EdgeInsets.symmetric(vertical: 34.0, horizontal: 8),
+        margin: EdgeInsets.symmetric(
+          vertical: 34.0,
+          horizontal: 8,
+        ),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child:
@@ -83,14 +94,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             E_comRegistrationTextHeading('User name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputUserNameController),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //email block
             E_comRegistrationTextHeading('Email :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputEmailController),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //password block
@@ -98,7 +107,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputPasswordController,
                 isPassword: true),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             // confirm password block
@@ -106,14 +114,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputConfirmPasswordController,
                 isPassword: true),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-            
 
             GestureDetector(
-                onTap: passRegisterData,
-                child: E_comRegistrationLoginOrRegisterButton(
-                    'Register', context)),
+              onTap: passRegisterData,
+              child:
+                  E_comRegistrationLoginOrRegisterButton('Register', context),
+            ),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
             GestureDetector(
@@ -121,8 +128,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Navigator.pushNamed(context, '/');
               },
               child: Center(
-                  child: E_comRegistrationNormalText(
-                      "Already Have an Account ?", TextDecoration.underline)),
+                child: E_comRegistrationNormalText(
+                  "Already Have an Account ?",
+                  TextDecoration.underline,
+                ),
+              ),
             ),
           ]),
         ));

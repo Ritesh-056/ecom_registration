@@ -5,6 +5,7 @@ import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
+
 import '../const.dart';
 
 void getFileFromRemote(BuildContext context, String file) async {

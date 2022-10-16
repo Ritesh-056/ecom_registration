@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../state/company_bloc/company_detail_event.dart';
 import '../state/company_bloc/company_detail_state.dart';
 import '../state/company_bloc/company_details_bloc.dart';
-import 'company_registration_detail_screen.dart';
+import 'screen_com_detail_screen.dart';
 
 class CompanyRegistrationListScreen extends StatefulWidget {
   const CompanyRegistrationListScreen({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _CompanyRegistrationListScreenState
     SharePreferencesHelper().getUserPrefString(userTokenKey).then((value) {
       setState(() => userToken = value);
     }).catchError((err) {
-      log("No any Local value set for ${userTokenKey}");
+      log("No any key ${userTokenKey}");
     });
   }
 
@@ -113,7 +113,8 @@ class _CompanyRegistrationListScreenState
 
   Widget _buildLoading(BuildContext context) {
     return Container(
-      height: 200,
+      height: 400,
+      color: Colors.white,
       child: Center(
         child: Column(
           children: [

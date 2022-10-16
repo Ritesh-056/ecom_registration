@@ -13,9 +13,11 @@ void approveCompany(BuildContext context, int companyId) async {
     var response = await dio.put(endPoints);
     if (response.statusCode == 200) {
       E_comRegistrationToastFunction(context, 'Approved successful');
-      Navigator.pushNamed(context, '/approve_company');
+      Navigator.of(context).pop();
+      Navigator.pushNamed(context, '/company');
     }
   } catch (ex) {
+    Navigator.of(context).pop();
     log("Approved company failed"+ ex.toString());
     return E_comRegistrationToastFunction(context, "Company approve failed! ");
   }

@@ -1,21 +1,12 @@
-import 'dart:io';
-import 'dart:math';
-
 import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/model%20/company.dart';
 import 'package:ecom_registration/resources/functions/approve_company_functions.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
-import 'package:ecom_registration/state/provider/file_provider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:provider/provider.dart';
 
-import '../helper/get_file_binary.dart';
-import 'document_view_screen.dart';
+import '../helper/file_getter_api.dart';
 
 class CompanyRegistrationDetailScreen extends StatefulWidget {
   final Company company;
@@ -36,8 +27,6 @@ class CompanyRegistrationDetailScreen extends StatefulWidget {
 
 class _CompanyRegistrationDetailScreenState
     extends State<CompanyRegistrationDetailScreen> {
-  List<File> pdfFilesList = [];
-
   @override
   void initState() {
     super.initState();
@@ -46,20 +35,22 @@ class _CompanyRegistrationDetailScreenState
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ScrollPhysics(),
-      child: Container(
-        child: Stack(
-          children: [
-            ImageContainer(),
-            TopGreenContainer(context),
-            ItemsContainer()
-          ],
+      child: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          physics: ScrollPhysics(),
+          child: Container(
+            child: Stack(
+              children: [
+                ImageContainer(),
+                TopGreenContainer(context),
+                ItemsContainer()
+              ],
+            ),
+          ),
         ),
       ),
-    )));
+    );
   }
 
   Widget ItemsContainer() {
@@ -144,7 +135,7 @@ class _CompanyRegistrationDetailScreenState
             E_comCompanyDetailDocumentTextBoxContainer(context, company.email),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            //password block
+            //telephone block
             E_comRegistrationTextHeading('Telephone :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comCompanyDetailDocumentTextBoxContainer(
@@ -152,61 +143,58 @@ class _CompanyRegistrationDetailScreenState
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            // confirm password block
+            // fax block
             E_comRegistrationTextHeading('FAX :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comCompanyDetailDocumentTextBoxContainer(context, company.fax),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
+            //field of business block
             E_comRegistrationTextHeading('Field of Business :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comCompanyDetailDocumentTextBoxContainer(
                 context, company.fieldOfBusiness),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
+            //state block
             E_comRegistrationTextHeading('State :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comCompanyDetailDocumentTextBoxContainer(context, company.state),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            //email block
+            //district block
             E_comRegistrationTextHeading('District :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comCompanyDetailDocumentTextBoxContainer(
                 context, company.district),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            //password block
+            //municipality block
             E_comRegistrationTextHeading('Municipality :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comCompanyDetailDocumentTextBoxContainer(
                 context, company.municipality),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            // confirm password block
+            //postal code block
             E_comRegistrationTextHeading('Postal Code :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comCompanyDetailDocumentTextBoxContainer(
                 context, company.postalCode),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
+            //ward no block
             E_comRegistrationTextHeading('Ward No:'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comCompanyDetailDocumentTextBoxContainer(context, company.wardNo),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
+            //documents block
             E_comRegistrationTextHeading('Documents Added :'),
             E_comRegistrationSizedVerticalBox(8.0),
-
             FileHolderWidget(company.files),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+
             widget.isVerified
                 ? InkWell(
                     onTap: () {
@@ -217,6 +205,8 @@ class _CompanyRegistrationDetailScreenState
                   )
                 : InkWell(
                     onTap: () {
+                      GISCircularProgressDialog(context, "Approve Company",
+                          "Please a wait a moment company approving.");
                       approveCompany(context, widget.companyRegisteredId!);
                     },
                     child: E_comRegistrationLoginOrRegisterButton(
@@ -230,8 +220,8 @@ class _CompanyRegistrationDetailScreenState
 
   Widget FileHolderWidget(List<String>? list) {
     return Column(
-            children: attachFile(list!),
-          );
+      children: attachFile(list!),
+    );
   }
 
   List<Widget> attachFile(List<String> file) {
@@ -253,17 +243,16 @@ class _CompanyRegistrationDetailScreenState
         ),
         E_comRegistrationSizedHorizontalBox(8.0),
         Expanded(
-          child: Text(
-             fileItem
-            // fileItem.path.split('/').last,
-          ),
+          child: Text(fileItem
+              ),
         ),
         E_comRegistrationSizedHorizontalBox(8.0),
         IconButton(
             onPressed: () {
-              GISCircularProgressDialog(context, "File Opening ", "Please wait a moment file loading");
-              getFileFromRemote(context,fileItem);
-              },
+              GISCircularProgressDialog(context, "File Opening ",
+                  "Please wait a moment file loading");
+              getFileFromRemote(context, fileItem);
+            },
             icon: Icon(
               Icons.open_in_new,
               size: 20.0,
@@ -271,6 +260,7 @@ class _CompanyRegistrationDetailScreenState
       ],
     );
   }
+
   @override
   void dispose() {
     super.dispose();

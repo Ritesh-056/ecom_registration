@@ -5,25 +5,30 @@ import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailResponseScreen extends StatelessWidget {
-  const UserDetailResponseScreen({Key? key}) : super(key: key);
+  const UserDetailResponseScreen({Key? key})
+      : super(
+          key: key,
+        );
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ScrollPhysics(),
-      child: Container(
-        child: Stack(
-          children: [
-            ImageContainer(),
-            TopGreenContainer(context),
-            ItemsContainer(context)
-          ],
+      child: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          physics: ScrollPhysics(),
+          child: Container(
+            child: Stack(
+              children: [
+                ImageContainer(),
+                TopGreenContainer(context),
+                ItemsContainer(context)
+              ],
+            ),
+          ),
         ),
       ),
-    )));
+    );
   }
 
   Widget FooterElementsOfContainer() {
@@ -33,12 +38,21 @@ class UserDetailResponseScreen extends StatelessWidget {
         children: [
           Center(
             child: Text(
-                'Project By: Yojan Shakya, Ritesh Baral, Heena Shrestha',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              'Project By: Yojan Shakya, Ritesh Baral, Heena Shrestha',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           Center(
-            child: Text('Ronish bajracharya',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+            child: Text(
+              'Ronish bajracharya',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ]);
   }
@@ -61,7 +75,10 @@ class UserDetailResponseScreen extends StatelessWidget {
             onTap: () {
               E_comRegistrationShowAlertDialog(context);
             },
-            child: E_comRegistrationLoginOrRegisterButton('Close', context),
+            child: E_comRegistrationLoginOrRegisterButton(
+              'Close',
+              context,
+            ),
           ),
         ],
       ),
@@ -128,7 +145,9 @@ class UserDetailResponseScreen extends StatelessWidget {
             Expanded(
               child: Text(
                 response_str,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.black87.withOpacity(0.7)),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: Colors.black87.withOpacity(0.7),
+                    ),
               ),
             ),
           ],

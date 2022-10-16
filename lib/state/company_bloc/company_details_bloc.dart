@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecom_registration/company_repositary/companies_repo.dart';
 
+import '../../company_repository/companies_repo.dart';
 import 'company_detail_event.dart';
 import 'company_detail_state.dart';
 

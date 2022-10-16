@@ -23,10 +23,12 @@ void loginDetails(BuildContext context, User user) async {
       //save token to local storage.
       sharePreferenceHelperObj.saveUserPrefString(userTokenKey,response.data["token"]);
       E_comRegistrationToastFunction(context, 'Login successful');
+      Navigator.of(context).pop();
       Navigator.pushNamed(context, '/company');
     }
   } catch (ex) {
     log("Error while logging! : "+ex.toString());
+    Navigator.of(context).pop();
     return E_comRegistrationToastFunction(context, "Login failed! Check user credentials");
   }
 }
@@ -45,13 +47,16 @@ void registerUser(BuildContext context, User user) async {
     });
     if (response.statusCode == 200) {
       E_comRegistrationToastFunction(context, 'User registered successful');
+      Navigator.of(context).pop();
       Navigator.pushNamed(context, '/home');
     } else {
+      Navigator.of(context).pop();
       E_comRegistrationToastFunction(context, 'User registration failed');
     }
   } catch (ex) {
-    // E_comRegistrationToastFunction(context, ex.toString());
-    print(ex.toString());
+    Navigator.of(context).pop();
+    E_comRegistrationToastFunction(context, 'User registration failed');
+    log("Register failed ! "+ex.toString());
   }
 }
 
@@ -70,7 +75,7 @@ void sendPasswordChangeRequest(BuildContext context, User user) async {
       E_comRegistrationToastFunction(context, 'Password changed failed');
     }
   } catch (ex) {
-    // E_comRegistrationToastFunction(context, ex.toString());
-    print(ex.toString());
+    E_comRegistrationToastFunction(context, 'Password changed failed');
+    log("Password changed failed ! "+ex.toString());
   }
 }

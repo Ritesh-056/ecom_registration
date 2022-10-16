@@ -15,7 +15,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void startTimer() {
     timer = Timer(
-        Duration(seconds: 5), () => Navigator.pushNamed(context, '/home'));
+      Duration(seconds: 5),
+      () => Navigator.pushNamed(context, '/home'),
+    );
   }
 
   @override
@@ -27,10 +29,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: Stack(
-      children: [ImageContainer(), ItemsContainer()],
-    )));
+      child: Scaffold(
+        body: Stack(
+          children: [
+            ImageContainer(),
+            ItemsContainer(),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget ImageContainer() {
@@ -106,7 +113,10 @@ class _SplashScreenState extends State<SplashScreen> {
         Text(
           'E-COM',
           style: TextStyle(
-              color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           'REGISTRATION',
@@ -137,19 +147,27 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Center(
             child: Text(
-                'Project By: Ritesh Baral, Heena Shrestha, Yojan Shakya,',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              'Project By: Ritesh Baral, Heena Shrestha, Yojan Shakya,',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           Center(
-            child: Text('Ronish bajracharya',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+            child: Text(
+              'Ronish bajracharya',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ]);
   }
 
   @override
   void dispose() {
-    //close timer
     timer.cancel();
     super.dispose();
   }

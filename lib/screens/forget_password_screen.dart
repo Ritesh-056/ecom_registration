@@ -65,39 +65,41 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
   Widget ForgetPasswordContainer() {
     return Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            color: Colors.black12,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              20.0,
-            ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: Colors.black12,
+          width: 1,
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            20.0,
           ),
         ),
-        margin: EdgeInsets.symmetric(
-          vertical: 34.0,
-          horizontal: 8,
+      ),
+      margin: EdgeInsets.symmetric(
+        vertical: 34.0,
+        horizontal: 8,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(
+          18.0,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(
-            18.0,
-          ),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
             //email block
             E_comRegistrationTextHeading('Email :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputEmailController),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
+
+            //password block
             E_comRegistrationTextHeading('Password :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputEmailController),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             Text(
@@ -119,8 +121,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               ),
             ),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
-          ]),
-        ));
+          ],
+        ),
+      ),
+    );
   }
 
   void verifyEmail() {

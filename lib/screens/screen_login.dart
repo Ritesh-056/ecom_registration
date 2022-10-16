@@ -1,5 +1,6 @@
 import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
+import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
@@ -9,7 +10,10 @@ import 'package:flutter/painting.dart';
 import '../const.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key})
+      : super(
+          key: key,
+        );
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -93,7 +97,6 @@ class _LoginScreenState extends State<LoginScreen> {
             E_comRegistrationTextHeading('Email :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputEmailController),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //password block
@@ -101,7 +104,6 @@ class _LoginScreenState extends State<LoginScreen> {
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputPasswordController,
                 isPassword: true),
-
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             //forgot password block
@@ -128,6 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(
@@ -149,6 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void passLoginDetails() {
+    GISCircularProgressDialog(
+        context, "User login", "Please wait a minute user is logging");
     if (_inputEmailController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert email');
     }
