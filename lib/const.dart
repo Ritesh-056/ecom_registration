@@ -12,7 +12,7 @@ var userToken;
 String response_str =
     "Dear,users your details have been submitted successfully. Your documents will be verified soon after verification you will got an email";
 
-const create_user_api_base_url = "https://66e7-103-94-255-101.in.ngrok.io/";
+const create_user_api_base_url = "https://894d-103-94-255-142.in.ngrok.io/";
 
 const List<String> companyList = ['Private', 'Government'];
 const List<String> stateList = ['1', '2', '3', '4', '5', '6', '7'];

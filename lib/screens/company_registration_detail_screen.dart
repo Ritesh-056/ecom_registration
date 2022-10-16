@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/model%20/company.dart';
 import 'package:ecom_registration/resources/functions/approve_company_functions.dart';
+import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:ecom_registration/state/provider/file_provider.dart';
@@ -13,6 +14,7 @@ import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../helper/get_file_binary.dart';
 import 'document_view_screen.dart';
 
 class CompanyRegistrationDetailScreen extends StatefulWidget {
@@ -38,7 +40,6 @@ class _CompanyRegistrationDetailScreenState
 
   @override
   void initState() {
-    fileSelected();
     super.initState();
   }
 
@@ -203,7 +204,7 @@ class _CompanyRegistrationDetailScreenState
             E_comRegistrationTextHeading('Documents Added :'),
             E_comRegistrationSizedVerticalBox(8.0),
 
-            FileSelectedView(company.files!),
+            FileHolderWidget(company.files),
 
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
             widget.isVerified
@@ -227,45 +228,21 @@ class _CompanyRegistrationDetailScreenState
     );
   }
 
-  // Future<File> generatedFileFromBuffer(List<int> bufferData) async {
-  //   final tempDir = await getTemporaryDirectory();
-  //   File file =
-  //       await File('${tempDir.path}/${widget.company.name}.pdf').create();
-  //   file.writeAsBytesSync(bufferData);
-  //   return file;
-  // }
-
-  void fileSelected() async {
-    var arrayFiles = widget.company.files;
-    for (int i = 0; i < arrayFiles!.length; i++) {
-      final tempDir = await getTemporaryDirectory();
-      File file =
-          await File('${tempDir.path}/${widget.company.name}_document.pdf')
-              .create();
-      file.writeAsBytesSync(arrayFiles[i].data);
-      setState(() => pdfFilesList.add(file));
-    }
-  }
-
-  Widget FileSelectedView(List<FileElement> file) {
-    return (pdfFilesList.isNotEmpty)
-        ? Column(
-            children: attachFile(pdfFilesList),
-          )
-        : Container(
-            color: Colors.red,
+  Widget FileHolderWidget(List<String>? list) {
+    return Column(
+            children: attachFile(list!),
           );
   }
 
-  List<Widget> attachFile(List<File>? file) {
+  List<Widget> attachFile(List<String> file) {
     List<Widget> fileWidget = [];
-    for (int i = 0; i < file!.length; i++) {
+    for (int i = 0; i < file.length; i++) {
       fileWidget.add(fileShowingWidget(file[i]));
     }
     return fileWidget;
   }
 
-  Widget fileShowingWidget(File fileItem) {
+  Widget fileShowingWidget(String fileItem) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -277,30 +254,23 @@ class _CompanyRegistrationDetailScreenState
         E_comRegistrationSizedHorizontalBox(8.0),
         Expanded(
           child: Text(
-            fileItem.path.split('/').last,
+             fileItem
+            // fileItem.path.split('/').last,
           ),
         ),
         E_comRegistrationSizedHorizontalBox(8.0),
         IconButton(
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) =>
-              //         SelectedDocumentViewScreen(file: fileItem),
-              //   ),
-              // );
-              OpenFilex.open(fileItem.path);
-
-            },
+              GISCircularProgressDialog(context, "File Opening ", "Please wait a moment file loading");
+              getFileFromRemote(context,fileItem);
+              },
             icon: Icon(
-              Icons.arrow_forward_ios,
+              Icons.open_in_new,
               size: 20.0,
             ))
       ],
     );
   }
-
   @override
   void dispose() {
     super.dispose();

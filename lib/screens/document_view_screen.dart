@@ -1,8 +1,9 @@
+import 'package:ecom_registration/helper/get_file_binary.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
 class SelectedDocumentViewScreen extends StatefulWidget {
-  final File file ;
+  final String file ;
   const SelectedDocumentViewScreen({Key? key, required this.file}) : super(key: key);
 
   @override
@@ -10,6 +11,12 @@ class SelectedDocumentViewScreen extends StatefulWidget {
 }
 
 class _SelectedDocumentViewScreenState extends State<SelectedDocumentViewScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
