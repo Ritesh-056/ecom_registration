@@ -1,16 +1,17 @@
 # ecom_registration
 
-A new Flutter project.
+E-governance college project for online company registration. 
 
-## Getting Started
+Features
 
-This project is a starting point for a Flutter application.
+1. Login / registration for admin.
+2. Select files / documents.
+2. User can add necessary details.
+3. Pay company registration fee online.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Process
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. User submit neceesary details without login.
+2. Admin will be responsible for verification to the user documentation. 
+3. The verification can will be sent to the user for the confirmation of the registered company.
