@@ -1,12 +1,14 @@
 import 'package:ecom_registration/model%20/user.dart';
+import 'package:ecom_registration/screens/forget_password/forget_password_constant.dart';
+import 'package:ecom_registration/screens/home/home_constants.dart';
 import 'package:ecom_registration/utils/functions/creditional_details.dart';
 import 'package:ecom_registration/utils/functions/navigation_context.dart';
 import 'package:ecom_registration/utils/functions/resuable_functions.dart';
-import '../../widgets/reusable_widgets.dart';
-import '../widgets/master_widgets.dart';
+import '../../../widgets/reusable_widgets.dart';
+import '../../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
 
-import '../app_const.dart';
+import '../../app_const.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({Key? key}) : super(key: key);
@@ -103,7 +105,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
             Text(
-              '* Please check your email to change your password *',
+              ForgetPasswordConstant.checkEmailStrForUser,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -116,7 +118,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             GestureDetector(
               onTap: verifyEmail,
               child: E_comRegistrationLoginOrRegisterButton(
-                'Send email',
+                ForgetPasswordConstant.sendEmailStr,
                 context,
               ),
             ),

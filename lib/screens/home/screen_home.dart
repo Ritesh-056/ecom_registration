@@ -1,9 +1,11 @@
+import 'package:ecom_registration/screens/home/home_constants.dart';
+import 'package:ecom_registration/screens/submit_details/details_constant.dart';
 import 'package:ecom_registration/utils/functions/navigation_context.dart';
-import '../../widgets/reusable_widgets.dart';
-import '../widgets/master_widgets.dart';
+import '../../../widgets/reusable_widgets.dart';
+import '../../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
 
-import '../app_const.dart';
+import '../../app_const.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -86,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Center(
               child: Text(
-                'Nepal Government',
+                SubmittedDetailConstant.NepalGovernmentStr,
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
@@ -98,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 jumpToNextScreen(context, '/login');
               },
               child: E_comRegistrationLoginOrRegisterButton(
-                'Admin login',
+                HomeConstant.adminLoginStr,
                 context,
               ),
             ),
@@ -108,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 jumpToNextScreen(context, '/user_details');
               },
               child: E_comRegistrationLoginOrRegisterButton(
-                'Continue as User',
+                HomeConstant.continueAsAUserStr,
                 context,
               ),
             ),
@@ -119,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: Center(
                 child: E_comRegistrationNormalText(
-                  "Don't Have Account Click here",
+                  HomeConstant.dontHaveAnAccountClickStr,
                   TextDecoration.underline,
                 ),
               ),

@@ -11,10 +11,6 @@ class GeneralFuncProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changTypeOfCompany(){
-    count++;
-    count % 2 == 0 ? isPrivateCompany = false : isPrivateCompany = true ;
-    notifyListeners();
-  }
+
 
 }

@@ -15,7 +15,7 @@ void loginDetails(BuildContext context, User user) async {
   try {
     var dio = Dio();
     var sharePreferenceHelperObj =  SharePreferencesHelper();
-    var endUrlEndPoints = "${create_user_api_base_url}users/login";
+    var endUrlEndPoints = "${base_url}users/login";
 
     var response = await dio.post(endUrlEndPoints,
         data: {'email': user.email, 'password': user.password});
@@ -40,7 +40,7 @@ void registerUser(BuildContext context, User user) async {
   try {
     var dio = Dio();
 
-    var endUrlEndPoints = "${create_user_api_base_url}users/create";
+    var endUrlEndPoints = "${base_url}users/create";
     var response = await dio.post(endUrlEndPoints, data: {
       'name': user.name,
       'email': user.email,
@@ -66,7 +66,7 @@ void registerUser(BuildContext context, User user) async {
 void sendPasswordChangeRequest(BuildContext context, User user) async {
   try {
     var dio = Dio();
-    var response = await dio.put(create_user_api_base_url, data: {
+    var response = await dio.put(base_url, data: {
       'password': user.password
     });
     if (response.statusCode == 200) {

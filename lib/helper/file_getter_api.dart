@@ -11,7 +11,7 @@ import '../app_const.dart';
 
 void getFileFromRemote(BuildContext context, String file) async {
   var _dio = Dio();
-  var _baseUrlPath = "${create_user_api_base_url}files/$file";
+  var _baseUrlPath = "${base_url}files/$file";
 
   final headers = {
     "Accept": "*/*",

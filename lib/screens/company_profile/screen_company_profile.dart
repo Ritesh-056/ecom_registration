@@ -1,8 +1,8 @@
 import 'package:ecom_registration/utils/functions/resuable_functions.dart';
-import '../../widgets/reusable_widgets.dart';
-import '../widgets/master_widgets.dart';
-import 'package:ecom_registration/screens/screen_company_profile_final.dart';
+import '../../../widgets/reusable_widgets.dart';
+import '../../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
+import 'screen_company_profile_final.dart';
 
 class UserDetailsScreen extends StatefulWidget {
   const UserDetailsScreen({Key? key}) : super(key: key);
@@ -89,24 +89,29 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputNameController),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            //*************************************************
             E_comRegistrationTextHeading('Email :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputEmailController),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            //*************************************************
             E_comRegistrationTextHeading('Telephone :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputTelePhoneController,
                 inputTypeNumber: true),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            //*************************************************
             E_comRegistrationTextHeading('Company Name :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputCompanyNameController),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            //*************************************************
             E_comRegistrationTextHeading('FAX :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputFaxController,
                 inputTypeNumber: true),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+            //*************************************************
             E_comRegistrationTextHeading('Field of Business :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputFieldOfBusinessController),

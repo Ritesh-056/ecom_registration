@@ -13,7 +13,7 @@ import '../model /company.dart';
 class ApiPostService {
 
   Future<http.Response> uploadData(BuildContext context,List<File> files, Company company) async {
-    var endpoints = "${create_user_api_base_url}companyRegistration";
+    var endpoints = "${base_url}companyRegistration";
     Map<String, String> headers = {
       "Content-Type": "application/x-www-form-urlencoded",
     };

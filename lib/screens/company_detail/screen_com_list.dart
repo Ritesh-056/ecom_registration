@@ -3,14 +3,15 @@ import 'dart:developer';
 import 'package:ecom_registration/app_const.dart';
 import 'package:ecom_registration/helper/persistance_helper.dart';
 import 'package:ecom_registration/model%20/company.dart';
-import '../../widgets/reusable_widgets.dart';
-import '../widgets/master_widgets.dart';
+import 'package:ecom_registration/screens/company_detail/company_detail_constant.dart';
+import '../../../widgets/reusable_widgets.dart';
+import '../../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../state/company/company_event.dart';
-import '../state/company/company_state.dart';
-import '../state/company/company_bloc.dart';
+import '../../state/company/company_event.dart';
+import '../../state/company/company_state.dart';
+import '../../state/company/company_bloc.dart';
 import 'screen_com_detail_screen.dart';
 
 class CompanyRegistrationListScreen extends StatefulWidget {
@@ -121,7 +122,7 @@ class _CompanyRegistrationListScreenState
             SizedBox(
               height: 8.0,
             ),
-            Text('Loading...! Please wait.')
+            Text(CompanyDetailConstant.loadingStr),
           ],
         ),
       ),
@@ -161,36 +162,16 @@ class _CompanyRegistrationListScreenState
             subtitle: Text(company[index].email),
             trailing: company[index].approved!
                 ? InkWell(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CompanyRegistrationDetailScreen(
-                          company: company[index],
-                          companyRegisteredId: company[index].id,
-                          isVerified: true,
-                        ),
-                      ),
-                    );
-                  },
-                  child: E_comRegistrationNormalText(
+                    onTap: () => jumpToApprovalScreen(
+                        context, company[index], company[index].id!, true),
+                    child: E_comRegistrationNormalText(
                       'Verified',
                       TextDecoration.underline,
                     ),
-                )
+                  )
                 : InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CompanyRegistrationDetailScreen(
-                            company: company[index],
-                            companyRegisteredId: company[index].id,
-                            isVerified: false,
-                          ),
-                        ),
-                      );
-                    },
+                    onTap: () => jumpToApprovalScreen(
+                        context, company[index], company[index].id!, false),
                     child: E_comRegistrationNormalText(
                       'Verify',
                       TextDecoration.underline,
@@ -198,6 +179,20 @@ class _CompanyRegistrationListScreenState
                   ),
           );
         },
+      ),
+    );
+  }
+
+  void jumpToApprovalScreen(BuildContext context, Company company,
+      int registeredId, bool isVerified) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CompanyRegistrationDetailScreen(
+          company: company,
+          companyRegisteredId: registeredId,
+          isVerified: isVerified,
+        ),
       ),
     );
   }

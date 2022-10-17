@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:ecom_registration/screens/company_profile/company_profile_constant.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,7 +10,7 @@ import '../../widgets/reusable_widgets.dart';
 import 'navigation_context.dart';
 import 'progress_dialog.dart';
 
-late Timer timer ;
+late Timer timer;
 
 bool checkValidMailOrNot(BuildContext context, String email) {
   bool validResponse;
@@ -25,7 +26,6 @@ bool checkValidMailOrNot(BuildContext context, String email) {
   return validResponse;
 }
 
-
 void E_comRegistrationToastFunction(BuildContext context, String msg) {
   Fluttertoast.showToast(
       msg: msg,
@@ -35,7 +35,6 @@ void E_comRegistrationToastFunction(BuildContext context, String msg) {
       textColor: Colors.white,
       fontSize: 16.0);
 }
-
 
 void E_comRegistrationShowModelFunction(BuildContext context) {
   showModalBottomSheet(
@@ -80,15 +79,17 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
                   padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                   child: GestureDetector(
                     onTap: () {
-                      GISCircularProgressDialog(context,'Payment processing','Please wait a moment to make a payment');
-                      timer = Timer(
-                          Duration(seconds: 5), () {
-                        E_comRegistrationToastFunction(context, 'Payment Successful');
-                        Provider.of<GeneralFuncProvider>(context,listen: false).checkFinePaidOrNot();
+                      GISCircularProgressDialog(context, 'Payment processing',
+                          'Please wait a moment to make a payment');
+                      timer = Timer(Duration(seconds: 5), () {
+                        E_comRegistrationToastFunction(
+                            context, 'Payment Successful');
+                        Provider.of<GeneralFuncProvider>(context, listen: false)
+                            .checkFinePaidOrNot();
                         jumpToPreviousScreen(context);
                         jumpToPreviousScreen(context);
                       });
-                      },
+                    },
                     child: E_comRegistrationLoginOrRegisterButton(
                         'Pay to Bank Account', context),
                   ),
@@ -109,8 +110,6 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
       });
 }
 
-
-
 class CompanyTypeWidget extends StatefulWidget {
   const CompanyTypeWidget({Key? key}) : super(key: key);
 
@@ -118,7 +117,12 @@ class CompanyTypeWidget extends StatefulWidget {
   State<CompanyTypeWidget> createState() => _CompanyTypeWidgetState();
 }
 
+enum CompanyType { Private,Government }
 class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
+
+   String companyType = companyList[0];
+   int payingAmount = 500;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -136,7 +140,7 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
             ),
             Consumer<GeneralFuncProvider>(
               builder: (context, generalFunc, child) => DropdownButton<String>(
-                value: generalFunc.isPrivateCompany ? 'Private' : 'Government',
+                value: companyType,
                 items: <String>['Private', 'Government'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -144,7 +148,8 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
                   );
                 }).toList(),
                 onChanged: (val) {
-                  generalFunc.changTypeOfCompany();
+                  setState(() => companyType = val!);
+                  companyType == companyList[0] ? payingAmount  = 500 : payingAmount = 1500;
                 },
               ),
             ),
@@ -154,8 +159,8 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
           height: 16.0,
         ),
         Consumer<GeneralFuncProvider>(
-          builder:(context,generalFunc,child) =>Text(
-            generalFunc.isPrivateCompany ? 'Rs. 500' : 'Rs.15000',
+          builder: (context, generalFunc, child) => Text(
+            '${payingAmount}',
             style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
           ),
@@ -164,29 +169,28 @@ class _CompanyTypeWidgetState extends State<CompanyTypeWidget> {
         Text(
           'Will be paid to Nepal Government',
           style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
-              color: Colors.black45),
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+            color: Colors.black45,
+          ),
         ),
       ],
     );
   }
 }
 
-
 void E_comRegistrationShowAlertDialog(BuildContext context) {
-
   // set up the buttons
   Widget noButton = TextButton(
     child: Text("NO"),
-    onPressed:  () {
+    onPressed: () {
       jumpToPreviousScreen(context);
     },
   );
 
   Widget yesButton = TextButton(
     child: Text("YES"),
-    onPressed:  () {
+    onPressed: () {
       exit(0);
     },
   );

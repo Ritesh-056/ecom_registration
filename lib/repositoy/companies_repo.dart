@@ -7,7 +7,7 @@ import 'package:ecom_registration/model%20/company.dart';
 class CompanyDetailsApiRepository{
    Future<List<Company>?> getCompanyDataList() async{
      List<Company> company = [];
-     var endpoints = '${create_user_api_base_url}companyRegistration';
+     var endpoints = '${base_url}companyRegistration';
       try{
         var dio = Dio();
         dio.options.headers["Authorization"] = "Bearer ${userToken}";

@@ -1,13 +1,14 @@
 import 'package:ecom_registration/model%20/user.dart';
+import 'package:ecom_registration/screens/login/login_constant.dart';
 import 'package:ecom_registration/utils/functions/creditional_details.dart';
 import 'package:ecom_registration/utils/functions/navigation_context.dart';
 import 'package:ecom_registration/utils/functions/progress_dialog.dart';
 import 'package:ecom_registration/utils/functions/resuable_functions.dart';
-import '../../widgets/reusable_widgets.dart';
-import '../widgets/master_widgets.dart';
+import '../../../widgets/reusable_widgets.dart';
+import '../../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
 
-import '../app_const.dart';
+import '../../app_const.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key})
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   '/forget_password');
               },
               child: E_comRegistrationNormalText(
-                'Forgot password',
+                 LoginConstant.forgetPasswordStr,
                 TextDecoration.none,
               ),
             ),
@@ -123,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
             GestureDetector(
               onTap: passLoginDetails,
               child: E_comRegistrationLoginOrRegisterButton(
-                'Login',
+                LoginConstant.loginStr,
                 context,
               ),
             ),
@@ -135,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               child: Center(
                 child: E_comRegistrationNormalText(
-                  "Don't Have Account Click here",
+                  LoginConstant.donotHaveAnAccountStr,
                   TextDecoration.underline,
                 ),
               ),

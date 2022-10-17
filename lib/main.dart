@@ -1,16 +1,16 @@
-import 'package:ecom_registration/screens/forget_password_screen.dart';
-import 'package:ecom_registration/screens/screen_com_list.dart';
-import 'package:ecom_registration/screens/screen_company_profile.dart';
-import 'package:ecom_registration/screens/screen_login.dart';
-import 'package:ecom_registration/screens/screen_register.dart';
-import 'package:ecom_registration/screens/screen_splash.dart';
+import 'package:ecom_registration/screens/forget_password/forget_password_screen.dart';
+import 'package:ecom_registration/screens/company_profile/screen_company_profile.dart';
+import 'package:ecom_registration/screens/login/screen_login.dart';
+import 'package:ecom_registration/screens/register/screen_register.dart';
+import 'package:ecom_registration/screens/splash/screen_splash.dart';
 import 'package:ecom_registration/state/provider/file_provider.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/screen_home.dart';
-import 'screens/screen_submitted_response.dart';
+import 'screens/company_detail/screen_com_list.dart';
+import 'screens/home/screen_home.dart';
+import 'screens/submit_details/screen_submitted_response.dart';
 
 void main() {
   runApp(MultiProvider(

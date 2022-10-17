@@ -3,11 +3,11 @@ import 'package:ecom_registration/model%20/company.dart';
 import 'package:ecom_registration/utils/functions/approve_company_functions.dart';
 import 'package:ecom_registration/utils/functions/navigation_context.dart';
 import 'package:ecom_registration/utils/functions/progress_dialog.dart';
-import '../../widgets/reusable_widgets.dart';
-import '../widgets/master_widgets.dart';
+import '../../../widgets/reusable_widgets.dart';
+import '../../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
 
-import '../helper/file_getter_api.dart';
+import '../../helper/file_getter_api.dart';
 
 class CompanyRegistrationDetailScreen extends StatefulWidget {
   final Company company;
@@ -244,20 +244,20 @@ class _CompanyRegistrationDetailScreenState
         ),
         E_comRegistrationSizedHorizontalBox(8.0),
         Expanded(
-          child: Text(fileItem
-              ),
+          child: Text(fileItem),
         ),
         E_comRegistrationSizedHorizontalBox(8.0),
         IconButton(
-            onPressed: () {
-              GISCircularProgressDialog(context, "File Opening ",
-                  "Please wait a moment file loading");
-              getFileFromRemote(context, fileItem);
-            },
-            icon: Icon(
-              Icons.open_in_new,
-              size: 20.0,
-            ))
+          onPressed: () {
+            GISCircularProgressDialog(
+                context, "File Opening ", "Please wait a moment file loading");
+            getFileFromRemote(context, fileItem);
+          },
+          icon: Icon(
+            Icons.open_in_new,
+            size: 20.0,
+          ),
+        )
       ],
     );
   }

@@ -1,10 +1,11 @@
 import 'package:ecom_registration/model%20/user.dart';
+import 'package:ecom_registration/screens/register/widgets/widgets_register.dart';
 import 'package:ecom_registration/utils/functions/creditional_details.dart';
 import 'package:ecom_registration/utils/functions/navigation_context.dart';
 import 'package:ecom_registration/utils/functions/progress_dialog.dart';
 import 'package:ecom_registration/utils/functions/resuable_functions.dart';
-import '../../widgets/reusable_widgets.dart';
-import '../widgets/master_widgets.dart';
+import '../../../widgets/reusable_widgets.dart';
+import '../../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -58,17 +59,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  Widget MiddleElementsOfContainerCompany() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-        E_comRegistrationHeadings('E-COM'),
-        E_comRegistrationHeadings('REGISTRATION'),
-      ],
-    );
-  }
+
 
   Widget RegistrationContainer() {
     return Container(
@@ -141,7 +132,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   void passRegisterData() {
     GISCircularProgressDialog(
-        context, "Registration", "please wait user is creating");
+        context, "Registration", "Please wait admin profile creating. ");
     if (_inputUserNameController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert user name');
     }
