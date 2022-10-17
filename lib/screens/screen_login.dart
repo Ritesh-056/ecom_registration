@@ -1,5 +1,6 @@
 import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
@@ -12,8 +13,8 @@ import '../const.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key})
       : super(
-          key: key,
-        );
+    key: key,
+  );
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -32,20 +33,20 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        physics: ScrollPhysics(),
-        child: Container(
-          child: Stack(
-            children: [
-              ImageContainer(),
-              TopGreenContainer(context),
-              ItemsContainer()
-            ],
+          body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            physics: ScrollPhysics(),
+            child: Container(
+              child: Stack(
+                children: [
+                  ImageContainer(),
+                  TopGreenContainer(context),
+                  ItemsContainer()
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 
   Widget ItemsContainer() {
@@ -109,10 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
             //forgot password block
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  '/forget_password',
-                );
+                jumpToNextScreen(context,
+                  '/forget_password');
               },
               child: E_comRegistrationNormalText(
                 'Forgot password',
@@ -133,10 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  '/register',
-                );
+                jumpToNextScreen(context, '/register');
               },
               child: Center(
                 child: E_comRegistrationNormalText(

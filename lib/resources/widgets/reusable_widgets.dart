@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-Widget E_comRegistrationDynamicsText(
-    {required String text, required bool isHeadings}) {
+Widget E_comRegistrationDynamicsText({
+  required String text,
+  required bool isHeadings,
+}) {
   return Text(
     '$text',
     style: isHeadings
@@ -13,25 +15,28 @@ Widget E_comRegistrationDynamicsText(
 }
 
 Widget E_comCompanyDetailDocumentTextBoxContainer(
-    BuildContext context, String str) {
+  BuildContext context,
+  String str,
+) {
   return Container(
-      height: 50,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.black, width: 0.5),
-        borderRadius: BorderRadius.all(Radius.circular(16.0)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            str,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
+    height: 50,
+    width: MediaQuery.of(context).size.width,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      border: Border.all(color: Colors.black, width: 0.5),
+      borderRadius: BorderRadius.all(Radius.circular(16.0)),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          str,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
-      ));
+      ),
+    ),
+  );
 }
 
 Widget E_comRegistrationInputField(TextEditingController _textController,
@@ -113,11 +118,14 @@ Widget E_comRegistrationLoginOrRegisterButton(
     child: Padding(
       padding: const EdgeInsets.all(16.0),
       child: Center(
-        child: Text(txtString,
-            style: TextStyle(
-                fontSize: 16,
-                color: isPaid ? Colors.white : Colors.black,
-                fontWeight: FontWeight.bold)),
+        child: Text(
+          txtString,
+          style: TextStyle(
+            fontSize: 16,
+            color: isPaid ? Colors.white : Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     ),
   );
@@ -135,11 +143,14 @@ Widget E_comRegistrationCloseButton(String txtString, BuildContext context) {
     child: Padding(
       padding: const EdgeInsets.all(16.0),
       child: Center(
-        child: Text(txtString,
-            style: TextStyle(
-                fontSize: 16,
-                color: Colors.black87,
-                fontWeight: FontWeight.bold)),
+        child: Text(
+          txtString,
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     ),
   );

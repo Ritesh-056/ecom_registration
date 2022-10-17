@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/screen_home.dart';
-import 'screens/screen_sumitted_details_response.dart';
+import 'screens/screen_submitted_response.dart';
 
 void main() {
   runApp(MultiProvider(

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void startTimer() {
     timer = Timer(
       Duration(seconds: 5),
-      () => Navigator.pushNamed(context, '/home'),
+      () =>jumpToNextScreen(context, '/home'),
     );
   }
 

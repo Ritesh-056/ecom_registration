@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,11 +14,11 @@ void approveCompany(BuildContext context, int companyId) async {
     var response = await dio.put(endPoints);
     if (response.statusCode == 200) {
       E_comRegistrationToastFunction(context, 'Approved successful');
-      Navigator.of(context).pop();
-      Navigator.pushNamed(context, '/company');
+      jumpToPreviousScreen(context);
+      jumpToNextScreen(context, '/company');
     }
   } catch (ex) {
-    Navigator.of(context).pop();
+    jumpToPreviousScreen(context);
     log("Approved company failed"+ ex.toString());
     return E_comRegistrationToastFunction(context, "Company approve failed! ");
   }

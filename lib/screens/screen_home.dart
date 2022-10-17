@@ -1,3 +1,4 @@
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/login');
+                jumpToNextScreen(context, '/login');
               },
               child: E_comRegistrationLoginOrRegisterButton(
                 'Admin login',
@@ -105,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/user_details');
+                jumpToNextScreen(context, '/user_details');
               },
               child: E_comRegistrationLoginOrRegisterButton(
                 'Continue as User',
@@ -115,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
             E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/register');
+                jumpToNextScreen(context, '/register');
               },
               child: Center(
                 child: E_comRegistrationNormalText(

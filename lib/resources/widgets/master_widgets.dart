@@ -1,3 +1,4 @@
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:flutter/material.dart';
 
 import '../../const.dart';
@@ -32,7 +33,8 @@ Widget TopElementsOfContainer(BuildContext context) {
     children: [
       GestureDetector(
         onTap: (){
-          Navigator.of(context).pop();
+          jumpToPreviousScreen(context);
+
         },
         child: Icon(
           Icons.arrow_back_ios,

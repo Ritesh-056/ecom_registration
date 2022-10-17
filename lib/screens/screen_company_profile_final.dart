@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:ecom_registration/model%20/company.dart';
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
@@ -322,13 +323,13 @@ class _UserLocationDetailsScreenState extends State<UserLocationDetailsScreen> {
         print("Status code: ${value.statusCode.toString()}");
         if(value.statusCode == 200){
           E_comRegistrationToastFunction(context, 'Data Uploaded Successful');
-          Navigator.pushNamed(context, '/user_response_screen');
+          jumpToNextScreen(context,'/user_response_screen');
         }else{
-          Navigator.pop(context);
+          jumpToPreviousScreen(context);
           log("Error uploading");
         }
       }).catchError((err) {
-        Navigator.pop(context);
+        jumpToPreviousScreen(context);
         E_comRegistrationToastFunction(context, 'Failed to register! ');
       });
     }

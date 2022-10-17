@@ -1,5 +1,6 @@
 import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
@@ -139,7 +140,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     if (_inputPasswordController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert password');
     } else {
-      Navigator.pushNamed(context, '/login');
+      jumpToNextScreen(context, '/login');
       User user = User(
           email: _inputEmailController.text,
           password: _inputPasswordController.text);

@@ -1,6 +1,7 @@
 import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/model%20/company.dart';
 import 'package:ecom_registration/resources/functions/approve_company_functions.dart';
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
@@ -198,7 +199,7 @@ class _CompanyRegistrationDetailScreenState
             widget.isVerified
                 ? InkWell(
                     onTap: () {
-                      Navigator.of(context).pop();
+                      jumpToPreviousScreen(context);
                     },
                     child: E_comRegistrationLoginOrRegisterButton(
                         'Close', context),

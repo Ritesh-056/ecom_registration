@@ -1,5 +1,7 @@
 import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/resources/functions/creditional_details.dart';
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
+import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:ecom_registration/resources/widgets/master_widgets.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
@@ -70,75 +72,76 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget RegistrationContainer() {
     return Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            color: Colors.black12,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              20.0,
-            ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: Colors.black12,
+          width: 1,
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            20.0,
           ),
         ),
-        margin: EdgeInsets.symmetric(
-          vertical: 34.0,
-          horizontal: 8,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            //username block
-            E_comRegistrationTextHeading('User name :'),
-            E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputUserNameController),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+      ),
+      margin: EdgeInsets.symmetric(
+        vertical: 34.0,
+        horizontal: 8,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          //username block
+          E_comRegistrationTextHeading('User name :'),
+          E_comRegistrationSizedVerticalBox(itemGapSize),
+          E_comRegistrationInputField(_inputUserNameController),
+          E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            //email block
-            E_comRegistrationTextHeading('Email :'),
-            E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputEmailController),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+          //email block
+          E_comRegistrationTextHeading('Email :'),
+          E_comRegistrationSizedVerticalBox(itemGapSize),
+          E_comRegistrationInputField(_inputEmailController),
+          E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            //password block
-            E_comRegistrationTextHeading('Password :'),
-            E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputPasswordController,
-                isPassword: true),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+          //password block
+          E_comRegistrationTextHeading('Password :'),
+          E_comRegistrationSizedVerticalBox(itemGapSize),
+          E_comRegistrationInputField(_inputPasswordController,
+              isPassword: true),
+          E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            // confirm password block
-            E_comRegistrationTextHeading('Confirm Password :'),
-            E_comRegistrationSizedVerticalBox(itemGapSize),
-            E_comRegistrationInputField(_inputConfirmPasswordController,
-                isPassword: true),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize),
+          // confirm password block
+          E_comRegistrationTextHeading('Confirm Password :'),
+          E_comRegistrationSizedVerticalBox(itemGapSize),
+          E_comRegistrationInputField(_inputConfirmPasswordController,
+              isPassword: true),
+          E_comRegistrationSizedVerticalBox(itemBlocGapSize),
 
-            GestureDetector(
-              onTap: passRegisterData,
-              child:
-                  E_comRegistrationLoginOrRegisterButton('Register', context),
-            ),
-            E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
+          GestureDetector(
+            onTap: passRegisterData,
+            child: E_comRegistrationLoginOrRegisterButton('Register', context),
+          ),
+          E_comRegistrationSizedVerticalBox(itemBlocGapSize * 2),
 
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/');
-              },
-              child: Center(
-                child: E_comRegistrationNormalText(
-                  "Already Have an Account ?",
-                  TextDecoration.underline,
-                ),
+          GestureDetector(
+            onTap: () {
+              jumpToNextScreen(context, '/');
+            },
+            child: Center(
+              child: E_comRegistrationNormalText(
+                "Already Have an Account ?",
+                TextDecoration.underline,
               ),
             ),
-          ]),
-        ));
+          ),
+        ]),
+      ),
+    );
   }
 
   void passRegisterData() {
+    GISCircularProgressDialog(
+        context, "Registration", "please wait user is creating");
     if (_inputUserNameController.text.isEmpty) {
       return E_comRegistrationToastFunction(context, 'Please insert user name');
     }

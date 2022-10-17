@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/helper/shared_preferences_datas.dart';
 import 'package:ecom_registration/model%20/user.dart';
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:ecom_registration/resources/functions/resuable_functions.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,8 @@ void loginDetails(BuildContext context, User user) async {
       //save token to local storage.
       sharePreferenceHelperObj.saveUserPrefString(userTokenKey,response.data["token"]);
       E_comRegistrationToastFunction(context, 'Login successful');
-      Navigator.of(context).pop();
-      Navigator.pushNamed(context, '/company');
+      jumpToPreviousScreen(context);
+      jumpToNextScreen(context,'/company');
     }
   } catch (ex) {
     log("Error while logging! : "+ex.toString());
@@ -47,14 +48,14 @@ void registerUser(BuildContext context, User user) async {
     });
     if (response.statusCode == 200) {
       E_comRegistrationToastFunction(context, 'User registered successful');
-      Navigator.of(context).pop();
-      Navigator.pushNamed(context, '/home');
+      jumpToPreviousScreen(context);
+      jumpToNextScreen(context,'/home');
     } else {
-      Navigator.of(context).pop();
+      jumpToPreviousScreen(context);
       E_comRegistrationToastFunction(context, 'User registration failed');
     }
   } catch (ex) {
-    Navigator.of(context).pop();
+    jumpToPreviousScreen(context);
     E_comRegistrationToastFunction(context, 'User registration failed');
     log("Register failed ! "+ex.toString());
   }
@@ -70,7 +71,7 @@ void sendPasswordChangeRequest(BuildContext context, User user) async {
     });
     if (response.statusCode == 200) {
       E_comRegistrationToastFunction(context, 'Password changed successful');
-      Navigator.pushNamed(context, '/login');
+      jumpToNextScreen(context,  '/login');
     } else {
       E_comRegistrationToastFunction(context, 'Password changed failed');
     }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:ecom_registration/resources/functions/progressdialog.dart';
 import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
@@ -85,8 +86,8 @@ void E_comRegistrationShowModelFunction(BuildContext context) {
                           Duration(seconds: 5), () {
                         E_comRegistrationToastFunction(context, 'Payment Successful');
                         Provider.of<GeneralFuncProvider>(context,listen: false).checkFinePaidOrNot();
-                        Navigator.pop(context);
-                        Navigator.pop(context);
+                        jumpToPreviousScreen(context);
+                        jumpToPreviousScreen(context);
                       });
                       },
                     child: E_comRegistrationLoginOrRegisterButton(
@@ -180,7 +181,7 @@ void E_comRegistrationShowAlertDialog(BuildContext context) {
   Widget noButton = TextButton(
     child: Text("NO"),
     onPressed:  () {
-      Navigator.pop(context);
+      jumpToPreviousScreen(context);
     },
   );
 
