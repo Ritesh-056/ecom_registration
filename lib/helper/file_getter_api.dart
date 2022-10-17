@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../const.dart';
+import '../app_const.dart';
 
 void getFileFromRemote(BuildContext context, String file) async {
   var _dio = Dio();

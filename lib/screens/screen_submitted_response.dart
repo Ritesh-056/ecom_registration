@@ -1,4 +1,4 @@
-import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/app_const.dart';
 import 'package:ecom_registration/utils/functions/resuable_functions.dart';
 import '../../widgets/reusable_widgets.dart';
 import '../widgets/master_widgets.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../const.dart';
+import '../../app_const.dart';
 import '../utils/functions/navigation_context.dart';
 
 Widget ImageContainer() {

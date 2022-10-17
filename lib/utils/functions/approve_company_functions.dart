@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/app_const.dart';
 import 'package:ecom_registration/utils/functions/navigation_context.dart';
 import 'package:ecom_registration/utils/functions/resuable_functions.dart';
 import 'package:flutter/widgets.dart';

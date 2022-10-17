@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:async/async.dart';
-import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/app_const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';

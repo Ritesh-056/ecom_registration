@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/app_const.dart';
 import 'package:ecom_registration/helper/persistance_helper.dart';
 import 'package:ecom_registration/model%20/user.dart';
 import 'package:ecom_registration/utils/functions/navigation_context.dart';

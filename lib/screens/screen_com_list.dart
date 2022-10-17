@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:ecom_registration/const.dart';
+import 'package:ecom_registration/app_const.dart';
 import 'package:ecom_registration/helper/persistance_helper.dart';
 import 'package:ecom_registration/model%20/company.dart';
 import '../../widgets/reusable_widgets.dart';
@@ -8,9 +8,9 @@ import '../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../state/company_bloc/company_detail_event.dart';
-import '../state/company_bloc/company_detail_state.dart';
-import '../state/company_bloc/company_details_bloc.dart';
+import '../state/company/company_event.dart';
+import '../state/company/company_state.dart';
+import '../state/company/company_bloc.dart';
 import 'screen_com_detail_screen.dart';
 
 class CompanyRegistrationListScreen extends StatefulWidget {

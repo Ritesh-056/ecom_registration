@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 
-import '../../company_repository/companies_repo.dart';
-import 'company_detail_event.dart';
-import 'company_detail_state.dart';
+import '../../repositoy/companies_repo.dart';
+import 'company_event.dart';
+import 'company_state.dart';
 
 
 class CompanyDetailsBloc extends Bloc<CompanyDetailsEvent, CompanyDetailsState> {

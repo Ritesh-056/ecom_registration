@@ -12,7 +12,7 @@ import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../const.dart';
+import '../app_const.dart';
 import '../helper/user_details_post.dart';
 
 class UserLocationDetailsScreen extends StatefulWidget {
