@@ -22,20 +22,22 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: ScrollPhysics(),
-      child: Container(
-        child: Stack(
-          children: [
-            ImageContainer(),
-            TopGreenContainer(context),
-            ItemsContainer()
-          ],
+      child: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          physics: ScrollPhysics(),
+          child: Container(
+            child: Stack(
+              children: [
+                ImageContainer(),
+                TopGreenContainer(context),
+                ItemsContainer()
+              ],
+            ),
+          ),
         ),
       ),
-    )));
+    );
   }
 
   Widget ItemsContainer() {
@@ -88,13 +90,11 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             //email block
             E_comRegistrationTextHeading('Email :'),
             E_comRegistrationSizedVerticalBox(itemGapSize),
             E_comRegistrationInputField(_inputEmailController),
             E_comRegistrationSizedVerticalBox(itemBlocGapSize),
-
 
             //password block
             E_comRegistrationTextHeading('Password :'),

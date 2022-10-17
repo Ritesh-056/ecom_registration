@@ -34,7 +34,6 @@ Widget TopElementsOfContainer(BuildContext context) {
       GestureDetector(
         onTap: (){
           jumpToPreviousScreen(context);
-
         },
         child: Icon(
           Icons.arrow_back_ios,
