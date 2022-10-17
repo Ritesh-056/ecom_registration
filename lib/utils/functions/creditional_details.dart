@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:ecom_registration/const.dart';
-import 'package:ecom_registration/helper/shared_preferences_datas.dart';
+import 'package:ecom_registration/helper/persistance_helper.dart';
 import 'package:ecom_registration/model%20/user.dart';
-import 'package:ecom_registration/resources/functions/navigation_context.dart';
-import 'package:ecom_registration/resources/functions/resuable_functions.dart';
+import 'package:ecom_registration/utils/functions/navigation_context.dart';
+import 'package:ecom_registration/utils/functions/resuable_functions.dart';
 import 'package:flutter/material.dart';
 
 

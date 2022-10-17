@@ -1,7 +1,7 @@
-import 'package:ecom_registration/resources/functions/navigation_context.dart';
 import 'package:flutter/material.dart';
 
 import '../../const.dart';
+import '../utils/functions/navigation_context.dart';
 
 Widget ImageContainer() {
   return Container(

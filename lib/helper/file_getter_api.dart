@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:ecom_registration/resources/functions/resuable_functions.dart';
+import 'package:ecom_registration/utils/functions/navigation_context.dart';
+import 'package:ecom_registration/utils/functions/resuable_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
@@ -25,7 +26,7 @@ void getFileFromRemote(BuildContext context, String file) async {
        openFileFromResponse(context, responseJson.data);
     }
   } catch (ex) {
-    Navigator.of(context).pop();
+    jumpToPreviousScreen(context);
     E_comRegistrationToastFunction(context, '');
     throw Exception(ex.toString());
   }
@@ -36,6 +37,6 @@ void openFileFromResponse(BuildContext context, dynamic response) async {
   String appDocPath = appDocDir.path;
   File file = await File('${appDocPath}.pdf').create();
   file.writeAsBytesSync(response);
-  Navigator.of(context).pop();
+  jumpToPreviousScreen(context);
   OpenFilex.open(file.path);
 }

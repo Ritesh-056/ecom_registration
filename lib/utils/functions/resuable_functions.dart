@@ -1,14 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:ecom_registration/resources/functions/navigation_context.dart';
-import 'package:ecom_registration/resources/functions/progressdialog.dart';
-import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
 import 'package:ecom_registration/state/provider/general_func_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import '../../widgets/reusable_widgets.dart';
+import 'navigation_context.dart';
+import 'progress_dialog.dart';
 
 late Timer timer ;
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/reusable_widgets.dart';
+import '../../widgets/reusable_widgets.dart';
 
 void GISCircularProgressDialog(
     BuildContext context, String headingMsg, String textBody) {

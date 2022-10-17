@@ -1,8 +1,10 @@
 import 'package:ecom_registration/const.dart';
-import 'package:ecom_registration/resources/functions/resuable_functions.dart';
-import 'package:ecom_registration/resources/widgets/master_widgets.dart';
-import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
+import 'package:ecom_registration/utils/functions/resuable_functions.dart';
+import '../../widgets/reusable_widgets.dart';
+import '../widgets/master_widgets.dart';
+
 import 'package:flutter/material.dart';
+
 
 class UserDetailResponseScreen extends StatelessWidget {
   const UserDetailResponseScreen({Key? key})

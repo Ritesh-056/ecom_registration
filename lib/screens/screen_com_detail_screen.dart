@@ -1,10 +1,10 @@
 import 'package:ecom_registration/const.dart';
 import 'package:ecom_registration/model%20/company.dart';
-import 'package:ecom_registration/resources/functions/approve_company_functions.dart';
-import 'package:ecom_registration/resources/functions/navigation_context.dart';
-import 'package:ecom_registration/resources/functions/progressdialog.dart';
-import 'package:ecom_registration/resources/widgets/master_widgets.dart';
-import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
+import 'package:ecom_registration/utils/functions/approve_company_functions.dart';
+import 'package:ecom_registration/utils/functions/navigation_context.dart';
+import 'package:ecom_registration/utils/functions/progress_dialog.dart';
+import '../../widgets/reusable_widgets.dart';
+import '../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../helper/file_getter_api.dart';

@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:path/path.dart';
 
-import '../../model /company.dart';
+import '../model /company.dart';
 
 
 class ApiPostService {

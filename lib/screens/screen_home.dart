@@ -1,8 +1,7 @@
-import 'package:ecom_registration/resources/functions/navigation_context.dart';
-import 'package:ecom_registration/resources/widgets/master_widgets.dart';
-import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
+import 'package:ecom_registration/utils/functions/navigation_context.dart';
+import '../../widgets/reusable_widgets.dart';
+import '../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 import '../const.dart';
 

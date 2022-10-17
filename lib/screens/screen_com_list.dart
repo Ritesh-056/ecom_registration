@@ -1,12 +1,11 @@
 import 'dart:developer';
 
 import 'package:ecom_registration/const.dart';
-import 'package:ecom_registration/helper/shared_preferences_datas.dart';
+import 'package:ecom_registration/helper/persistance_helper.dart';
 import 'package:ecom_registration/model%20/company.dart';
-import 'package:ecom_registration/resources/widgets/master_widgets.dart';
-import 'package:ecom_registration/resources/widgets/reusable_widgets.dart';
+import '../../widgets/reusable_widgets.dart';
+import '../widgets/master_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../state/company_bloc/company_detail_event.dart';

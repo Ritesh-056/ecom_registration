@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:ecom_registration/resources/functions/navigation_context.dart';
+import 'package:ecom_registration/utils/functions/navigation_context.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
