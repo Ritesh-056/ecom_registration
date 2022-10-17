@@ -1,4 +1,4 @@
-#Ecom_registration
+# Ecom_registration
 E-governance college project for online company registration. 
 
 Features
@@ -18,7 +18,6 @@ Process
 Screenshots
 
 <img src="https://user-images.githubusercontent.com/53189504/196182633-c0cb5155-beb1-48dc-b9fa-3e21572cc5c5.jpg" width="400" >
-<img src="https://user-images.githubusercontent.com/53189504/196182633-c0cb5155-beb1-48dc-b9fa-3e21572cc5c5.jpg" width="400" >
 <img src="https://user-images.githubusercontent.com/53189504/196182644-3628500b-97fe-457f-afa0-e6e017c5db60.jpg" width="400" >
 <img src="https://user-images.githubusercontent.com/53189504/196182662-da5c7a63-84a3-45cf-a440-ef7d4a9d9bd8.jpg" width="400" >
 
@@ -32,6 +31,5 @@ Screenshots
 
 <img src="https://user-images.githubusercontent.com/53189504/196183050-257c8867-c886-4022-b3cf-62138a80b527.jpg" width="400" >
 <img src="https://user-images.githubusercontent.com/53189504/196183057-c916096c-8747-4260-9289-3b8d0f30f87a.jpg" width="400" >
-<img src="https://user-images.githubusercontent.com/53189504/196183005-9d9c8b9e-21fb-4df6-bf69-34a545a31940.jpg" width="400" >
 <img src="https://user-images.githubusercontent.com/53189504/196183078-1191f5d7-8d0a-4bfd-bc5c-22b3d949dbe7.jpg" width="400" >
 
