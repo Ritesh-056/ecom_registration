@@ -18,12 +18,15 @@ Widget ItemsContainer() {
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
+        Spacer(),
         MiddleElementsOfContainerCompany(),
+        SizedBox(height: 32,),
         MiddleElementsOfContainerImageProgress(),
-        SizedBox(),
-        FooterElementsOfContainer()
+        Spacer(),
+        FooterElementsOfContainer(),
+        Spacer(),
       ],
     ),
   );
@@ -64,6 +67,21 @@ Widget MiddleElementsOfContainerImageProgress() {
         height: 100,
         width: 60,
       ),
+      SizedBox(height: 32,),
+      Center(
+        child: Image.asset(
+          'assets/logo_nepal.png',
+          height: 100,
+          width: 80,
+        ),
+      ),
+      Center(
+        child: Text(
+          SubmittedDetailConstant.NepalGovernmentStr,
+          style: TextStyle(color:Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+      ),
+
     ],
   );
 }
